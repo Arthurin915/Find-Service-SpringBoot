@@ -23,7 +23,16 @@ if (typeof jQuery === 'undefined') {
  * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
-
+ 
+// SELECT PLACEHOLDER JS
+ $('select').change(function() {
+     if ($(this).children('option:first-child').is(':selected')) {
+       $(this).addClass('placeholder');
+     } else {
+      $(this).removeClass('placeholder');
+     }
+    });
+// 
 
 +function ($) {
   'use strict';

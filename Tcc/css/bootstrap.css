@@ -124,6 +124,10 @@ button,
 select {
   text-transform: none;
 }
+.placeholder{color: grey;}
+select option:first-child{color: grey; display: none;}
+select option{color: #555;} 
+
 button,
 html input[type="button"],
 input[type="reset"],
