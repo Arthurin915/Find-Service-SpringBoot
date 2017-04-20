@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymleaf.org">
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+
+    <title>FindService - Encontre o que você precisa</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link href="css/stylish-portfolio.css" rel="stylesheet"/>
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <!--Datatable-->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<!--EmpRegisterModal-->
+<body>
+<div class="modal fade" id="RegisterEmpFormModal"  tabindex="-1"
+ role="dialog" aria-labelledby="RegisterEmpFormModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">x</button>
+                <h4 class="modal-title" id="RegisterEmpFormModalLabel">
+                    Cadastro de Empresa
+                </h4>
+            </div>
+            <div class ="modal-body">
+                <form th:object="${user}" th:action="@{/save}" type="post">
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="exampleInputNomeEmp">
+                                Nome:
+                            </label>
+                            <input class="form-control" th:field="*{nome}" id="exampleInputNomeEmp" type="name" placeholder="Digite o Nome da Empresa">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="exampleInputEmail">
+                                Email:
+                            </label>
+                            <input class="form-control" th:field="*{email}" id="exampleInputEmail" type="email" placeholder="Digite o email">
+                        </div>
+                    </div>
+                    <div class="row">
+                    <div class="form-group col-md-4">
+                            <label for="exampleInputCidade">
+                                Cidade:
+                            </label>
+                            <input class="form-control" th:field="*{cidade}" id="exampleInputCidade" type="text" placeholder="Digite a Cidade">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="exampleInputEndereco">
+                                Endereço:
+                            </label>
+                            <input class="form-control" th:field="*{endereco}" id="exampleInputEndereco" type="text" placeholder="Digite o Endereço">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="exampleInputTelefone">
+                                Telefone:
+                            </label>
+                            <input class="form-control" th:field="*{telefone}" id="exampleInputTelefone" type="text" placeholder="Digite o Telefone">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="exampleInputSenha">
+                                Senha:
+                            </label>
+                            <input class="form-control" th:field="*{senha}" id="exampleInputSenha" type="password" placeholder="Digite a Senha">
+                        </div>
+                        <div class="form-group col-md-6">
+                        <label for="exampleInputCategoria">
+                                Categoria:
+                            </label>
+                        <select class="form-control"  id="exampleInputCategoria" type="select">
+                          <option>Selecione a categoria</option>
+                          <option>Categoria 1</option>
+                          <option>Categoria 2</option>
+                          <option>Categoria 3</option>
+                        </select>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                    <div class="form-group col-md-6">
+                            <label for="exampleInputConfirmSenha">
+                                Confirmar Senha:
+                            </label>
+                            <input class="form-control" id="exampleInputConfirmSenha" type="password"
+                            placeholder="Digite a senha">
+                    </div>
+                    </div>
+                    <hr/>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <button class="btn btn-primary" type="submit">Salvar</button>
+                        <button class="btn btn-default" type="button" data-dismiss="modal">Cancelar</button>
+                      </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--UserRegisterForm-->
+<div class="modal fade" id="RegisterFormModal" tabindex="-1" role="dialog"
+ aria-labelledby="RegisterFormModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    x
+                </button>
+                <h4 class="modal-title" id="RegisterFormModalLabel">
+                    Cadastro de Usuário
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="exampleInputNome">
+                                Nome:
+                            </label>
+                            <input class="form-control" id="exampleInputNome" type="name" placeholder="Digite o Nome">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="exampleInputEmail">
+                                Email:
+                            </label>
+                            <input class="form-control" id="exampleInputEmail" type="email" placeholder="Digite o email">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="exampleInputCidade">
+                                Cidade:
+                            </label>
+                            <input class="form-control" id="exampleInputCidade" type="text" placeholder="Digite a Cidade">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="exampleInputEndereco">
+                                Endereço:
+                            </label>
+                            <input class="form-control" id="exampleInputEndereco" type="text" placeholder="Digite o Endereço">
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="exampleInputSenha">
+                                Senha:
+                            </label>
+                            <input class="form-control" id="exampleInputSenha" type="password" placeholder="Digite a Senha">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="exampleInputTelefone">
+                                Telefone:
+                            </label>
+                            <input class="form-control" id="exampleInputTelefone" type="text" placeholder="Digite o Telefone">
+                        </div>
+
+                    </div>
+                    <div class="row">
+                       <div class="form-group col-md-6">
+                            <label for="exampleInputConfirmSenha">
+                                Confirmar Senha:
+                            </label>
+                            <input class="form-control" id="exampleInputConfirmSenha" type="password"
+                            placeholder="Digite a senha">
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <button class="btn btn-primary" type="submit">Salvar</button>
+                        <button class="btn btn-default" type="button" data-dismiss="modal">Cancelar</button>
+                      </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--LoginForm-->
+<div class="modal fade" id="LoginFormModal"  tabindex="-1"
+ role="dialog" aria-labelledby="LoginFormModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">x</button>
+                <h4 class="modal-title" id="LoginFormModalLabel">
+                    Login
+                </h4>
+            </div>
+            <div class ="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="inputEmail" class="col-sm-2 control-label">
+                            Email:
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword" class="col-sm-2 control-label">
+                            Senha:
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="inputPassword" placeholder="Senha">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox">
+                                    Lembrar-me
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                           <button class="btn btn-primary" type="submit">Salvar</button>
+                        <button class="btn btn-default" type="button" data-dismiss="modal">Cancelar
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Menu-->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">FindService</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active">
+                <a href="#">Home</a>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Categorias
+        <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="#">Categoria 1</a>
+                    </li>
+                    <li>
+                        <a href="#">Categoria 2</a>
+                    </li>
+                    <li>
+                        <a href="#">Categoria 3</a>
+                    </li>
+                </ul>
+        </ul>
+        <form class="navbar-form navbar-left">
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Pesquisar">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="submit">
+                            <i class="glyphicon glyphicon-search">
+                            </i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!--DropdownCadastro-->
+        <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> Cadastrar
+                <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#RegisterFormModal">Cadastrar Usuário</a>
+                    </li>
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#RegisterEmpFormModal">Cadastrar Empresa</a>
+                    </li>
+                </ul>
+           </li>
+        <!--DropdownLogin-->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-log-in"></span> Login
+                <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#LoginFormModal">Logar Usuário</a>
+                    </li>
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#LoginFormModal">Logar Empresa</a>
+                    </li>
+                </ul>
+           </li>
+        </ul>
+    </div>
+</nav>
+
+    <!-- Mapa -->
+    <header id="top" class="header">
+        <div class="text-vertical-center">
+    <section id="contact" class="map">
+        <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3458.7896582021244!2d-51.15266638539528!3d-29.899160881935355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x951970265f07cfb5%3A0xa38d71cab38e0da1!2sInstituto+Federal+do+Rio+Grande+do+Sul%2C+Campus+Canoas!5e0!3m2!1spt-BR!2sbr!4v1489707642675" style="border:0" allowfullscreen="true"></iframe>
+        <br />
+        <small>
+            <a href="https://www.google.com.br/maps/place/Instituto+Federal+do+Rio+Grande+do+Sul,+Campus+Canoas/@-29.8991609,-51.1526664,17z/data=!3m1!4b1!4m5!3m4!1s0x951970265f07cfb5:0xa38d71cab38e0da1!8m2!3d-29.8991609!4d-51.1504777"></a>
+        </small>
+        </section>
+        </div>
+        </header>
+    </section>
+
+    <!-- Footer -->
+    <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Cidade</th>
+                <th>Endereco</th>
+                <th>Senha</th>
+                <th>Telefone</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Oficina do Chopp</td>
+                <td>oficina@gmail.com</td>
+                <td>Esteio</td>
+                <td>rua tal numero x</td>
+                <td>xxxxx</td>
+                <td>(51)xxxx-xxxx</td>
+            </tr>
+            <tr>
+                <td>Conserto de Geladeiras do seu Zé</td>
+                <td>zé.consertos@gmail.com</td>
+                <td>Canoas</td>
+                <td>rua tal numero x</td>
+                <td>xxxxx</td>
+                <td>(51)xxxx-xxxx</td>
+            </tr>
+            <tr>
+                <td>Mecânica Power</td>
+                <td>mp@gmail.com</td>
+                <td>Esteio</td>
+                <td>rua tal numero x</td>
+                <td>xxxxxxx</td>
+                <td>(51)xxxx-xxxx</td>
+            </tr>
+             </tbody>
+    </table>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script>
+    // Closes the sidebar menu
+    $("#menu-close").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+    // Opens the sidebar menu
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+    // Scrolls to the selected menu item on the page
+    $(function() {
+        $('a[href*=#]:not([href=#],[data-toggle],[data-target],[data-slide])').click(function() {
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                if (target.length) {
+                    $('html,body').animate({
+                        scrollTop: target.offset().top
+                    }, 1000);
+                    return false;
+                }
+            }
+        });
+    });
+    //#to-top button appears after scrolling
+    var fixed = false;
+    $(document).scroll(function() {
+        if ($(this).scrollTop() > 250) {
+            if (!fixed) {
+                fixed = true;
+                // $('#to-top').css({position:'fixed', display:'block'});
+                $('#to-top').show("slow", function() {
+                    $('#to-top').css({
+                        position: 'fixed',
+                        display: 'block'
+                    });
+                });
+            }
+        } else {
+            if (fixed) {
+                fixed = false;
+                $('#to-top').hide("slow", function() {
+                    $('#to-top').css({
+                        display: 'none'
+                    });
+                });
+            }
+        }
+    });
+    // Disable Google Maps scrolling
+    // See http://stackoverflow.com/a/25904582/1607849
+    // Disable scroll zooming and bind back the click event
+    var onMapMouseleaveHandler = function(event) {
+        var that = $(this);
+        that.on('click', onMapClickHandler);
+        that.off('mouseleave', onMapMouseleaveHandler);
+        that.find('iframe').css("pointer-events", "none");
+    }
+    var onMapClickHandler = function(event) {
+            var that = $(this);
+            // Disable the click handler until the user leaves the map area
+            that.off('click', onMapClickHandler);
+            // Enable scrolling zoom
+            that.find('iframe').css("pointer-events", "auto");
+            // Handle the mouse leave event
+            that.on('mouseleave', onMapMouseleaveHandler);
+        }
+        // Enable map zooming with mouse scroll when the user clicks the map
+    $('.map').on('click', onMapClickHandler);
+    </script>
+
+</body>
+
+</html>
