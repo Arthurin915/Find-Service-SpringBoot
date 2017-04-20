@@ -70,8 +70,18 @@ public class User {
 	public String getcategoria() {
 		return categoria;
 	}
-	public void setcategoria(String categoria) {
-		categoria = categoria;
+	public String getConfirmar() {
+		return confirmar;
 	}
+	public void setConfirmar(String confirmar) {
+		this.confirmar = confirmar;
+	}
+	public String getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+	
 	
 }

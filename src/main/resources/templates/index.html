@@ -46,19 +46,19 @@
                 </h4>
             </div>
             <div class ="modal-body">
-                <form th:object="${user}" type="post">
+                <form th:object="${user}" th:action="@{/save}" method="post">
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="exampleInputNomeEmp">
                                 Nome:
                             </label>
-                            <input class="form-control" th:field="*{nome}" id="exampleInputNomeEmp" type="name" placeholder="Digite o Nome da Empresa">
+                            <input class="form-control" th:field="${user.nome}" id="exampleInputNomeEmp" type="name" placeholder="Digite o Nome da Empresa">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="exampleInputEmail">
                                 Email:
                             </label>
-                            <input class="form-control" id="exampleInputEmail" type="email" placeholder="Digite o email">
+                            <input class="form-control" th:field="*{email}" id="exampleInputEmail" type="email" placeholder="Digite o email">
                         </div>
                     </div>
                     <div class="row">
@@ -66,19 +66,19 @@
                             <label for="exampleInputCidade">
                                 Cidade:
                             </label>
-                            <input class="form-control" id="exampleInputCidade" type="text" placeholder="Digite a Cidade">
+                            <input class="form-control" th:field="*{cidade}" id="exampleInputCidade" type="text" placeholder="Digite a Cidade">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="exampleInputEndereco">
                                 Endereço:
                             </label>
-                            <input class="form-control" id="exampleInputEndereco" type="text" placeholder="Digite o Endereço">
+                            <input class="form-control" th:field="*{endereco}" id="exampleInputEndereco" type="text" placeholder="Digite o Endereço">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="exampleInputTelefone">
                                 Telefone:
                             </label>
-                            <input class="form-control" id="exampleInputTelefone" type="text" placeholder="Digite o Telefone">
+                            <input class="form-control" th:field="*{telefone}" id="exampleInputTelefone" type="text" placeholder="Digite o Telefone">
                         </div>
                     </div>
                     <div class="row">
@@ -86,13 +86,13 @@
                             <label for="exampleInputSenha">
                                 Senha:
                             </label>
-                            <input class="form-control" id="exampleInputSenha" type="password" placeholder="Digite a Senha">
+                            <input class="form-control" th:field="*{senha}" id="exampleInputSenha" type="password" placeholder="Digite a Senha">
                         </div>
                         <div class="form-group col-md-6">
                         <label for="exampleInputCategoria">
                                 Categoria:
                             </label>
-                        <select class="form-control" id="exampleInputCategoria" type="select">
+                        <select class="form-control"  id="exampleInputCategoria" type="select">
                           <option>Selecione a categoria</option>
                           <option>Categoria 1</option>
                           <option>Categoria 2</option>
@@ -344,33 +344,37 @@
         <thead>
             <tr>
                 <th>Nome</th>
-                <th>Categoria</th>
-                <th>Local</th>
-                <th>Contato</th>
-                <th>Avaliação</th>
+                <th>Email</th>
+                <th>Cidade</th>
+                <th>Endereco</th>
+                <th>Senha</th>
+                <th>Telefone</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td>Oficina do Chopp</td>
-                <td>Bar</td>
+                <td>oficina@gmail.com</td>
                 <td>Esteio</td>
+                <td>rua tal numero x</td>
+                <td>xxxxx</td>
                 <td>(51)xxxx-xxxx</td>
-                <td>5 Estrelas</td>
             </tr>
             <tr>
                 <td>Conserto de Geladeiras do seu Zé</td>
-                <td>Manutenção</td>
+                <td>zé.consertos@gmail.com</td>
                 <td>Canoas</td>
+                <td>rua tal numero x</td>
+                <td>xxxxx</td>
                 <td>(51)xxxx-xxxx</td>
-                <td>4 Estrelas</td>
             </tr>
             <tr>
                 <td>Mecânica Power</td>
-                <td>Manutenção</td>
+                <td>mp@gmail.com</td>
                 <td>Esteio</td>
+                <td>rua tal numero x</td>
+                <td>xxxxxxx</td>
                 <td>(51)xxxx-xxxx</td>
-                <td>4 Estrelas</td>
             </tr>
              </tbody>
     </table>

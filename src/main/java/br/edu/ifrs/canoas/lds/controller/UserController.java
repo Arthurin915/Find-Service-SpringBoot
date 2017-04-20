@@ -22,8 +22,8 @@ public class UserController {
 	}
 
 
-	@GetMapping("/index")
-	public String index(Model model){
+	@GetMapping("/")
+	public String index(Model model){ //nao sei se troco o index para new user(Model model)
 		model.addAttribute("users", new ArrayList<User>());
 		model.addAttribute("user", new User());
 		return "index";
