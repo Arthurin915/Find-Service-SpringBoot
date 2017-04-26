@@ -23,15 +23,15 @@ public class UserController {
 
 
 	@GetMapping("/")
-	public String index(Model model){ //nao sei se troco o index para new user(Model model)
-		model.addAttribute("users", new ArrayList<User>());
+	public String index(Model model){ 
+		model.addAttribute("users", userService.findAll());
 		model.addAttribute("user", new User());
 		return "index";
 	}
 
 	@PostMapping("/save")
 	public String save(Model model, @Valid User user){
-		//userSerivce.save(user);
-		return "index";
+		User newUser = userService.save(user);
+		return "redirect:/";
 	}
 }

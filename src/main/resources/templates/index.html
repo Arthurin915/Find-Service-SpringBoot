@@ -52,13 +52,13 @@
                             <label for="exampleInputNomeEmp">
                                 Nome:
                             </label>
-                            <input class="form-control" th:field="${user.nome}" id="exampleInputNomeEmp" type="name" placeholder="Digite o Nome da Empresa">
+                            <input class="form-control" th:field="${user.nome}" id="exampleInputNomeEmp" type="text" placeholder="Digite o Nome da Empresa">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="exampleInputEmail">
                                 Email:
                             </label>
-                            <input class="form-control" th:field="*{email}" id="exampleInputEmail" type="email" placeholder="Digite o email">
+                            <input class="form-control" th:field="${user.email}" id="exampleInputEmail" type="email" placeholder="Digite o email">
                         </div>
                     </div>
                     <div class="row">
@@ -66,19 +66,19 @@
                             <label for="exampleInputCidade">
                                 Cidade:
                             </label>
-                            <input class="form-control" th:field="*{cidade}" id="exampleInputCidade" type="text" placeholder="Digite a Cidade">
+                            <input class="form-control" th:field="${user.cidade}" id="exampleInputCidade" type="text" placeholder="Digite a Cidade">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="exampleInputEndereco">
                                 Endereço:
                             </label>
-                            <input class="form-control" th:field="*{endereco}" id="exampleInputEndereco" type="text" placeholder="Digite o Endereço">
+                            <input class="form-control" th:field="${user.endereco}" id="exampleInputEndereco" type="text" placeholder="Digite o Endereço">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="exampleInputTelefone">
                                 Telefone:
                             </label>
-                            <input class="form-control" th:field="*{telefone}" id="exampleInputTelefone" type="text" placeholder="Digite o Telefone">
+                            <input class="form-control" th:field="${user.telefone}" id="exampleInputTelefone" type="text" placeholder="Digite o Telefone">
                         </div>
                     </div>
                     <div class="row">
@@ -86,17 +86,17 @@
                             <label for="exampleInputSenha">
                                 Senha:
                             </label>
-                            <input class="form-control" th:field="*{senha}" id="exampleInputSenha" type="password" placeholder="Digite a Senha">
+                            <input class="form-control" th:field="${user.senha}" id="exampleInputSenha" type="password" placeholder="Digite a Senha">
                         </div>
                         <div class="form-group col-md-6">
                         <label for="exampleInputCategoria">
                                 Categoria:
                             </label>
-                        <select class="form-control"  id="exampleInputCategoria" type="select">
-                          <option>Selecione a categoria</option>
-                          <option>Categoria 1</option>
-                          <option>Categoria 2</option>
-                          <option>Categoria 3</option>
+                        <select class="form-control" th:field="${user.categoria}" id="exampleInputCategoria" type="select">
+                          <option value ="">Selecione a categoria</option>
+                          <option value ="Categoria 1">Categoria 1</option>
+                          <option value ="Categoria 2">Categoria 2</option>
+                          <option value ="Categoria 3">Categoria 3</option>
                         </select>
 
                         </div>
@@ -106,7 +106,7 @@
                             <label for="exampleInputConfirmSenha">
                                 Confirmar Senha:
                             </label>
-                            <input class="form-control" id="exampleInputConfirmSenha" type="password"
+                            <input class="form-control" th:field="${user.confirmar}" id="exampleInputConfirmSenha" type="password"
                             placeholder="Digite a senha">
                     </div>
                     </div>
@@ -137,19 +137,19 @@
                 </h4>
             </div>
             <div class="modal-body">
-                <form>
+                <form th:object="${user}" th:action="@{/save}" method="post">
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="exampleInputNome">
                                 Nome:
                             </label>
-                            <input class="form-control" id="exampleInputNome" type="name" placeholder="Digite o Nome">
+                            <input class="form-control" th:field="${user.nome}" id="exampleInputNome" type="text" placeholder="Digite o Nome">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="exampleInputEmail">
                                 Email:
                             </label>
-                            <input class="form-control" id="exampleInputEmail" type="email" placeholder="Digite o email">
+                            <input class="form-control" th:field="${user.email}" id="exampleInputEmail" type="email" placeholder="Digite o email">
                         </div>
                     </div>
                     <div class="row">
@@ -157,13 +157,13 @@
                             <label for="exampleInputCidade">
                                 Cidade:
                             </label>
-                            <input class="form-control" id="exampleInputCidade" type="text" placeholder="Digite a Cidade">
+                            <input class="form-control" th:field="${user.cidade}" id="exampleInputCidade" type="text" placeholder="Digite a Cidade">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="exampleInputEndereco">
                                 Endereço:
                             </label>
-                            <input class="form-control" id="exampleInputEndereco" type="text" placeholder="Digite o Endereço">
+                            <input class="form-control" th:field="${user.endereco}" id="exampleInputEndereco" type="text" placeholder="Digite o Endereço">
                         </div>
 
                     </div>
@@ -172,13 +172,13 @@
                             <label for="exampleInputSenha">
                                 Senha:
                             </label>
-                            <input class="form-control" id="exampleInputSenha" type="password" placeholder="Digite a Senha">
+                            <input class="form-control" th:field="${user.senha}" id="exampleInputSenha" type="password" placeholder="Digite a Senha">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="exampleInputTelefone">
                                 Telefone:
                             </label>
-                            <input class="form-control" id="exampleInputTelefone" type="text" placeholder="Digite o Telefone">
+                            <input class="form-control" th:field="${user.telefone}" id="exampleInputTelefone" type="text" placeholder="Digite o Telefone">
                         </div>
 
                     </div>
@@ -187,7 +187,7 @@
                             <label for="exampleInputConfirmSenha">
                                 Confirmar Senha:
                             </label>
-                            <input class="form-control" id="exampleInputConfirmSenha" type="password"
+                            <input class="form-control" th:field="${user.confirmar}" id="exampleInputConfirmSenha" type="password"
                             placeholder="Digite a senha">
                         </div>
                     </div>
@@ -295,7 +295,7 @@
             </div>
         </form>
         <!--DropdownCadastro-->
-        <ul class="nav navbar-nav navbar-right">
+         <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> Cadastrar
                 <span class="caret"></span></a>
@@ -308,20 +308,9 @@
                     </li>
                 </ul>
            </li>
-        <!--DropdownLogin-->
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-log-in"></span> Login
-                <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a href="#" data-toggle="modal" data-target="#LoginFormModal">Logar Usuário</a>
-                    </li>
-                    <li>
-                        <a href="#" data-toggle="modal" data-target="#LoginFormModal">Logar Empresa</a>
-                    </li>
-                </ul>
-           </li>
-        </ul>
+           <!--DropdownLogin-->
+           <li><a href="#" data-toggle="modal" data-target="#LoginFormModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        </ul>         
     </div>
 </nav>
 
@@ -352,31 +341,15 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Oficina do Chopp</td>
+            <tr th:each="user:${users}">
+                <td th:text="${user.nome}">Oficina do Chopp</td>
                 <td>oficina@gmail.com</td>
                 <td>Esteio</td>
                 <td>rua tal numero x</td>
                 <td>xxxxx</td>
                 <td>(51)xxxx-xxxx</td>
-            </tr>
-            <tr>
-                <td>Conserto de Geladeiras do seu Zé</td>
-                <td>zé.consertos@gmail.com</td>
-                <td>Canoas</td>
-                <td>rua tal numero x</td>
-                <td>xxxxx</td>
-                <td>(51)xxxx-xxxx</td>
-            </tr>
-            <tr>
-                <td>Mecânica Power</td>
-                <td>mp@gmail.com</td>
-                <td>Esteio</td>
-                <td>rua tal numero x</td>
-                <td>xxxxxxx</td>
-                <td>(51)xxxx-xxxx</td>
-            </tr>
-             </tbody>
+            </tr>             
+           </tbody>
     </table>
 
     <!-- jQuery -->
