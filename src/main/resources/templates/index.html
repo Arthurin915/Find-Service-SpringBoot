@@ -13,8 +13,13 @@
 
     <title>FindService - Encontre o que você precisa</title>
 
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.dataTables.min.js"></script>
+    <script src="js/dataTables.bootstrap.min.js"></script>
+
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/dataTables.bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/stylish-portfolio.css" rel="stylesheet"/>
@@ -46,19 +51,19 @@
                 </h4>
             </div>
             <div class ="modal-body">
-                <form th:object="${user}" th:action="@{/save}" method="post">
+                <form th:object="${usuario}" th:action="@{/save}" method="post">
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="exampleInputNomeEmp">
                                 Nome:
                             </label>
-                            <input class="form-control" th:field="${user.nome}" id="exampleInputNomeEmp" type="text" placeholder="Digite o Nome da Empresa">
+                            <input class="form-control" th:field="${usuario.nome}" id="exampleInputNomeEmp" type="text" placeholder="Digite o Nome da Empresa">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="exampleInputEmail">
                                 Email:
                             </label>
-                            <input class="form-control" th:field="${user.email}" id="exampleInputEmail" type="email" placeholder="Digite o email">
+                            <input class="form-control" th:field="${usuario.email}" id="exampleInputEmail" type="email" placeholder="Digite o email">
                         </div>
                     </div>
                     <div class="row">
@@ -66,19 +71,19 @@
                             <label for="exampleInputCidade">
                                 Cidade:
                             </label>
-                            <input class="form-control" th:field="${user.cidade}" id="exampleInputCidade" type="text" placeholder="Digite a Cidade">
+                            <input class="form-control" th:field="${usuario.cidade}" id="exampleInputCidade" type="text" placeholder="Digite a Cidade">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="exampleInputEndereco">
                                 Endereço:
                             </label>
-                            <input class="form-control" th:field="${user.endereco}" id="exampleInputEndereco" type="text" placeholder="Digite o Endereço">
+                            <input class="form-control" th:field="${usuario.endereco}" id="exampleInputEndereco" type="text" placeholder="Digite o Endereço">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="exampleInputTelefone">
                                 Telefone:
                             </label>
-                            <input class="form-control" th:field="${user.telefone}" id="exampleInputTelefone" type="text" placeholder="Digite o Telefone">
+                            <input class="form-control" th:field="${usuario.telefone}" id="exampleInputTelefone" type="text" placeholder="Digite o Telefone">
                         </div>
                     </div>
                     <div class="row">
@@ -86,13 +91,13 @@
                             <label for="exampleInputSenha">
                                 Senha:
                             </label>
-                            <input class="form-control" th:field="${user.senha}" id="exampleInputSenha" type="password" placeholder="Digite a Senha">
+                            <input class="form-control" th:field="${usuario.senha}" id="exampleInputSenha" type="password" placeholder="Digite a Senha">
                         </div>
                         <div class="form-group col-md-6">
                         <label for="exampleInputCategoria">
                                 Categoria:
                             </label>
-                        <select class="form-control" th:field="${user.categoria}" id="exampleInputCategoria" type="select">
+                        <select class="form-control" th:field="${usuario.categoria}" id="exampleInputCategoria" type="select">
                           <option value ="">Selecione a categoria</option>
                           <option value ="Categoria 1">Categoria 1</option>
                           <option value ="Categoria 2">Categoria 2</option>
@@ -106,7 +111,7 @@
                             <label for="exampleInputConfirmSenha">
                                 Confirmar Senha:
                             </label>
-                            <input class="form-control" th:field="${user.confirmar}" id="exampleInputConfirmSenha" type="password"
+                            <input class="form-control" th:field="${usuario.confirmar}" id="exampleInputConfirmSenha" type="password"
                             placeholder="Digite a senha">
                     </div>
                     </div>
@@ -123,7 +128,7 @@
     </div>
 </div>
 
-<!--UserRegisterForm-->
+<!--usuarioRegisterForm-->
 <div class="modal fade" id="RegisterFormModal" tabindex="-1" role="dialog"
  aria-labelledby="RegisterFormModalLabel">
     <div class="modal-dialog" role="document">
@@ -137,19 +142,19 @@
                 </h4>
             </div>
             <div class="modal-body">
-                <form th:object="${user}" th:action="@{/save}" method="post">
+                <form th:object="${usuario}" th:action="@{/save}" method="post">
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="exampleInputNome">
                                 Nome:
                             </label>
-                            <input class="form-control" th:field="${user.nome}" id="exampleInputNome" type="text" placeholder="Digite o Nome">
+                            <input class="form-control" th:field="${usuario.nome}" id="exampleInputNome" type="text" placeholder="Digite o Nome">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="exampleInputEmail">
                                 Email:
                             </label>
-                            <input class="form-control" th:field="${user.email}" id="exampleInputEmail" type="email" placeholder="Digite o email">
+                            <input class="form-control" th:field="${usuario.email}" id="exampleInputEmail" type="email" placeholder="Digite o email">
                         </div>
                     </div>
                     <div class="row">
@@ -157,13 +162,13 @@
                             <label for="exampleInputCidade">
                                 Cidade:
                             </label>
-                            <input class="form-control" th:field="${user.cidade}" id="exampleInputCidade" type="text" placeholder="Digite a Cidade">
+                            <input class="form-control" th:field="${usuario.cidade}" id="exampleInputCidade" type="text" placeholder="Digite a Cidade">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="exampleInputEndereco">
                                 Endereço:
                             </label>
-                            <input class="form-control" th:field="${user.endereco}" id="exampleInputEndereco" type="text" placeholder="Digite o Endereço">
+                            <input class="form-control" th:field="${usuario.endereco}" id="exampleInputEndereco" type="text" placeholder="Digite o Endereço">
                         </div>
 
                     </div>
@@ -172,13 +177,13 @@
                             <label for="exampleInputSenha">
                                 Senha:
                             </label>
-                            <input class="form-control" th:field="${user.senha}" id="exampleInputSenha" type="password" placeholder="Digite a Senha">
+                            <input class="form-control" th:field="${usuario.senha}" id="exampleInputSenha" type="password" placeholder="Digite a Senha">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="exampleInputTelefone">
                                 Telefone:
                             </label>
-                            <input class="form-control" th:field="${user.telefone}" id="exampleInputTelefone" type="text" placeholder="Digite o Telefone">
+                            <input class="form-control" th:field="${usuario.telefone}" id="exampleInputTelefone" type="text" placeholder="Digite o Telefone">
                         </div>
 
                     </div>
@@ -187,7 +192,7 @@
                             <label for="exampleInputConfirmSenha">
                                 Confirmar Senha:
                             </label>
-                            <input class="form-control" th:field="${user.confirmar}" id="exampleInputConfirmSenha" type="password"
+                            <input class="form-control" th:field="${usuario.confirmar}" id="exampleInputConfirmSenha" type="password"
                             placeholder="Digite a senha">
                         </div>
                     </div>
@@ -297,7 +302,7 @@
         <!--DropdownCadastro-->
          <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> Cadastrar
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-usuario"></span> Cadastrar
                 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li>
@@ -329,32 +334,39 @@
     </section>
 
     <!-- Footer -->
-    <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-        <thead>
+   <div class="container">
+    <h1>DataTable</h1>
+    <table id="example" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+         <thead>
             <tr>
                 <th>Nome</th>
                 <th>Email</th>
                 <th>Cidade</th>
                 <th>Endereco</th>
-                <th>Senha</th>
                 <th>Telefone</th>
+                <th>Senha</th>
+                <th>Categoria</th>
             </tr>
         </thead>
         <tbody>
-            <tr th:each="user:${users}">
-                <td th:text="${user.nome}">Oficina do Chopp</td>
-                <td>oficina@gmail.com</td>
-                <td>Esteio</td>
-                <td>rua tal numero x</td>
-                <td>xxxxx</td>
-                <td>(51)xxxx-xxxx</td>
+            <tr th:each="usuario:${usuarios}">
+                <td th:text="${usuario.nome}"></td>
+                <td th:text="${usuario.email}"></td>
+                <td th:text="${usuario.cidade}"></td>
+                <td th:text="${usuario.endereco}"></td>
+                <td th:text="${usuario.telefone}"></td>
+                <td th:text="${usuario.senha}"></td>
+                <td th:text="${usuario.categoria}"></td>
+
             </tr>             
            </tbody>
     </table>
+    </div>
+    <script>
+        $('#example').dataTable();
+    </script>
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
+   
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
@@ -421,14 +433,14 @@
     }
     var onMapClickHandler = function(event) {
             var that = $(this);
-            // Disable the click handler until the user leaves the map area
+            // Disable the click handler until the usuario leaves the map area
             that.off('click', onMapClickHandler);
             // Enable scrolling zoom
             that.find('iframe').css("pointer-events", "auto");
             // Handle the mouse leave event
             that.on('mouseleave', onMapMouseleaveHandler);
         }
-        // Enable map zooming with mouse scroll when the user clicks the map
+        // Enable map zooming with mouse scroll when the usuario clicks the map
     $('.map').on('click', onMapClickHandler);
     </script>
 
