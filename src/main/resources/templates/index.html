@@ -40,13 +40,13 @@
 
 <!--EmpRegisterModal-->
 <body>
-<div class="modal fade" id="RegisterEmpFormModal"  tabindex="-1"
- role="dialog" aria-labelledby="RegisterEmpFormModalLabel">
+<div class="modal fade" id="FormRegistroEmpModal"  tabindex="-1"
+ role="dialog" aria-labelledby="FormRegistroEmpModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">x</button>
-                <h4 class="modal-title" id="RegisterEmpFormModalLabel">
+                <h4 class="modal-title" id="FormRegistroEmpModalLabel">
                     Cadastro de Empresa
                 </h4>
             </div>
@@ -54,50 +54,50 @@
                 <form th:object="${usuario}" th:action="@{/save}" method="post">
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label for="exampleInputNomeEmp">
+                            <label for="EmpInputNomeEmp">
                                 Nome:
                             </label>
-                            <input class="form-control" th:field="${usuario.nome}" id="exampleInputNomeEmp" type="text" placeholder="Digite o Nome da Empresa">
+                            <input class="form-control" th:field="${usuario.nome}" id="EmpInputNome" type="text" placeholder="Digite o Nome da Empresa">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="exampleInputEmail">
+                            <label for="EmpInputEmailEmp">
                                 Email:
                             </label>
-                            <input class="form-control" th:field="${usuario.email}" id="exampleInputEmail" type="email" placeholder="Digite o email">
+                            <input class="form-control" th:field="${usuario.email}" id="EmpInputEmail" type="email" placeholder="Digite o email">
                         </div>
                     </div>
                     <div class="row">
                     <div class="form-group col-md-4">
-                            <label for="exampleInputCidade">
+                            <label for="EmpInputCidade">
                                 Cidade:
                             </label>
-                            <input class="form-control" th:field="${usuario.cidade}" id="exampleInputCidade" type="text" placeholder="Digite a Cidade">
+                            <input class="form-control" th:field="${usuario.cidade}" id="EmpInputCidade" type="text" placeholder="Digite a Cidade">
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="exampleInputEndereco">
+                            <label for="EmpInputEndereco">
                                 Endereço:
                             </label>
-                            <input class="form-control" th:field="${usuario.endereco}" id="exampleInputEndereco" type="text" placeholder="Digite o Endereço">
+                            <input class="form-control" th:field="${usuario.endereco}" id="EmpInputEndereco" type="text" placeholder="Digite o Endereço">
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="exampleInputTelefone">
+                            <label for="EmpInputTelefone">
                                 Telefone:
                             </label>
-                            <input class="form-control" th:field="${usuario.telefone}" id="exampleInputTelefone" type="text" placeholder="Digite o Telefone">
+                            <input class="form-control" th:field="${usuario.telefone}" id="EmpInputTelefone" type="text" placeholder="Digite o Telefone">
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label for="exampleInputSenha">
+                            <label for="EmpInputSenha">
                                 Senha:
                             </label>
-                            <input class="form-control" th:field="${usuario.senha}" id="exampleInputSenha" type="password" placeholder="Digite a Senha">
+                            <input class="form-control" th:field="${usuario.senha}" id="EmpInputSenha" type="password" placeholder="Digite a Senha">
                         </div>
                         <div class="form-group col-md-6">
-                        <label for="exampleInputCategoria">
+                        <label for="EmpInputCategoria">
                                 Categoria:
                             </label>
-                        <select class="form-control" th:field="${usuario.categoria}" id="exampleInputCategoria" type="select">
+                        <select class="form-control" th:field="${usuario.categoria}" id="EmpInputCategoria" type="select">
                           <option value ="">Selecione a categoria</option>
                           <option value ="Categoria 1">Categoria 1</option>
                           <option value ="Categoria 2">Categoria 2</option>
@@ -108,10 +108,10 @@
                     </div>
                     <div class="row">
                     <div class="form-group col-md-6">
-                            <label for="exampleInputConfirmSenha">
+                            <label for="EmpInputConfirmar">
                                 Confirmar Senha:
                             </label>
-                            <input class="form-control" th:field="${usuario.confirmar}" id="exampleInputConfirmSenha" type="password"
+                            <input class="form-control" th:field="${usuario.confirmar}" id="EmpInputConfirmar" type="password"
                             placeholder="Digite a senha">
                     </div>
                     </div>
@@ -128,16 +128,16 @@
     </div>
 </div>
 
-<!--usuarioRegisterForm-->
-<div class="modal fade" id="RegisterFormModal" tabindex="-1" role="dialog"
- aria-labelledby="RegisterFormModalLabel">
+<!--UsuarioRegisterForm-->
+<div class="modal fade" id="FormRegistroModal" tabindex="-1" role="dialog"
+ aria-labelledby="FormRegistroModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">
                     x
                 </button>
-                <h4 class="modal-title" id="RegisterFormModalLabel">
+                <h4 class="modal-title" id="FormRegistroModalLabel">
                     Cadastro de Usuário
                 </h4>
             </div>
@@ -145,54 +145,54 @@
                 <form th:object="${usuario}" th:action="@{/save}" method="post">
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label for="exampleInputNome">
+                            <label for="InputUsuarioNome">
                                 Nome:
                             </label>
-                            <input class="form-control" th:field="${usuario.nome}" id="exampleInputNome" type="text" placeholder="Digite o Nome">
+                            <input class="form-control" th:field="${usuario.nome}" id="InputUsuarioNome" type="text" placeholder="Digite o Nome">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="exampleInputEmail">
+                            <label for="InputUsuarioEmail">
                                 Email:
                             </label>
-                            <input class="form-control" th:field="${usuario.email}" id="exampleInputEmail" type="email" placeholder="Digite o email">
+                            <input class="form-control" th:field="${usuario.email}" id="InputUsuarioEmail" type="email" placeholder="Digite o email">
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label for="exampleInputCidade">
+                            <label for="InputUsuarioCidade">
                                 Cidade:
                             </label>
-                            <input class="form-control" th:field="${usuario.cidade}" id="exampleInputCidade" type="text" placeholder="Digite a Cidade">
+                            <input class="form-control" th:field="${usuario.cidade}" id="InputUsuarioCidade" type="text" placeholder="Digite a Cidade">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="exampleInputEndereco">
+                            <label for="InputUsuarioEndereco">
                                 Endereço:
                             </label>
-                            <input class="form-control" th:field="${usuario.endereco}" id="exampleInputEndereco" type="text" placeholder="Digite o Endereço">
+                            <input class="form-control" th:field="${usuario.endereco}" id="InputUsuarioEndereco" type="text" placeholder="Digite o Endereço">
                         </div>
 
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label for="exampleInputSenha">
+                            <label for="InputUsuarioSenha">
                                 Senha:
                             </label>
-                            <input class="form-control" th:field="${usuario.senha}" id="exampleInputSenha" type="password" placeholder="Digite a Senha">
+                            <input class="form-control" th:field="${usuario.senha}" id="InputUsuarioSenha" type="password" placeholder="Digite a Senha">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="exampleInputTelefone">
+                            <label for="InputUsuarioTelefone">
                                 Telefone:
                             </label>
-                            <input class="form-control" th:field="${usuario.telefone}" id="exampleInputTelefone" type="text" placeholder="Digite o Telefone">
+                            <input class="form-control" th:field="${usuario.telefone}" id="InputUsuarioTelefone" type="text" placeholder="Digite o Telefone">
                         </div>
 
                     </div>
                     <div class="row">
                        <div class="form-group col-md-6">
-                            <label for="exampleInputConfirmSenha">
+                            <label for="InputUsuarioConfirmar">
                                 Confirmar Senha:
                             </label>
-                            <input class="form-control" th:field="${usuario.confirmar}" id="exampleInputConfirmSenha" type="password"
+                            <input class="form-control" th:field="${usuario.confirmar}" id="InputUsuarioConfirmar" type="password"
                             placeholder="Digite a senha">
                         </div>
                     </div>
@@ -223,19 +223,19 @@
             <div class ="modal-body">
                 <form class="form-horizontal">
                     <div class="form-group">
-                        <label for="inputEmail" class="col-sm-2 control-label">
+                        <label for="LoginInputEmail" class="col-sm-2 control-label">
                             Email:
                         </label>
                         <div class="col-sm-10">
-                            <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                            <input type="email" class="form-control" id="LoginInputEmail" placeholder="Email">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputPassword" class="col-sm-2 control-label">
+                        <label for="LoginInputSenha" class="col-sm-2 control-label">
                             Senha:
                         </label>
                         <div class="col-sm-10">
-                            <input type="password" class="form-control" id="inputPassword" placeholder="Senha">
+                            <input type="password" class="form-control" id="LoginInputSenha" placeholder="Senha">
                         </div>
                     </div>
                     <div class="form-group">
@@ -306,10 +306,10 @@
                 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a href="#" data-toggle="modal" data-target="#RegisterFormModal">Cadastrar Usuário</a>
+                        <a href="#" data-toggle="modal" data-target="#FormRegistroModal">Cadastrar Usuário</a>
                     </li>
                     <li>
-                        <a href="#" data-toggle="modal" data-target="#RegisterEmpFormModal">Cadastrar Empresa</a>
+                        <a href="#" data-toggle="modal" data-target="#FormRegistroEmpModal">Cadastrar Empresa</a>
                     </li>
                 </ul>
            </li>
