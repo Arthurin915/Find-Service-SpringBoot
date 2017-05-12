@@ -12,9 +12,12 @@ public class Usuario {
 	private Long id;
 	
 	private String nome;
+	private String cep;
 	private String email;
 	private String cidade;
+	private String uf;
 	private String endereco;
+	private int numero;
 	private String senha;
 	private String telefone;
 	private String confirmar;
@@ -31,6 +34,12 @@ public class Usuario {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	public String getCep() {
+		return cep;
+	}
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
 	public String getEmail() {
 		return email;
 	}
@@ -43,11 +52,23 @@ public class Usuario {
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
 	}
+	public String getUf() {
+		return uf;
+	}
+	public void setUf(String uf) {
+		this.uf = uf;
+	}
 	public String getEndereco() {
 		return endereco;
 	}
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
+	}
+	public int getNumero() {
+		return numero;
+	}
+	public void setNumero(int numero) {
+		this.numero = numero;
 	}
 	public String getSenha() {
 		return senha;
