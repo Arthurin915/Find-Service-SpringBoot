@@ -29,7 +29,9 @@
 
     <!-- Custom CSS -->
     <link href="css/stylish-portfolio.css" rel="stylesheet"/>
-
+	
+	
+	
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css"/>
@@ -190,6 +192,7 @@
                             Cep:
                             </label>
 							<input class="form-control" th:field="${usuario.cep}" type="text" id="UsuarioCep" value="" maxlength="9" placeholder="Digite o seu cep" />
+                        	<a href="http://www.buscacep.correios.com.br/sistemas/buscacep/" target="_blank" id="helpBlock" class="help-block">Não sei meu cep.</a>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="InputUsuarioEndereco">
@@ -215,7 +218,7 @@
                             <label for="InputUsuarioNumero">
                                 Numero:
                             </label>
-                            <input class="form-control" th:field="${usuario.numero}" id="InputUsuarioNumero" type="text" placeholder="Número da Casa">
+                            <input class="form-control"  name="numero" id="InputUsuarioNumero" type="text" placeholder="Número da Casa">
                         </div>
                     </div>
                     <div class="row">
@@ -245,7 +248,7 @@
                     <hr/>
                     <div class="row">
                       <div class="col-md-12">
-                        <button class="btn btn-primary" type="submit">Salvar</button>
+                        <button id="btn-salvar-usuario" class="btn btn-primary" type="submit">Salvar</button>
                         <button class="btn btn-default" type="button" data-dismiss="modal">Cancelar</button>
                       </div>
                     </div>
@@ -392,6 +395,7 @@
                 <th>Telefone</th>
                 <th>Senha</th>
                 <th>Categoria</th>
+                <th>Numero</th>
             </tr>
         </thead>
         <tbody>
@@ -403,7 +407,7 @@
                 <td th:text="${usuario.telefone}"></td>
                 <td th:text="${usuario.senha}"></td>
                 <td th:text="${usuario.categoria}"></td>
-
+                <td th:text="${usuario.numero}"></td>
             </tr>             
            </tbody>
     </table>
@@ -620,7 +624,8 @@
         // Enable map zooming with mouse scroll when the usuario clicks the map
     $('.map').on('click', onMapClickHandler);
     </script>
-
+	<!--  Custom JS-->
+	<script type="text/javascript" th:src="@{js/index.js}"></script>
 </body>
 
 </html>
