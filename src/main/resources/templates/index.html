@@ -17,22 +17,19 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
     <!-- Adicionando Javascript -->
-    
-
+    <script src="js/validator.min.js"></script>
     <script src="js/jquery.js"></script>
     <script src="js/jquery.dataTables.min.js"></script>
     <script src="js/dataTables.bootstrap.min.js"></script>
-
-    <!-- Bootstrap Core CSS -->
+	
+	<!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/dataTables.bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/stylish-portfolio.css" rel="stylesheet"/>
-	
-	
-	
-    <!-- Custom Fonts -->
+    
+	<!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css"/>
     <!--Datatable-->
@@ -58,19 +55,22 @@
                 </h4>
             </div>
             <div class ="modal-body">
-                <form th:object="${usuario}" th:action="@{/save}" method="post">
+                <form data-toggle="validator"th:object="${usuario}" th:action="@{/save}" method="post">
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="EmpInputNomeEmp">
                                 Nome:
                             </label>
-                            <input class="form-control" th:field="${usuario.nome}" id="EmpInputNome" type="text" placeholder="Nome da Empresa ou Prestador">
+                            <input class="form-control" th:field="${usuario.nome}" id="EmpInputNome" type="text" placeholder="Nome da Empresa ou Prestador" required>
+                            <div class="help-block with-errors"></div>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="EmpInputEmail">
                                 Email:
                             </label>
-                            <input class="form-control" th:field="${usuario.email}" id="EmpInputEmail" type="email" placeholder="Digite o email">
+                            <input class="form-control" th:field="${usuario.email}" id="EmpInputEmail" type="email" placeholder="Digite o email" required
+                            data-error="Email inválido! Exemplo: email@email.com">
+                            <div class="help-block with-errors"></div>
                         </div>
                     </div>
                     <div class ="row">
@@ -78,13 +78,16 @@
                             <label for="EmpCep">
                             Cep:
                             </label>
-							<input class="form-control" th:field="${usuario.cep}" type="text" id="EmpCep" value="" maxlength="9" placeholder="Digite o seu cep" />
+							<input class="form-control" th:field="${usuario.cep}" type="text" id="EmpCep" value="" maxlength="9" placeholder="Digite o seu cep" required>
+							<a href="http://www.buscacep.correios.com.br/sistemas/buscacep/" target="_blank" >Não sei meu cep.</a>
+							<div class="help-block with-errors"></div>
                         </div>
                          <div class="form-group col-md-6">
                             <label for="EmpInputEndereco">
                                 Endereço:
                             </label>
                             <input class="form-control" th:field="${usuario.endereco}" id="EmpInputEndereco" type="text" placeholder="Digite o Endereço">
+                            <div class="help-block with-errors"></div>
                         </div>
                     </div>
                     <div class="row">
@@ -94,18 +97,22 @@
                                 Cidade:
                             </label>
                             <input class="form-control" th:field="${usuario.cidade}" id="EmpInputCidade" type="text" placeholder="Digite a Cidade">
+                            <div class="help-block with-errors"></div>
                         </div>
                     <div class="form-group col-md-3">
                             <label for="EmpInputUf">
                                 UF:
                             </label>
                             <input class="form-control" th:field="${usuario.uf}" id="EmpInputUf" type="text" placeholder="UF">
+                            <div class="help-block with-errors"></div>
                         </div>
                         <div class="form-group col-md-3">
                             <label for="EmpInputNumero">
                                 Numero:
                             </label>
-                            <input class="form-control" th:field="${usuario.numero}" id="EmpInputNumero" type="text" placeholder="Número da Casa">
+                            <input class="form-control" name="numero"  id="EmpInputNumero" type="text" placeholder="Número da Casa" 
+                            required data-error="Preencha o Campo">
+                            <div class="help-block with-errors"></div>
                         </div>
                     </div>
                     <div class="row">
@@ -113,19 +120,21 @@
                             <label for="EmpInputTelefone">
                                 Telefone:
                             </label>
-                            <input class="form-control" th:field="${usuario.telefone}" id="EmpInputTelefone" type="text" placeholder="Digite o Telefone">
+                            <input class="form-control" th:field="${usuario.telefone}" id="EmpInputTelefone" type="text" placeholder="Digite o Telefone" required>
+                            <div class="help-block with-errors"></div>
                         </div>
                         
                         <div class="form-group col-md-6">
                         <label for="EmpInputCategoria">
                                 Categoria:
                             </label>
-                        <select class="form-control" th:field="${usuario.categoria}" id="EmpInputCategoria" type="select">
+                        <select class="form-control" th:field="${usuario.categoria}" id="EmpInputCategoria" type="select" required> 
                           <option value ="">Selecione a categoria</option>
                           <option value ="Categoria 1">Categoria 1</option>
                           <option value ="Categoria 2">Categoria 2</option>
                           <option value ="Categoria 3">Categoria 3</option>
                         </select>
+                        <div class="help-block with-errors"></div>
 
                         </div>
                     </div>
@@ -135,13 +144,16 @@
                                 Senha:
                             </label>
                             <input class="form-control" th:field="${usuario.senha}" id="EmpInputSenha" type="password" placeholder="Digite a Senha">
+                            <div class="help-block with-errors"></div>
+                            
                         </div>
                     <div class="form-group col-md-6">
                             <label for="EmpInputConfirmar">
                                 Confirmar Senha:
                             </label>
                             <input class="form-control" th:field="${usuario.confirmar}" id="EmpInputConfirmar" type="password"
-                            placeholder="Digite a senha">
+                            placeholder="Digite a senha" data-match="#EmpInputSenha" data-match-error="Atenção! As senhas não estão iguais.">
+                            <div class="help-block with-errors"></div>
                     </div>
                     </div>
                     <hr/>
@@ -171,19 +183,22 @@
                 </h4>
             </div>
             <div class="modal-body">
-                <form th:object="${usuario}" th:action="@{/save}" method="post">
+                <form id="UsuarioForm" data-toggle="validator" th:object="${usuario}" th:action="@{/save}" method="post">
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="InputUsuarioNome">
                                 Nome:
                             </label>
-                            <input class="form-control" th:field="${usuario.nome}" id="InputUsuarioNome" type="text" placeholder="Digite o Nome">
+                            <input class="form-control" th:field="${usuario.nome}" id="InputUsuarioNome" type="text" placeholder="Digite o Nome" required>
+                            <div class="help-block with-errors"></div>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="InputUsuarioEmail">
                                 Email:
                             </label>
-                            <input class="form-control" th:field="${usuario.email}" id="InputUsuarioEmail" type="email" placeholder="Digite o email">
+                            <input class="form-control" th:field="${usuario.email}" id="InputUsuarioEmail" type="email" placeholder="Digite o email" required
+                            data-error="Email inválido! Exemplo: email@email.com">                        	
+                        	<div class="help-block with-errors"></div>
                         </div>
                     </div>
                     <div class="row">
@@ -191,8 +206,9 @@
                             <label for="UsuarioCep">
                             Cep:
                             </label>
-							<input class="form-control" th:field="${usuario.cep}" type="text" id="UsuarioCep" value="" maxlength="9" placeholder="Digite o seu cep" />
-                        	<a href="http://www.buscacep.correios.com.br/sistemas/buscacep/" target="_blank" id="helpBlock" class="help-block">Não sei meu cep.</a>
+							<input class="form-control" th:field="${usuario.cep}" type="text" id="UsuarioCep" value="" maxlength="9" placeholder="Digite o seu cep" required>
+                        	<a href="http://www.buscacep.correios.com.br/sistemas/buscacep/" target="_blank" >Não sei meu cep.</a>
+                        	<div class="help-block with-errors"></div>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="InputUsuarioEndereco">
@@ -212,13 +228,15 @@
                             <label for="InputUsuarioUf">
                                 UF:
                             </label>
-                            <input class="form-control" th:field="${usuario.uf}" id="InputUsuarioUf" type="text" placeholder="UF">
+                            <input class="form-control" th:field="${usuario.uf}" id="InputUsuarioUf" type="text" placeholder="UF" >
                         </div>
 						<div class="form-group col-md-3">
                             <label for="InputUsuarioNumero">
                                 Numero:
                             </label>
-                            <input class="form-control"  name="numero" id="InputUsuarioNumero" type="text" placeholder="Número da Casa">
+                            <input class="form-control"  name="numero" id="InputUsuarioNumero" type="text" placeholder="Número da Casa" required
+                             data-error="Preencha o Campo">
+                            <div class="help-block with-errors"></div>
                         </div>
                     </div>
                     <div class="row">
@@ -226,13 +244,15 @@
                             <label for="InputUsuarioSenha">
                                 Senha:
                             </label>
-                            <input class="form-control" th:field="${usuario.senha}" id="InputUsuarioSenha" type="password" placeholder="Digite a Senha">
+                            <input class="form-control" th:field="${usuario.senha}" id="InputUsuarioSenha" type="password" placeholder="Digite a Senha" required>
+                            <div class="help-block with-errors"></div>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="InputUsuarioTelefone">
                                 Telefone:
                             </label>
-                            <input class="form-control" th:field="${usuario.telefone}" id="InputUsuarioTelefone" type="text" placeholder="Digite o Telefone">
+                            <input class="form-control" th:field="${usuario.telefone}" id="InputUsuarioTelefone" type="text" placeholder="Digite o Telefone" required>
+                            <div class="help-block with-errors"></div>
                         </div>
 
                     </div>
@@ -241,8 +261,9 @@
                             <label for="InputUsuarioConfirmar">
                                 Confirmar Senha:
                             </label>
-                            <input class="form-control" th:field="${usuario.confirmar}" id="InputUsuarioConfirmar" type="password"
-                            placeholder="Digite a senha">
+                            <input class="form-control" th:field="${usuario.confirmar}" id="InputUsuarioConfirmar" type="password" placeholder="Digite a senha" required
+                            data-match="#InputUsuarioSenha" data-match-error="Atenção! As senhas não estão iguais.">
+                            <div class="help-block with-errors"></div>
                         </div>
                     </div>
                     <hr/>
@@ -316,37 +337,22 @@
         <div class="navbar-header">
             <a class="navbar-brand" href="#">FindService</a>
         </div>
-        <ul class="nav navbar-nav">
-            <li class="active">
-                <a href="#">Home</a>
-            </li>
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Categorias
-        <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a href="#">Categoria 1</a>
-                    </li>
-                    <li>
-                        <a href="#">Categoria 2</a>
-                    </li>
-                    <li>
-                        <a href="#">Categoria 3</a>
-                    </li>
-                </ul>
-        </ul>
         <form class="navbar-form navbar-left">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Pesquisar">
-                    <div class="input-group-btn">
-                        <button class="btn btn-default" type="submit">
-                            <i class="glyphicon glyphicon-search">
-                            </i>
-                        </button>
-                    </div>
-                </div>
-            </div>
+        	<div class="form-group">
+       	 <select class="form-control">
+     	       <option>Categoria1</option>
+	  		    <option>Categoria2</option>
+	    	    <option>Categoria3</option>
+	    	</select>
+	        <div class="input-group">
+	                    <input type="text" class="form-control" placeholder="Pesquisar">
+	                    <div class="input-group-btn">
+	                        <button class="btn btn-default" type="submit">
+	                            <i class="glyphicon glyphicon-search"></i>
+	                        </button>
+	                    </div>
+	           </div>
+	        </div>
         </form>
         <!--DropdownCadastro-->
          <ul class="nav navbar-nav navbar-right">
@@ -553,16 +559,6 @@
 	
     <!-- Custom Theme JavaScript -->
     <script>
-    // Closes the sidebar menu
-    $("#menu-close").click(function(e) {
-        e.preventDefault();
-        $("#sidebar-wrapper").toggleClass("active");
-    });
-    // Opens the sidebar menu
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#sidebar-wrapper").toggleClass("active");
-    });
     // Scrolls to the selected menu item on the page
     $(function() {
         $('a[href*=#]:not([href=#],[data-toggle],[data-target],[data-slide])').click(function() {
@@ -624,8 +620,5 @@
         // Enable map zooming with mouse scroll when the usuario clicks the map
     $('.map').on('click', onMapClickHandler);
     </script>
-	<!--  Custom JS-->
-	<script type="text/javascript" th:src="@{js/index.js}"></script>
 </body>
-
 </html>
