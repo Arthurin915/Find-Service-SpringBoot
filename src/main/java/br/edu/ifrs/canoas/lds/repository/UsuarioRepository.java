@@ -8,5 +8,5 @@ import br.edu.ifrs.canoas.lds.domain.Usuario;
 
 @Repository
 public interface UsuarioRepository extends CrudRepository<Usuario, Long>{//objeto dominio de referencia e tipo de chave(id)
-
+	Usuario findByEmail(String email);
 }
