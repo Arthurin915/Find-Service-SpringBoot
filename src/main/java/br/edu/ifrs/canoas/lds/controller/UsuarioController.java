@@ -1,9 +1,10 @@
 package br.edu.ifrs.canoas.lds.controller;
 
-import java.util.ArrayList;
-
 import javax.validation.Valid;
 
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,22 +17,32 @@ import br.edu.ifrs.canoas.lds.service.UsuarioService;
 public class UsuarioController {
 
 	private final UsuarioService usuarioService;
-
-	public UsuarioController(UsuarioService usuarioService) {
+	private final PasswordEncoder passwordEncoder; 
+	
+	public UsuarioController(UsuarioService usuarioService, PasswordEncoder passwordEncoder) {
 		this.usuarioService = usuarioService;
+		this.passwordEncoder = passwordEncoder;
 	}
 
-
-	@GetMapping("/")
-	public String index(Model model){ 
+	@GetMapping("/login")
+	public String index(Model model){
+		SecurityContext context = SecurityContextHolder.getContext();
 		model.addAttribute("usuarios", usuarioService.findAll());
-		model.addAttribute("usuario", new Usuario());
+		model.addAttribute("usuario",new Usuario());
+		model.addAttribute("usuarioLogado",usuarioService.getSession(context));
 		return "index";
 	}
 
 	@PostMapping("/save")
 	public String save(Model model, @Valid Usuario usuario){
-		Usuario newUser = usuarioService.save(usuario);
-		return "redirect:/";
+		
+		//criptografa senha do usuário
+		usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
+		
+		//salva usuário no BD
+		usuarioService.save(usuario);
+		
+		//Retorna para página inicial
+		return "redirect:/login";
 	}
 }

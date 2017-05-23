@@ -23,26 +23,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception{
 		http
 		.authorizeRequests()
-			.antMatchers("/").permitAll()
+			.antMatchers("/save","/login").permitAll()
 			.anyRequest().authenticated()
 			.and()
 			.formLogin()
-			.loginPage("/")
+			.loginPage("/login")
 			.usernameParameter("email")
 			.passwordParameter("senha")
-			.defaultSuccessUrl("/")
-			.failureUrl("/?erro")
+			.defaultSuccessUrl("/login")
+			.failureUrl("/login?erro")
 			.and()
 			.sessionManagement()	
 	        .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
 	        .and()
 	        .logout()
-	        .logoutSuccessUrl("/?logoutSuccess")
+	        .logoutSuccessUrl("/login?logoutSuccess")
 	        .permitAll();	
 	}
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/CSS/**", "/JS/**","/webjars/**", "/materialize/**", "/img/**", "/h2/**");
+		web.ignoring().antMatchers("/css/**", "/js/**","/webjars/**", "/font-awesome/**", "/fonts/**", "/images/**", "/db/**");
 	}
 	
 	@Override
