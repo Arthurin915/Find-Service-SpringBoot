@@ -10,7 +10,7 @@
     <meta name="description" content=""/>
     <meta name="author" content=""/>
 
-    <title th:text="${usuarioLogado} == null ? 'FindService - Encontre o que você precisa' : 'Bem-Vindo '+${usuarioLogado.nome}"></title>
+    <title>FindService - Encontre o que você procura</title>
     
 
     <!-- Adicionando JQuery -->
@@ -79,7 +79,7 @@
                             Cep:
                             </label>
 							<input class="form-control" th:field="${usuario.cep}" type="text" id="EmpCep" value="" maxlength="9" placeholder="Digite o seu cep" required>
-							<a href="http://www.buscacep.correios.com.br/sistemas/buscacep/" target="_blank" >Não sei meu cep.</a>
+							<a href="http://www.buscacep.correios.com.br/sistemas/buscacep/" target="_blank">Não sei meu cep.</a>
 							<div class="help-block with-errors"></div>
                         </div>
                          <div class="form-group col-md-6">
@@ -130,9 +130,29 @@
                             </label>
                         <select class="form-control" th:field="${usuario.categoria}" id="EmpInputCategoria" type="select" required> 
                           <option value ="">Selecione a categoria</option>
-                          <option value ="Categoria 1">Categoria 1</option>
-                          <option value ="Categoria 2">Categoria 2</option>
-                          <option value ="Categoria 3">Categoria 3</option>
+                          <option value ="Categoria 1">Advocacia</option>
+                          <option value ="Categoria 2">Alimentação</option>
+                          <option value ="Categoria 3">Automotiva</option>
+                          <option value ="Categoria 4">Banco</option>
+                          <option value ="Categoria 5">Bebida</option>
+                          <option value ="Categoria 6">Bombeiro</option>
+                          <option value ="Categoria 7">Comércio</option>
+                          <option value ="Categoria 8">Distribuidora</option>
+                          <option value ="Categoria 9">Educação</option>
+                          <option value ="Categoria 10">Eletricidade</option>
+                          <option value ="Categoria 11">Eletrodomésticos</option>
+                          <option value ="Categoria 12">Gráfica</option>
+                          <option value ="Categoria 13">Imobiliária</option>
+                          <option value ="Categoria 14">Informática</option>
+                          <option value ="Categoria 15">Moda</option>
+                          <option value ="Categoria 16">Música</option>
+                          <option value ="Categoria 17">Policia</option>
+                          <option value ="Categoria 18">Promotoria</option>
+                          <option value ="Categoria 19">Publicidade</option>
+                          <option value ="Categoria 20">Seguradora</option>
+                          <option value ="Categoria 21">Segurança</option>
+                          <option value ="Categoria 22">Telecomunicações</option>
+                          <option value ="Categoria 23">Turismo</option>
                         </select>
                         <div class="help-block with-errors"></div>
 
@@ -325,7 +345,7 @@
 
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                           <button class="btn btn-primary" type="submit">Salvar</button>
+                           <button class="btn btn-primary" type="submit">Entrar</button>
                         <button class="btn btn-default" type="button" data-dismiss="modal">Cancelar
                         </div>
                     </div>
@@ -373,11 +393,21 @@
                 </ul>
            </li>
            <!--DropdownLogin-->
-           <li><a href="#" data-toggle="modal" data-target="#LoginFormModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+           
+           <li th:if="${usuarioLogado} == null"><a href="#" data-toggle="modal" data-target="#LoginFormModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+           <li class ="dropdown" th:if="${usuarioLogado} != null">
+           	 <a class="dropdown-toggle" data-toggle="dropdown" href="#" ><span class="glyphicon glyphicon-log-out " ></span> Bem Vindo!
+                <span class="caret" ></span></a>
+                <ul class="dropdown-menu">
+                    <li>
+                   		<a href="#">Perfil</a>
+                        <a href="#">Logout</a>
+                    </li>
         </ul>         
+         
     </div>
 </nav>
-
+Bem vindo + th:text="${usuarioLogado.nome}"
     <!-- Mapa -->
     <header id="top" class="header">
         <div class="text-vertical-center">
