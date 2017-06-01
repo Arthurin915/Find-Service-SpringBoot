@@ -384,7 +384,7 @@
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" ><span class="glyphicon glyphicon-user"></span> Cadastrar
                 <span class="caret" ></span></a>
                 <ul class="dropdown-menu">
-                    <li>
+                    <li th:if="${usuarioLogado} == null">
                         <a href="#" data-toggle="modal" data-target="#FormRegistroModal">Cadastrar Usuário</a>
                     </li>
                     <li>
