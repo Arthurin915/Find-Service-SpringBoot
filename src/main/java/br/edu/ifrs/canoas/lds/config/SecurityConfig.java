@@ -11,6 +11,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import br.edu.ifrs.canoas.lds.repository.UsuarioRepository;
 import br.edu.ifrs.canoas.lds.service.LcUserDetailsService;
@@ -37,8 +38,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	        .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
 	        .and()
 	        .logout()
-	        .logoutSuccessUrl("/login?logoutSuccess")
-	        .permitAll();	
+	        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login?logoutSuccess")
+            .permitAll();	
 	}
 	@Override
 	public void configure(WebSecurity web) throws Exception {
