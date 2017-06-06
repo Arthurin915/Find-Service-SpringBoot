@@ -40,7 +40,10 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+	<style type="text/css">
+      html, body { width="100%"; height="100%"; frameborder="0"; scrolling="no"; marginheight="0"; marginwidth="0";}
+      #map { height: 100%; }
+    </style>
 </head>
 <!--EmpRegisterModal-->
 <body>
@@ -130,29 +133,29 @@
                             </label>
                         <select class="form-control" th:field="${usuario.categoria}" id="EmpInputCategoria" type="select" required> 
                           <option value ="">Selecione a categoria</option>
-                          <option value ="Categoria 1">Advocacia</option>
-                          <option value ="Categoria 2">Alimentação</option>
-                          <option value ="Categoria 3">Automotiva</option>
-                          <option value ="Categoria 4">Banco</option>
-                          <option value ="Categoria 5">Bebida</option>
-                          <option value ="Categoria 6">Bombeiro</option>
-                          <option value ="Categoria 7">Comércio</option>
-                          <option value ="Categoria 8">Distribuidora</option>
-                          <option value ="Categoria 9">Educação</option>
-                          <option value ="Categoria 10">Eletricidade</option>
-                          <option value ="Categoria 11">Eletrodomésticos</option>
-                          <option value ="Categoria 12">Gráfica</option>
-                          <option value ="Categoria 13">Imobiliária</option>
-                          <option value ="Categoria 14">Informática</option>
-                          <option value ="Categoria 15">Moda</option>
-                          <option value ="Categoria 16">Música</option>
-                          <option value ="Categoria 17">Policia</option>
-                          <option value ="Categoria 18">Promotoria</option>
-                          <option value ="Categoria 19">Publicidade</option>
-                          <option value ="Categoria 20">Seguradora</option>
-                          <option value ="Categoria 21">Segurança</option>
-                          <option value ="Categoria 22">Telecomunicações</option>
-                          <option value ="Categoria 23">Turismo</option>
+                          <option value ="1">Advocacia</option>
+                          <option value ="2">Alimentação</option>
+                          <option value ="3">Automotiva</option>
+                          <option value ="4">Banco</option>
+                          <option value ="5">Bebida</option>
+                          <option value ="6">Bombeiro</option>
+                          <option value ="7">Comércio</option>
+                          <option value ="8">Distribuidora</option>
+                          <option value ="9">Educação</option>
+                          <option value ="10">Eletricidade</option>
+                          <option value ="11">Eletrodomésticos</option>
+                          <option value ="12">Gráfica</option>
+                          <option value ="13">Imobiliária</option>
+                          <option value ="14">Informática</option>
+                          <option value ="15">Moda</option>
+                          <option value ="16">Música</option>
+                          <option value ="17">Policia</option>
+                          <option value ="18">Promotoria</option>
+                          <option value ="19">Publicidade</option>
+                          <option value ="20">Seguradora</option>
+                          <option value ="21">Segurança</option>
+                          <option value ="22">Telecomunicações</option>
+                          <option value ="23">Turismo</option>
                         </select>
                         <div class="help-block with-errors"></div>
 
@@ -387,7 +390,7 @@
                     <li th:if="${usuarioLogado} == null">
                         <a href="#" data-toggle="modal" data-target="#FormRegistroModal">Cadastrar Usuário</a>
                     </li>
-                    <li>
+                    <li th:if="${usuarioLogado} != null">
                         <a href="#" data-toggle="modal" data-target="#FormRegistroEmpModal">Cadastrar Empresa/Prestador</a>
                     </li>
                 </ul>
@@ -409,13 +412,25 @@
 </nav>
     <!-- Mapa -->
     <header id="top" class="header">
-        <div class="text-vertical-center">
-    <section id="contact" class="map">
-        <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3458.7896582021244!2d-51.15266638539528!3d-29.899160881935355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x951970265f07cfb5%3A0xa38d71cab38e0da1!2sInstituto+Federal+do+Rio+Grande+do+Sul%2C+Campus+Canoas!5e0!3m2!1spt-BR!2sbr!4v1489707642675" style="border:0" allowfullscreen="true"></iframe>
-        <br />
-        <small>
-            <a href="https://www.google.com.br/maps/place/Instituto+Federal+do+Rio+Grande+do+Sul,+Campus+Canoas/@-29.8991609,-51.1526664,17z/data=!3m1!4b1!4m5!3m4!1s0x951970265f07cfb5:0xa38d71cab38e0da1!8m2!3d-29.8991609!4d-51.1504777"></a>
-        </small>
+        <div id="map" class="text-vertical-center">
+    	<section id="contact" class="map">
+        <script type="text/javascript">
+			var map;
+			function initMap() {
+				var posicao = {lat: -25.363, lng: 131.044};
+		        var map = new google.maps.Map(document.getElementById('map'), {
+		          zoom: 6,
+		          center: posicao
+		        });
+		        var marker = new google.maps.Marker({
+		          position: posicao,
+		          map: map
+		        });
+			}
+	  </script>
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2UcFQk_-Y9Jqysa_vLaAzW0zJk88xreo&callback=initMap">
+    </script>
         </section>
         </div>
         </header>
@@ -451,6 +466,7 @@
            </tbody>
     </table>
     </div>
+<!-- Datatable -->
     <script>
         $('#example').dataTable();
     </script>
@@ -588,70 +604,6 @@
             }
         });
     });
-    </script>
-	
-    <!-- Custom Theme JavaScript -->
-    <script>
-    // Scrolls to the selected menu item on the page
-    $(function() {
-        $('a[href*=#]:not([href=#],[data-toggle],[data-target],[data-slide])').click(function() {
-            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
-                var target = $(this.hash);
-                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-                if (target.length) {
-                    $('html,body').animate({
-                        scrollTop: target.offset().top
-                    }, 1000);
-                    return false;
-                }
-            }
-        });
-    });
-    //#to-top button appears after scrolling
-    var fixed = false;
-    $(document).scroll(function() {
-        if ($(this).scrollTop() > 250) {
-            if (!fixed) {
-                fixed = true;
-                // $('#to-top').css({position:'fixed', display:'block'});
-                $('#to-top').show("slow", function() {
-                    $('#to-top').css({
-                        position: 'fixed',
-                        display: 'block'
-                    });
-                });
-            }
-        } else {
-            if (fixed) {
-                fixed = false;
-                $('#to-top').hide("slow", function() {
-                    $('#to-top').css({
-                        display: 'none'
-                    });
-                });
-            }
-        }
-    });
-    // Disable Google Maps scrolling
-    // See http://stackoverflow.com/a/25904582/1607849
-    // Disable scroll zooming and bind back the click event
-    var onMapMouseleaveHandler = function(event) {
-        var that = $(this);
-        that.on('click', onMapClickHandler);
-        that.off('mouseleave', onMapMouseleaveHandler);
-        that.find('iframe').css("pointer-events", "none");
-    }
-    var onMapClickHandler = function(event) {
-            var that = $(this);
-            // Disable the click handler until the usuario leaves the map area
-            that.off('click', onMapClickHandler);
-            // Enable scrolling zoom
-            that.find('iframe').css("pointer-events", "auto");
-            // Handle the mouse leave event
-            that.on('mouseleave', onMapMouseleaveHandler);
-        }
-        // Enable map zooming with mouse scroll when the usuario clicks the map
-    $('.map').on('click', onMapClickHandler);
     </script>
 </body>
 </html>
