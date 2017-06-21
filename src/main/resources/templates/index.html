@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymleaf.org">
-<html lang="en">
-
 <head>
+
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -12,27 +11,30 @@
 
     <title>FindService - Encontre o que você procura</title>
     
-
     <!-- Adicionando JQuery -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
     <!-- Adicionando Javascript -->
+    <script src="js/cepempresa.js"></script>
+    <script src="js/cepusuario.js"></script>
+    <script src="js/pesquisa.js"></script>
     <script src="js/validator.min.js"></script>
     <script src="js/jquery.js"></script>
     <script src="js/jquery.dataTables.min.js"></script>
     <script src="js/dataTables.bootstrap.min.js"></script>
-	
+   
 	<!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/dataTables.bootstrap.min.css" rel="stylesheet">
-
+	
     <!-- Custom CSS -->
-    <link href="css/stylish-portfolio.css" rel="stylesheet"/>
+     <link href="css/stylish-portfolio.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/pesquisa.css">
     
 	<!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css"/>
-    <!--Datatable-->
+    
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -40,10 +42,6 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-	<style type="text/css">
-      html, body { width="100%"; height="100%"; frameborder="0"; scrolling="no"; marginheight="0"; marginwidth="0";}
-      #map { height: 100%; }
-    </style>
 </head>
 <!--EmpRegisterModal-->
 <body>
@@ -301,7 +299,7 @@
         </div>
     </div>
 </div>
-
+             
 <!--LoginForm-->
 <div class="modal fade" id="LoginFormModal"  tabindex="-1"
  role="dialog" aria-labelledby="LoginFormModalLabel">
@@ -312,7 +310,7 @@
                 <button type="button" class="close" data-dismiss="modal">x</button>
                 <h4 class="modal-title" id="LoginFormModalLabel">
                     Login
-               </h4>
+                 </h4>
             </div>
             <div class ="modal-body">
                 <form th:action="@{/login
@@ -364,25 +362,17 @@
         <div class="navbar-header">
             <a class="navbar-brand" href="#">FindService</a>
         </div>
-        <form class="navbar-form navbar-left">
-        	<div class="form-group">
-       	 <select class="form-control">
-     	       <option>Categoria1</option>
-	  		    <option>Categoria2</option>
-	    	    <option>Categoria3</option>
-	    	</select>
-	        <div class="input-group">
-	                    <input type="text" class="form-control" placeholder="Pesquisar">
-	                    <div class="input-group-btn">
-	                        <button class="btn btn-default" type="submit">
-	                            <i class="glyphicon glyphicon-search"></i>
-	                        </button>
-	                    </div>
-	           </div>
-	        </div>
-        </form>
-        <!--DropdownCadastro-->
+        <!--DropdownCadastro e Pesquisa-->
          <ul class="nav navbar-nav navbar-right" >
+         <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-search"></span> Pesquisar
+                 <span class="caret" ></span></a>
+               <ul class="dropdown-menu" >
+                    <li>
+						<a href="#search">Pesquisar por Nome</a>
+						<a href="#">Pesquisar Por categoria</a>
+					</li>
+				</ul>
                 <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" th:if="${usuarioLogado} == null"><span class="glyphicon glyphicon-user"></span> Cadastrar
                 <span class="caret" ></span></a>
@@ -410,6 +400,8 @@
                        
     </div>
 </nav>
+
+
     <!-- Mapa -->
     <header id="top" class="header">
         <div id="map" class="text-vertical-center">
@@ -472,123 +464,17 @@
         $('#example').dataTable();
     </script>
 
-   
+<!-- Modal de Pesquisa -->
+   <div id="search">
+    <button type="button" class="close">×</button>
+    <form>
+        <input type="search" value="" placeholder="Digite o nome da Empresa" />
+        <button type="submit" class="btn btn-primary">Pesquisar</button>
+    </form>
+</div>
+
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-<script type="text/javascript" >
-    $(document).ready(function() {
-        function limpa_formulário_cep() {
-            // Limpa valores do formulário de cep.
-            $("#EmpInputEndereco").val("");
-            $("#bairro").val("");
-            $("#EmpInputCidade").val("");
-            $("#EmpInputUf").val("");
-            $("#ibge").val("");
-        }
-        
-        //Quando o campo cep perde o foco.
-        $("#EmpCep").blur(function() {
-            //Nova variável "cep" somente com dígitos.
-            var cep = $(this).val().replace(/\D/g, '');
-            //Verifica se campo cep possui valor informado.
-            if (cep != "") {
-                //Expressão regular para validar o CEP.
-                var validacep = /^[0-9]{8}$/;
-                //Valida o formato do CEP.
-                if(validacep.test(cep)) {
-                    //Preenche os campos com "..." enquanto consulta webservice.
-                    $("#EmpInputEndereco").val("...");
-                    $("#bairro").val("...");
-                    $("#EmpInputCidade").val("...");
-                    $("#EmpInputUf").val("...");
-                    $("#ibge").val("...");
-                    //Consulta o webservice viacep.com.br/
-                    $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
-                        if (!("erro" in dados)) {
-                            //Atualiza os campos com os valores da consulta.
-                            $("#EmpInputEndereco").val(dados.logradouro);
-                            $("#bairro").val(dados.bairro);
-                            $("#EmpInputCidade").val(dados.localidade);
-                            $("#EmpInputUf").val(dados.uf);
-                            $("#ibge").val(dados.ibge);
-                        } //end if.
-                        else {
-                            //CEP pesquisado não foi encontrado.
-                            limpa_formulário_cep();
-                            alert("CEP não encontrado.");
-                        }
-                    });
-                } //end if.
-                else {
-                    //cep é inválido.
-                    limpa_formulário_cep();
-                    alert("Formato de CEP inválido.");
-                }
-            } //end if.
-            else {
-                //cep sem valor, limpa formulário.
-                limpa_formulário_cep();
-            }
-        });
-    });
-    </script>
-	<!-- CEP LOGIN -->
-	<script type="text/javascript" >
-    $(document).ready(function() {
-        function limpa_formulário_cep() {
-            // Limpa valores do formulário de cep.
-            $("#InputUsuarioEndereco").val("");
-            $("#bairro").val("");
-            $("#InputUsuarioCidade").val("");
-            $("#InputUsuarioUf").val("");
-            $("#ibge").val("");
-        }
-        
-        //Quando o campo cep perde o foco.
-        $("#UsuarioCep").blur(function() {
-            //Nova variável "cep" somente com dígitos.
-            var cep = $(this).val().replace(/\D/g, '');
-            //Verifica se campo cep possui valor informado.
-            if (cep != "") {
-                //Expressão regular para validar o CEP.
-                var validacep = /^[0-9]{8}$/;
-                //Valida o formato do CEP.
-                if(validacep.test(cep)) {
-                    //Preenche os campos com "..." enquanto consulta webservice.
-                    $("#InputUsuarioEndereco").val("...");
-                    $("#bairro").val("...");
-                    $("#InputUsuarioCidade").val("...");
-                    $("#InputUsuarioUf").val("...");
-                    $("#ibge").val("...");
-                    //Consulta o webservice viacep.com.br/
-                    $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
-                        if (!("erro" in dados)) {
-                            //Atualiza os campos com os valores da consulta.
-                            $("#InputUsuarioEndereco").val(dados.logradouro);
-                            $("#bairro").val(dados.bairro);
-                            $("#InputUsuarioCidade").val(dados.localidade);
-                            $("#InputUsuarioUf").val(dados.uf);
-                            $("#ibge").val(dados.ibge);
-                        } //end if.
-                        else {
-                            //CEP pesquisado não foi encontrado.
-                            limpa_formulário_cep();
-                            alert("CEP não encontrado.");
-                        }
-                    });
-                } //end if.
-                else {
-                    //cep é inválido.
-                    limpa_formulário_cep();
-                    alert("Formato de CEP inválido.");
-                }
-            } //end if.
-            else {
-                //cep sem valor, limpa formulário.
-                limpa_formulário_cep();
-            }
-        });
-    });
-    </script>
+    
 </body>
 </html>
