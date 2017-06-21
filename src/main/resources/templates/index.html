@@ -382,28 +382,28 @@
 	        </div>
         </form>
         <!--DropdownCadastro-->
-         <ul class="nav navbar-nav navbar-right">
+         <ul class="nav navbar-nav navbar-right" >
                 <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#" ><span class="glyphicon glyphicon-user"></span> Cadastrar
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" th:if="${usuarioLogado} == null"><span class="glyphicon glyphicon-user"></span> Cadastrar
                 <span class="caret" ></span></a>
-                <ul class="dropdown-menu">
-                    <li th:if="${usuarioLogado} == null">
+                <ul class="dropdown-menu" >
+                    <li>
                         <a href="#" data-toggle="modal" data-target="#FormRegistroModal">Cadastrar Usuário</a>
                     </li>
-                    <li th:if="${usuarioLogado} != null">
+                    <li>
                         <a href="#" data-toggle="modal" data-target="#FormRegistroEmpModal">Cadastrar Empresa/Prestador</a>
                     </li>
                 </ul>
            </li>
            <!--DropdownLogin-->
-           
            <li th:if="${usuarioLogado} == null"><a href="#" data-toggle="modal" data-target="#LoginFormModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
            <li class ="dropdown" th:if="${usuarioLogado} != null">
            	 <a class="dropdown-toggle" data-toggle="dropdown" href="#" ><span class="glyphicon glyphicon-log-out "></span><span th:text="${usuarioLogado} == null ? 'FindService - Encontre o que você precisa' : ' Bem-Vindo, '+${usuarioLogado.nome}" >></span>
                 <span class="caret" ></span></a>
                 <ul class="dropdown-menu">
                     <li>
-                   		<a href="#">Perfil</a>
+                        <a href="#" th:if="${usuarioLogado.getCategoria()} !=null">Editar Empresa(s)</a>
+                   		<a href="#" th:if="${usuarioLogado.getCategoria()} ==null">Perfil</a>
                         <a th:href="@{/logout}">Logout</a>
                     </li>
         </ul>         
@@ -420,7 +420,8 @@
 				var posicao = {lat: -25.363, lng: 131.044};
 		        var map = new google.maps.Map(document.getElementById('map'), {
 		          zoom: 6,
-		          center: posicao
+		          center: posicao,
+		          scrollwheel: false
 		        });
 		        var marker = new google.maps.Marker({
 		          position: posicao,
@@ -476,7 +477,6 @@
     <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript" >
     $(document).ready(function() {
-
         function limpa_formulário_cep() {
             // Limpa valores do formulário de cep.
             $("#EmpInputEndereco").val("");
@@ -488,29 +488,22 @@
         
         //Quando o campo cep perde o foco.
         $("#EmpCep").blur(function() {
-
             //Nova variável "cep" somente com dígitos.
             var cep = $(this).val().replace(/\D/g, '');
-
             //Verifica se campo cep possui valor informado.
             if (cep != "") {
-
                 //Expressão regular para validar o CEP.
                 var validacep = /^[0-9]{8}$/;
-
                 //Valida o formato do CEP.
                 if(validacep.test(cep)) {
-
                     //Preenche os campos com "..." enquanto consulta webservice.
                     $("#EmpInputEndereco").val("...");
                     $("#bairro").val("...");
                     $("#EmpInputCidade").val("...");
                     $("#EmpInputUf").val("...");
                     $("#ibge").val("...");
-
                     //Consulta o webservice viacep.com.br/
                     $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
-
                         if (!("erro" in dados)) {
                             //Atualiza os campos com os valores da consulta.
                             $("#EmpInputEndereco").val(dados.logradouro);
@@ -542,7 +535,6 @@
 	<!-- CEP LOGIN -->
 	<script type="text/javascript" >
     $(document).ready(function() {
-
         function limpa_formulário_cep() {
             // Limpa valores do formulário de cep.
             $("#InputUsuarioEndereco").val("");
@@ -554,29 +546,22 @@
         
         //Quando o campo cep perde o foco.
         $("#UsuarioCep").blur(function() {
-
             //Nova variável "cep" somente com dígitos.
             var cep = $(this).val().replace(/\D/g, '');
-
             //Verifica se campo cep possui valor informado.
             if (cep != "") {
-
                 //Expressão regular para validar o CEP.
                 var validacep = /^[0-9]{8}$/;
-
                 //Valida o formato do CEP.
                 if(validacep.test(cep)) {
-
                     //Preenche os campos com "..." enquanto consulta webservice.
                     $("#InputUsuarioEndereco").val("...");
                     $("#bairro").val("...");
                     $("#InputUsuarioCidade").val("...");
                     $("#InputUsuarioUf").val("...");
                     $("#ibge").val("...");
-
                     //Consulta o webservice viacep.com.br/
                     $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
-
                         if (!("erro" in dados)) {
                             //Atualiza os campos com os valores da consulta.
                             $("#InputUsuarioEndereco").val(dados.logradouro);
