@@ -8,7 +8,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.edu.ifrs.canoas.lds.domain.Usuario;
 import br.edu.ifrs.canoas.lds.service.UsuarioService;
@@ -44,5 +46,11 @@ public class UsuarioController {
 		
 		//Retorna para página inicial
 		return "redirect:/login";
+	}
+	
+	@GetMapping("/usuario/{id}")
+	@ResponseBody()
+	public Usuario pesquisa(@PathVariable() Long id) {
+		return usuarioService.pesquisa(id);
 	}
 }

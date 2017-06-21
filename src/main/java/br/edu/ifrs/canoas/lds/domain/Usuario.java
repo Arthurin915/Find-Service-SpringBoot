@@ -108,5 +108,9 @@ public class Usuario {
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
+	
+	public boolean isEmpresa() {
+		return this.getCategoria() != null;
+	}
 		
 }

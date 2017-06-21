@@ -53,4 +53,8 @@ public class UsuarioService {
 	public PasswordEncoder getEncoder(){
 		return this.passwordEncoder;
 	}
+
+	public Usuario pesquisa(Long id) {
+		return usuarioRepository.findById(id).get();
+	}
 }
