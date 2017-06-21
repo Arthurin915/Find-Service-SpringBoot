@@ -93,7 +93,7 @@ public class Usuario {
 	public String getConfSenha() {
 		return confirmar;
 	}
-	 public void setConfSenha(String confSenha) {
+	public void setConfSenha(String confSenha) {
 		this.confirmar = confSenha;
 	}
 	public String getConfirmar() {
