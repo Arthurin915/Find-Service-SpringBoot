@@ -48,9 +48,5 @@ public class UsuarioController {
 		return "redirect:/login";
 	}
 	
-	@GetMapping("/usuario/{id}")
-	@ResponseBody()
-	public Usuario pesquisa(@PathVariable() Long id) {
-		return usuarioService.pesquisa(id);
-	}
+	
 }
