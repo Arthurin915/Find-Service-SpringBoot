@@ -55,6 +55,6 @@ public class UsuarioService {
 	}
 
 	public Usuario pesquisa(Long id) {
-		return usuarioRepository.findById(id).get();
+		return usuarioRepository.findById(id);
 	}
 }

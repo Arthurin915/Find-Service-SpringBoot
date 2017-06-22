@@ -19,7 +19,6 @@ public class Usuario {
 	private String endereco;
 	private int numero;
 	private String senha;
-	private String dono;
 	private String telefone;
 	private String confirmar;
 	private String categoria;
@@ -77,13 +76,6 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	public String getDono() {
-		return dono;
-	}
-	public void setDono(String dono) {
-		this.dono = dono;
-	}
-
 	public String getTelefone() {
 		return telefone;
 	}
