@@ -388,13 +388,13 @@
            <!--DropdownLogin-->
            <li th:if="${usuarioLogado} == null"><a href="#" data-toggle="modal" data-target="#LoginFormModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
            <li class ="dropdown" th:if="${usuarioLogado} != null">
-           	 <a class="dropdown-toggle" data-toggle="dropdown" href="#" ><span class="glyphicon glyphicon-log-out "></span><span th:text="${usuarioLogado} == null ? 'FindService - Encontre o que você precisa' : ' Bem-Vindo, '+${usuarioLogado.nome}" >></span>
+           	 <a class="dropdown-toggle" data-toggle="dropdown" href="#" ><span class="glyphicon glyphicon-user "></span><span th:text=" ${usuarioLogado.nome}" ></span>
                 <span class="caret" ></span></a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a href="#" th:if="${usuarioLogado.getCategoria()} !=null">Editar Empresa(s)</a>
-                   		<a href="#" th:if="${usuarioLogado.getCategoria()} ==null">Perfil</a>
-                        <a th:href="@{/logout}">Logout</a>
+                        <a href="#" th:if="${usuarioLogado.getCategoria()} !=null">Editar Perfil de Empresa</a>
+                   		<a href="#" th:if="${usuarioLogado.getCategoria()} ==null">Perfil</a> 
+                        <a th:href="@{/logout}">Logout</a> 
                     </li>
         </ul>         
     </li>
@@ -409,17 +409,40 @@
     	<section id="contact" class="map">
         <script type="text/javascript">
 			var map;
+			var marker;                   
 			function initMap() {
-				var posicao = {lat: -29.8991609, lng: -51.1504777};
-		        var map = new google.maps.Map(document.getElementById('map'), {
-		          zoom: 16,
+				var posicao = {lat: -25.363, lng: 131.044};
+		        map = new google.maps.Map(document.getElementById('map'), {
+		          zoom: 6,
 		          center: posicao,
 		          scrollwheel: false
 		        });
-		        var marker = new google.maps.Marker({
+		        marker = new google.maps.Marker({
 		          position: posicao,
 		          map: map
 		        });
+			}
+
+			function fazPesquisa() {
+				$.ajax({
+					method: 'GET',
+					url: '/usuario/1' // TODO: Trocar dinamicamente o id do usuario
+				}).done(function (data) {
+					trocarPosicao(data.endereco + ", " + data.numero + ", " + data.cidade); // Monta o endereço a partir dos dados do servidor e troca posicao
+				});
+			}
+
+			function trocarPosicao(endereco) {
+				$.ajax({
+					method: 'GET', // Requisicao de dados pro google
+					url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + endereco
+				}).done(function (data) {
+					var lat = data.results[0].geometry.location.lat;
+					var lng = data.results[0].geometry.location.lng;
+					map.setCenter({lat: lat, lng: lng});
+					marker.setPosition({lat: lat, lng: lng});
+					map.setZoom(16);
+				});
 			}
 	  </script>
     <script async defer

@@ -1,8 +1,11 @@
 package br.edu.ifrs.canoas.lds.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 public class Usuario {
@@ -13,6 +16,8 @@ public class Usuario {
 	
 	private String nome;
 	private String cep;
+	@NotBlank
+	@Column(unique=true)
 	private String email;
 	private String cidade;
 	private String uf;

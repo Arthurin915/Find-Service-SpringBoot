@@ -53,6 +53,4 @@ public class UsuarioService {
 	public PasswordEncoder getEncoder(){
 		return this.passwordEncoder;
 	}
-
-
 }
