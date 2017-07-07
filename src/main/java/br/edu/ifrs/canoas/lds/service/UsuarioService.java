@@ -26,11 +26,15 @@ public class UsuarioService {
 	public Iterable<Usuario> findAll() {
 		return usuarioRepository.findAll();
 	}
-	
-	public Usuario findByEmail(Usuario usuario){
-		 return usuarioRepository.findByEmail(usuario.getEmail());
+
+	public Usuario findByEmail(Usuario usuario) {
+		return usuarioRepository.findByEmail(usuario.getEmail());
 	}
-	
+
+	public Usuario pesquisa(Long id) {
+		return usuarioRepository.findAllById(id);
+	}
+
 	public Usuario getSession(SecurityContext context) {
 		if (context instanceof SecurityContext) {
 			Authentication authentication = context.getAuthentication();
@@ -49,8 +53,8 @@ public class UsuarioService {
 		}
 		return null;
 	}
-	
-	public PasswordEncoder getEncoder(){
+
+	public PasswordEncoder getEncoder() {
 		return this.passwordEncoder;
 	}
 }

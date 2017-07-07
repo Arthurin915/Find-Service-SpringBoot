@@ -21,35 +21,40 @@ import br.edu.ifrs.canoas.lds.service.UsuarioService;
 public class UsuarioController {
 
 	private final UsuarioService usuarioService;
-	private final PasswordEncoder passwordEncoder; 
-	
+	private final PasswordEncoder passwordEncoder;
+
 	public UsuarioController(UsuarioService usuarioService, PasswordEncoder passwordEncoder) {
 		this.usuarioService = usuarioService;
 		this.passwordEncoder = passwordEncoder;
 	}
 
 	@GetMapping("/login")
-	public String index(Model model){
+	public String index(Model model) {
 		SecurityContext context = SecurityContextHolder.getContext();
 		model.addAttribute("usuarios", usuarioService.findAll());
-		model.addAttribute("usuario",new Usuario());
-		model.addAttribute("usuarioLogado",usuarioService.getSession(context));
+		model.addAttribute("usuario", new Usuario());
+		model.addAttribute("usuarioLogado", usuarioService.getSession(context));
 		return "index";
 	}
-	
+
 	@PostMapping("/save")
-	public String save(Model model, @Valid Usuario usuario, BindingResult result, RedirectAttributes attributes){
-		if(result.hasErrors()){
+	public String save(Model model, @Valid Usuario usuario, BindingResult result, RedirectAttributes attributes) {
+		if (result.hasErrors()) {
 			System.out.println("tem erro");
 		}
-		//criptografa senha do usuário
+		// criptografa senha do usuário
 		usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
-		//salva usuário no BD
+		// salva usuário no BD
 		usuarioService.save(usuario);
-		
-		//Retorna para página inicial
+
+		// Retorna para página inicial
 		return "redirect:/login";
 	}
-	
-	
+
+	@GetMapping("/usuario/{id}")
+	@ResponseBody()
+	public Usuario pesquisa(@PathVariable("id") Long id) {
+		return usuarioService.pesquisa(id);
+	}
+
 }

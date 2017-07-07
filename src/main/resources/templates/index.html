@@ -427,6 +427,7 @@
 				$.ajax({
 					method: 'GET',
 					url: '/usuario/1' // TODO: Trocar dinamicamente o id do usuario
+					dataType: 'json',
 				}).done(function (data) {
 					trocarPosicao(data.endereco + ", " + data.numero + ", " + data.cidade); // Monta o endereço a partir dos dados do servidor e troca posicao
 				});
