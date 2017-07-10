@@ -51,10 +51,10 @@ public class UsuarioController {
 		return "redirect:/login";
 	}
 
-	@GetMapping("/usuario/{id}")
+	@GetMapping("/usuario/{nome}")
 	@ResponseBody()
-	public Usuario pesquisa(@PathVariable("id") Long id) {
-		return usuarioService.pesquisa(id);
+	public Usuario pesquisa(@PathVariable String nome) {
+		return usuarioService.pesquisa(nome);
 	}
 
 }

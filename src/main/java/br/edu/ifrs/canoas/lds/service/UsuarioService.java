@@ -31,8 +31,8 @@ public class UsuarioService {
 		return usuarioRepository.findByEmail(usuario.getEmail());
 	}
 
-	public Usuario pesquisa(Long id) {
-		return usuarioRepository.findAllById(id);
+	public Usuario pesquisa(String nome) {
+		return usuarioRepository.findByNome(nome);
 	}
 
 	public Usuario getSession(SecurityContext context) {

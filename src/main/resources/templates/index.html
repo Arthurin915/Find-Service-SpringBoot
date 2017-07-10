@@ -87,7 +87,8 @@
                             <label for="EmpInputEndereco">
                                 Endereço:
                             </label>
-                            <input class="form-control" th:field="${usuario.endereco}" id="EmpInputEndereco" type="text" placeholder="Digite o Endereço">
+                            <input class="form-control" th:field="${usuario.endereco}" id="EmpInputEndereco" type="text" placeholder="Endereço" 
+                            disabled="disabled">
                             <div class="help-block with-errors"></div>
                         </div>
                     </div>
@@ -97,14 +98,15 @@
                             <label for="EmpInputCidade">
                                 Cidade:
                             </label>
-                            <input class="form-control" th:field="${usuario.cidade}" id="EmpInputCidade" type="text" placeholder="Digite a Cidade">
+                            <input class="form-control" th:field="${usuario.cidade}" id="EmpInputCidade" type="text" placeholder="Cidade"
+                            disabled="disabled">
                             <div class="help-block with-errors"></div>
                         </div>
                     <div class="form-group col-md-3">
                             <label for="EmpInputUf">
                                 UF:
                             </label>
-                            <input class="form-control" th:field="${usuario.uf}" id="EmpInputUf" type="text" placeholder="UF">
+                            <input class="form-control" th:field="${usuario.uf}" id="EmpInputUf" type="text" placeholder="UF" disabled="disabled">
                             <div class="help-block with-errors"></div>
                         </div>
                         <div class="form-group col-md-3">
@@ -234,7 +236,7 @@
                             <label for="InputUsuarioEndereco">
                                 Endereço:
                             </label>
-                            <input class="form-control" th:field="${usuario.endereco}" id="InputUsuarioEndereco" type="text" placeholder="Digite o Endereço">
+                            <input class="form-control" th:field="${usuario.endereco}" id="InputUsuarioEndereco" type="text" placeholder="Endereço" disabled="disabled">
                         </div>
                     </div>
                     <div class="row">
@@ -242,13 +244,13 @@
                             <label for="InputUsuarioCidade">
                                 Cidade:
                             </label>
-                            <input class="form-control" th:field="${usuario.cidade}" id="InputUsuarioCidade" type="text" placeholder="Digite a Cidade">
+                            <input class="form-control" th:field="${usuario.cidade}" id="InputUsuarioCidade" type="text" placeholder="Cidade" disabled="disabled">
                         </div>
                         <div class="form-group col-md-3">
                             <label for="InputUsuarioUf">
                                 UF:
                             </label>
-                            <input class="form-control" th:field="${usuario.uf}" id="InputUsuarioUf" type="text" placeholder="UF" >
+                            <input class="form-control" th:field="${usuario.uf}" id="InputUsuarioUf" type="text" placeholder="UF" disabled="disabled">
                         </div>
 						<div class="form-group col-md-3">
                             <label for="InputUsuarioNumero">
@@ -426,7 +428,7 @@
 			function fazPesquisa() {
 				$.ajax({
 					method: 'GET',
-					url: '/usuario/1' // TODO: Trocar dinamicamente o id do usuario
+					url: '/usuario/' // TODO: Trocar dinamicamente o id do usuario
 					dataType: 'json',
 				}).done(function (data) {
 					trocarPosicao(data.endereco + ", " + data.numero + ", " + data.cidade); // Monta o endereço a partir dos dados do servidor e troca posicao
@@ -491,8 +493,8 @@
 <!-- Modal de Pesquisa -->
    <div id="search">
     <button type="button" class="close">×</button>
-    <form>
-        <input type="search" value="" placeholder="Digite o nome da Empresa ou Prestador" />
+    <form id="pesquisar">
+        <input type="search" value="" placeholder="Digite o nome da Empresa ou Prestador" id="pesq"/>
         <button type="submit" class="btn btn-primary">Pesquisar</button>
     </form>
 </div>

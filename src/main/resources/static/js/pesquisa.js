@@ -2,8 +2,7 @@ $(function () {
     $('a[href="#search"]').on('click', function(event) {
         event.preventDefault();
         $('#search').addClass('open');
-        
-        
+         
         
         $('#search > form > input[type="search"]').focus();
     });
@@ -13,4 +12,13 @@ $(function () {
             $(this).removeClass('open');
         }
     });
+    
+    $('body').on('submit', '#pesquisar', function(){
+    	$.ajax({
+    		method: 'GET',
+    		url: '/usuario/' + $('#pesq').val()
+    	}).done(function (data) {
+    		console.log(data)
+    	})
+    })
 });
