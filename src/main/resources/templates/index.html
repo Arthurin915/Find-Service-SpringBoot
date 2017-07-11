@@ -425,16 +425,6 @@
 		        });
 			}
 
-			function fazPesquisa() {
-				$.ajax({
-					method: 'GET',
-					url: '/usuario/' // TODO: Trocar dinamicamente o id do usuario
-					dataType: 'json',
-				}).done(function (data) {
-					trocarPosicao(data.endereco + ", " + data.numero + ", " + data.cidade); // Monta o endereço a partir dos dados do servidor e troca posicao
-				});
-			}
-
 			function trocarPosicao(endereco) {
 				$.ajax({
 					method: 'GET', // Requisicao de dados pro google
@@ -463,25 +453,13 @@
             <tr>
                 <th>Nome</th>
                 <th>Email</th>
-                <th>Cidade</th>
                 <th>Endereco</th>
                 <th>Telefone</th>
-                <th>Senha</th>
-                <th>Categoria</th>
-                <th>Numero</th>
+                <th>Ações</th>
             </tr>
         </thead>
         <tbody>
-            <tr th:each="usuario:${usuarios}">
-                <td th:text="${usuario.nome}"></td>
-                <td th:text="${usuario.email}"></td>
-                <td th:text="${usuario.cidade}"></td>
-                <td th:text="${usuario.endereco}"></td>
-                <td th:text="${usuario.telefone}"></td>
-                <td th:text="${usuario.senha}"></td>
-                <td th:text="${usuario.categoria}"></td>
-                <td th:text="${usuario.numero}"></td>
-            </tr>             
+                      
            </tbody>
     </table>
     </div>

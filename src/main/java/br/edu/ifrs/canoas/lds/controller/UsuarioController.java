@@ -1,5 +1,7 @@
 package br.edu.ifrs.canoas.lds.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.security.core.context.SecurityContext;
@@ -53,7 +55,7 @@ public class UsuarioController {
 
 	@GetMapping("/usuario/{nome}")
 	@ResponseBody()
-	public Usuario pesquisa(@PathVariable String nome) {
+	public List<Usuario> pesquisa(@PathVariable String nome) {
 		return usuarioService.pesquisa(nome);
 	}
 

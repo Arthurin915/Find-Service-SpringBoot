@@ -1,5 +1,7 @@
 package br.edu.ifrs.canoas.lds.service;
 
+import java.util.List;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -31,8 +33,8 @@ public class UsuarioService {
 		return usuarioRepository.findByEmail(usuario.getEmail());
 	}
 
-	public Usuario pesquisa(String nome) {
-		return usuarioRepository.findByNome(nome);
+	public List<Usuario> pesquisa(String nome) {
+		return usuarioRepository.findAllByNomeContainingIgnoreCase(nome);
 	}
 
 	public Usuario getSession(SecurityContext context) {
