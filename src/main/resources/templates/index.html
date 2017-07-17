@@ -88,7 +88,7 @@
                                 Endereço:
                             </label>
                             <input class="form-control" th:field="${usuario.endereco}" id="EmpInputEndereco" type="text" placeholder="Endereço" 
-                            disabled="disabled">
+                            >
                             <div class="help-block with-errors"></div>
                         </div>
                     </div>
@@ -99,14 +99,14 @@
                                 Cidade:
                             </label>
                             <input class="form-control" th:field="${usuario.cidade}" id="EmpInputCidade" type="text" placeholder="Cidade"
-                            disabled="disabled">
+                            >
                             <div class="help-block with-errors"></div>
                         </div>
                     <div class="form-group col-md-3">
                             <label for="EmpInputUf">
                                 UF:
                             </label>
-                            <input class="form-control" th:field="${usuario.uf}" id="EmpInputUf" type="text" placeholder="UF" disabled="disabled">
+                            <input class="form-control" th:field="${usuario.uf}" id="EmpInputUf" type="text" placeholder="UF" >
                             <div class="help-block with-errors"></div>
                         </div>
                         <div class="form-group col-md-3">
@@ -236,7 +236,7 @@
                             <label for="InputUsuarioEndereco">
                                 Endereço:
                             </label>
-                            <input class="form-control" th:field="${usuario.endereco}" id="InputUsuarioEndereco" type="text" placeholder="Endereço" disabled="disabled">
+                            <input class="form-control" th:field="${usuario.endereco}" id="InputUsuarioEndereco" type="text" placeholder="Endereço" >
                         </div>
                     </div>
                     <div class="row">
@@ -244,13 +244,13 @@
                             <label for="InputUsuarioCidade">
                                 Cidade:
                             </label>
-                            <input class="form-control" th:field="${usuario.cidade}" id="InputUsuarioCidade" type="text" placeholder="Cidade" disabled="disabled">
+                            <input class="form-control" th:field="${usuario.cidade}" id="InputUsuarioCidade" type="text" placeholder="Cidade" >
                         </div>
                         <div class="form-group col-md-3">
                             <label for="InputUsuarioUf">
                                 UF:
                             </label>
-                            <input class="form-control" th:field="${usuario.uf}" id="InputUsuarioUf" type="text" placeholder="UF" disabled="disabled">
+                            <input class="form-control" th:field="${usuario.uf}" id="InputUsuarioUf" type="text" placeholder="UF" >
                         </div>
 						<div class="form-group col-md-3">
                             <label for="InputUsuarioNumero">
@@ -447,7 +447,7 @@
 
     <!-- Footer -->
    <div class="container">
-    <h1>DataTable</h1>
+    <h1>Lista de Empresas</h1>
     <table id="example" class="table table-striped table-bordered table-hover">
          <thead>
             <tr>
@@ -472,7 +472,7 @@
    <div id="search">
     <button type="button" class="close">×</button>
     <form id="pesquisar">
-        <input type="search" value="" placeholder="Digite o nome da Empresa ou Prestador" id="pesq"/>
+        <input type="search" value="" placeholder="Digite o nome da Empresa ou Prestador" id="pesq" autocomplete="off"/>
         <button type="submit" class="btn btn-primary">Pesquisar</button>
     </form>
 </div>

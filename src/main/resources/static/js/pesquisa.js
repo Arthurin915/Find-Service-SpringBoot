@@ -12,7 +12,7 @@ $(function () {
             $(this).removeClass('open');
         }
     });
-    
+   
     $('body').on('submit', '#pesquisar', function(){
     	$('#search').removeClass('open');
     	$.ajax({
@@ -39,7 +39,7 @@ $(function () {
     	});
     	return false;
     });
-    
+   
     $('#example').on('click', '.visualiza', function (e) {
     	var endereco = $(e.target).data('endereco');
     	trocarPosicao(endereco);
