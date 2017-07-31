@@ -56,20 +56,20 @@
                 </h4>
             </div>
             <div class ="modal-body">
-                <form data-toggle="validator"th:object="${usuario}" th:action="@{/save}" method="post">
+                <form data-toggle="validator"th:object="${empresa}" th:action="@{/save}" method="post">
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="EmpInputNomeEmp">
                                 Nome:
                             </label>
-                            <input class="form-control" th:field="${usuario.nome}" id="EmpInputNome" type="text" placeholder="Nome da Empresa ou Prestador" required>
+                            <input class="form-control" th:field="${empresa.nome}" id="EmpInputNome" type="text" placeholder="Nome da Empresa ou Prestador" required>
                             <div class="help-block with-errors"></div>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="EmpInputEmail">
                                 Email:
                             </label>
-                            <input class="form-control" th:field="${usuario.email}" id="EmpInputEmail" type="email" placeholder="Digite o email" required
+                            <input class="form-control" th:field="${empresa.email}" id="EmpInputEmail" type="email" placeholder="Digite o email" required
                             data-error="Email inválido! Exemplo: email@email.com">
                             <div class="help-block with-errors"></div>
                         </div>
@@ -79,7 +79,7 @@
                             <label for="EmpCep">
                             Cep:
                             </label>
-							<input class="form-control" th:field="${usuario.cep}" type="text" id="EmpCep" value="" maxlength="9" placeholder="Digite o seu cep" required>
+							<input class="form-control" th:field="${empresa.cep}" type="text" id="EmpCep" value="" maxlength="9" placeholder="Digite o seu cep" required>
 							<a href="http://www.buscacep.correios.com.br/sistemas/buscacep/" target="_blank">Não sei meu cep.</a>
 							<div class="help-block with-errors"></div>
                         </div>
@@ -87,7 +87,7 @@
                             <label for="EmpInputEndereco">
                                 Endereço:
                             </label>
-                            <input class="form-control" th:field="${usuario.endereco}" id="EmpInputEndereco" type="text" placeholder="Endereço" 
+                            <input class="form-control" th:field="${empresa.endereco}" id="EmpInputEndereco" type="text" placeholder="Endereço" 
                             >
                             <div class="help-block with-errors"></div>
                         </div>
@@ -98,7 +98,7 @@
                             <label for="EmpInputCidade">
                                 Cidade:
                             </label>
-                            <input class="form-control" th:field="${usuario.cidade}" id="EmpInputCidade" type="text" placeholder="Cidade"
+                            <input class="form-control" th:field="${empresa.cidade}" id="EmpInputCidade" type="text" placeholder="Cidade"
                             >
                             <div class="help-block with-errors"></div>
                         </div>
@@ -106,7 +106,7 @@
                             <label for="EmpInputUf">
                                 UF:
                             </label>
-                            <input class="form-control" th:field="${usuario.uf}" id="EmpInputUf" type="text" placeholder="UF" >
+                            <input class="form-control" th:field="${empresa.uf}" id="EmpInputUf" type="text" placeholder="UF" >
                             <div class="help-block with-errors"></div>
                         </div>
                         <div class="form-group col-md-3">
@@ -123,7 +123,7 @@
                             <label for="EmpInputTelefone">
                                 Telefone:
                             </label>
-                            <input class="form-control" th:field="${usuario.telefone}" id="EmpInputTelefone" type="text" placeholder="Digite o Telefone" required>
+                            <input class="form-control" th:field="${empresa.telefone}" id="EmpInputTelefone" type="text" placeholder="Digite o Telefone" required>
                             <div class="help-block with-errors"></div>
                         </div>
                         
@@ -131,7 +131,7 @@
                         <label for="EmpInputCategoria">
                                 Categoria:
                             </label>
-                        <select class="form-control" th:field="${usuario.categoria}" id="EmpInputCategoria" required> 
+                        <select class="form-control" th:field="${empresa.categoria}" id="EmpInputCategoria" required> 
                           <option value ="">Selecione a categoria</option>
                           <option value ="1">Advocacia</option>
                           <option value ="2">Alimentação</option>
@@ -166,7 +166,7 @@
                             <label for="EmpInputSenha">
                                 Senha:
                             </label>
-                            <input class="form-control" th:field="${usuario.senha}" id="EmpInputSenha" type="password" placeholder="Digite a Senha">
+                            <input class="form-control" th:field="${empresa.senha}" id="EmpInputSenha" type="password" placeholder="Digite a Senha">
                             <div class="help-block with-errors"></div>
                         </div>
                     <div class="form-group col-md-6">

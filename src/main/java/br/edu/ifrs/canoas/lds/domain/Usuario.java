@@ -1,13 +1,12 @@
 package br.edu.ifrs.canoas.lds.domain;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
-import org.hibernate.validator.constraints.NotBlank;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="Usuario")
 public class Usuario {
 	
 	@Id
@@ -16,8 +15,6 @@ public class Usuario {
 	
 	private String nome;
 	private String cep;
-	@NotBlank
-	@Column(unique=true)
 	private String email;
 	private String cidade;
 	private String uf;
@@ -26,7 +23,25 @@ public class Usuario {
 	private String senha;
 	private String telefone;
 	private String confirmar;
-	private String categoria;
+	
+	public Usuario(){
+		
+	}
+	public Usuario(Long id, String nome, String cep, String email, String cidade, String uf, String endereco,
+			int numero, String senha, String telefone, String confirmar) {
+		this.id = id;
+		this.nome = nome;
+		this.cep = cep;
+		this.email = email;
+		this.cidade = cidade;
+		this.uf = uf;
+		this.endereco = endereco;
+		this.numero = numero;
+		this.senha = senha;
+		this.telefone = telefone;
+		this.confirmar = confirmar;
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -98,16 +113,6 @@ public class Usuario {
 	}
 	public void setConfirmar(String confirmar) {
 		this.confirmar = confirmar;
-	}
-	public String getCategoria() {
-		return categoria;
-	}
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
-	}
-	
-	public boolean isEmpresa() {
-		return this.getCategoria() != null;
 	}
 		
 }

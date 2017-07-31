@@ -13,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import br.edu.ifrs.canoas.lds.repository.EmpresaRepository;
 import br.edu.ifrs.canoas.lds.repository.UsuarioRepository;
 import br.edu.ifrs.canoas.lds.service.LcUserDetailsService;
 
@@ -20,11 +21,12 @@ import br.edu.ifrs.canoas.lds.service.LcUserDetailsService;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	UsuarioRepository usuarioRepository;
+	EmpresaRepository empresaRepository;
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
 		http
 		.authorizeRequests()
-			.antMatchers("/save","/login", "/usuario/**").permitAll()
+			.antMatchers("/save","/saveEmp","/login", "/usuario/**", "/empresa/**").permitAll()
 			.anyRequest().authenticated()
 			.and()
 			.formLogin()
