@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+ <html xmlns="http://www.w3.org/1999/xhtml"
+ 	xmlns:th="http://www.thymleaf.org">
+ <head>
+ 
+     <meta charset="utf-8"/>
+     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+     <meta name="viewport" content="width=device-width, initial-scale=1"/>
+     <meta name="description" content=""/>
+     <meta name="author" content=""/>
+ 
+     <title>FindService - Encontre o que você procura</title>
+     
+     <!-- Adicionando JQuery -->
+     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+ 
+     <!-- Adicionando Javascript -->
+     <script src="js/cepempresa.js"></script>
+     <script src="js/cepusuario.js"></script>
+     <script src="js/pesquisa.js"></script>
+     <script src="js/validator.min.js"></script>
+     <script src="js/jquery.js"></script>
+     <script src="js/jquery.dataTables.min.js"></script>
+     <script src="js/dataTables.bootstrap.min.js"></script>
+    
+ 	<!-- Bootstrap Core CSS -->
+     <link href="css/bootstrap.min.css" rel="stylesheet">
+     <link href="css/dataTables.bootstrap.min.css" rel="stylesheet">
+ 	
+     <!-- Custom CSS -->
+      <link href="css/stylish-portfolio.css" rel="stylesheet"/>
+     <link rel="stylesheet" href="css/pesquisa.css">
+     
+ 	<!-- Custom Fonts -->
+     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css"/>
+     
+ 
+     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+     <!--[if lt IE 9]>
+         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+     <![endif]-->
+ </head>
+ <body>
+ <!--UsuarioRegisterForm-->
+ <div class="modal fade" id="FormRegistroModal" tabindex="-1" role="dialog"
+  aria-labelledby="FormRegistroModalLabel" th:fragment="CadastroUsuario">
+     <div class="modal-dialog" role="document">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal">
+                     x
+                 </button>
+                 <h4 class="modal-title" id="FormRegistroModalLabel">
+                     Cadastro de Usuário
+                 </h4>
+             </div>
+             <div class="modal-body">
+                 <form id="UsuarioForm" data-toggle="validator" th:object="${usuario}" th:action="@{/save}" method="post">
+                     <div class="row">
+                         <div class="form-group col-md-6">
+                             <label for="InputUsuarioNome">
+                                 Nome:
+                             </label>
+                             <input class="form-control" th:field="${usuario.nome}" id="InputUsuarioNome" type="text" placeholder="Digite o Nome" required>
+                             <div class="help-block with-errors"></div>
+                         </div>
+                         <div class="form-group col-md-6">
+                             <label for="InputUsuarioEmail">
+                                 Email:
+                             </label>
+                             <input class="form-control" th:field="${usuario.email}" id="InputUsuarioEmail" type="email" placeholder="Digite o email" required
+                             data-error="Email inválido! Exemplo: email@email.com">                        	
+                         	<div class="help-block with-errors"></div>
+                         </div>
+                     </div>
+                     <div class="row">
+                     	<div class="form-group col-md-6">
+                             <label for="UsuarioCep">
+                             Cep:
+                             </label>
+ 							<input class="form-control" th:field="${usuario.cep}" type="text" id="UsuarioCep" value="" maxlength="9" placeholder="Digite o seu cep" required>
+                         	<a href="http://www.buscacep.correios.com.br/sistemas/buscacep/" target="_blank" >Não sei meu cep.</a>
+                         	<div class="help-block with-errors"></div>
+                         </div>
+                         <div class="form-group col-md-6">
+                              <label for="InputUsuarioEndereco">
+                                  Endereço:
+                              </label>
+                             <input class="form-control" th:field="${usuario.endereco}" id="InputUsuarioEndereco" type="text" placeholder="Endereço" readonly>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="form-group col-md-6">
+                              <label for="InputUsuarioCidade">
+                                  Cidade:
+                              </label>
+                             <input class="form-control" th:field="${usuario.cidade}" id="InputUsuarioCidade" type="text" placeholder="Cidade" readonly>
+                          </div>
+                          <div class="form-group col-md-3">
+                              <label for="InputUsuarioUf">
+                                  UF:
+                              </label>
+                             <input class="form-control" th:field="${usuario.uf}" id="InputUsuarioUf" type="text" placeholder="UF" readonly>
+                          </div>
+  						<div class="form-group col-md-3">
+                              <label for="InputUsuarioNumero">
+                                 Numero:
+                             </label>
+                             <input class="form-control"  name="numero" id="InputUsuarioNumero" type="text" placeholder="Número da Casa" required
+                              data-error="Preencha o Campo">
+                             <div class="help-block with-errors"></div>
+                         </div>
+                     </div>
+                     <div class="row">
+                         <div class="form-group col-md-6">
+                             <label for="InputUsuarioSenha">
+                                 Senha:
+                             </label>
+                             <input class="form-control" th:field="${usuario.senha}" id="InputUsuarioSenha" type="password" placeholder="Digite a Senha" required>
+                             <div class="help-block with-errors"></div>
+                         </div>
+                         <div class="form-group col-md-6">
+                             <label for="InputUsuarioTelefone">
+                                 Telefone:
+                             </label>
+                             <input class="form-control" th:field="${usuario.telefone}" id="InputUsuarioTelefone" type="text" placeholder="Digite o Telefone" required>
+                             <div class="help-block with-errors"></div>
+                         </div>
+ 
+                     </div>
+                     <div class="row">
+                        <div class="form-group col-md-6">
+                             <label for="InputUsuarioConfirmar">
+                                 Confirmar Senha:
+                             </label>
+                             <input class="form-control" id="InputUsuarioConfirmar" type="password" placeholder="Digite a senha" required
+                             data-match="#InputUsuarioSenha" data-match-error="Atenção! As senhas não estão iguais.">
+                             <div class="help-block with-errors"></div>
+                         </div>
+                     </div>
+                     <hr/>
+                     <div class="row">
+                       <div class="col-md-12">
+                         <button id="btn-salvar-usuario" class="btn btn-primary" type="submit">Salvar</button>
+                         <button class="btn btn-default" type="button" data-dismiss="modal">Cancelar</button>
+                       </div>
+                     </div>
+                 </form>
+             </div>
+         </div>
+     </div>
+ </div>
+ </body>
+ </html>
