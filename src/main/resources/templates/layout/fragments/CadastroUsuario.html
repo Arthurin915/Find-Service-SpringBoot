@@ -58,20 +58,20 @@
                  </h4>
              </div>
              <div class="modal-body">
-                 <form id="UsuarioForm" data-toggle="validator" th:object="${usuario}" th:action="@{/save}" method="post">
+                 <form id="UsuarioForm" data-toggle="validator" th:object="${pessoaF}"  th:action="@{/save}" method="post">
                      <div class="row">
                          <div class="form-group col-md-6">
                              <label for="InputUsuarioNome">
                                  Nome:
                              </label>
-                             <input class="form-control" th:field="${usuario.nome}" id="InputUsuarioNome" type="text" placeholder="Digite o Nome" required>
+                             <input class="form-control" th:field="${pessoaF.nome}" id="InputUsuarioNome" type="text" placeholder="Digite o Nome" required>
                              <div class="help-block with-errors"></div>
                          </div>
                          <div class="form-group col-md-6">
                              <label for="InputUsuarioEmail">
                                  Email:
                              </label>
-                             <input class="form-control" th:field="${usuario.email}" id="InputUsuarioEmail" type="email" placeholder="Digite o email" required
+                             <input class="form-control" th:field="${pessoaF.email}" id="InputUsuarioEmail" type="email" placeholder="Digite o email" required
                              data-error="Email inválido! Exemplo: email@email.com">                        	
                          	<div class="help-block with-errors"></div>
                          </div>
@@ -81,7 +81,7 @@
                              <label for="UsuarioCep">
                              Cep:
                              </label>
- 							<input class="form-control" th:field="${usuario.cep}" type="text" id="UsuarioCep" value="" maxlength="9" placeholder="Digite o seu cep" required>
+ 							<input class="form-control" th:field="${pessoaF.cep}" type="text" id="UsuarioCep" value="" maxlength="9" placeholder="Digite o seu cep" required>
                          	<a href="http://www.buscacep.correios.com.br/sistemas/buscacep/" target="_blank" >Não sei meu cep.</a>
                          	<div class="help-block with-errors"></div>
                          </div>
@@ -89,7 +89,7 @@
                               <label for="InputUsuarioEndereco">
                                   Endereço:
                               </label>
-                             <input class="form-control" th:field="${usuario.endereco}" id="InputUsuarioEndereco" type="text" placeholder="Endereço" readonly>
+                             <input class="form-control" th:field="${pessoaF.endereco}" id="InputUsuarioEndereco" type="text" placeholder="Endereço" readonly>
                           </div>
                       </div>
                       <div class="row">
@@ -97,13 +97,13 @@
                               <label for="InputUsuarioCidade">
                                   Cidade:
                               </label>
-                             <input class="form-control" th:field="${usuario.cidade}" id="InputUsuarioCidade" type="text" placeholder="Cidade" readonly>
+                             <input class="form-control" th:field="${pessoaF.cidade}" id="InputUsuarioCidade" type="text" placeholder="Cidade" readonly>
                           </div>
                           <div class="form-group col-md-3">
                               <label for="InputUsuarioUf">
                                   UF:
                               </label>
-                             <input class="form-control" th:field="${usuario.uf}" id="InputUsuarioUf" type="text" placeholder="UF" readonly>
+                             <input class="form-control" th:field="${pessoaF.uf}" id="InputUsuarioUf" type="text" placeholder="UF" readonly>
                           </div>
   						<div class="form-group col-md-3">
                               <label for="InputUsuarioNumero">
@@ -119,14 +119,14 @@
                              <label for="InputUsuarioSenha">
                                  Senha:
                              </label>
-                             <input class="form-control" th:field="${usuario.senha}" id="InputUsuarioSenha" type="password" placeholder="Digite a Senha" required>
+                             <input class="form-control" th:field="${pessoaF.senha}" id="InputUsuarioSenha" type="password" placeholder="Digite a Senha" required>
                              <div class="help-block with-errors"></div>
                          </div>
                          <div class="form-group col-md-6">
                              <label for="InputUsuarioTelefone">
                                  Telefone:
                              </label>
-                             <input class="form-control" th:field="${usuario.telefone}" id="InputUsuarioTelefone" type="text" placeholder="Digite o Telefone" required>
+                             <input class="form-control" th:field="${pessoaF.telefone}" id="InputUsuarioTelefone" type="text" placeholder="Digite o Telefone" required>
                              <div class="help-block with-errors"></div>
                          </div>
  

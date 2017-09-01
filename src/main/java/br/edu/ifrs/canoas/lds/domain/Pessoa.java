@@ -10,7 +10,7 @@ public abstract class Pessoa {
 
     @Id @GeneratedValue
     private Long id;
-
+  	private String cep;
     private String nome;
     @Column(unique=true)
     private String email;
@@ -18,6 +18,8 @@ public abstract class Pessoa {
     private List<Telefone> telefones;
     @OneToMany
     private List<Endereco> enderecos;
+ 	private String senha;
+
 
     public Long getId() {
         return id;
@@ -58,4 +60,20 @@ public abstract class Pessoa {
     public void setEnderecos(List<Endereco> enderecos) {
         this.enderecos = enderecos;
     }
+
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
 }

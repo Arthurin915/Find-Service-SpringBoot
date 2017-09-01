@@ -17,7 +17,7 @@ $(function () {
       	$('#search').removeClass('open');
       	$.ajax({
      		method: 'GET',
-     		url: '/usuario/' + $('#pesq').val()
+     		url: '/pessoa/' + $('#pesq').val()
      	}).done(function (data) {
  			var table = $('#example').DataTable();
  			table.clear();

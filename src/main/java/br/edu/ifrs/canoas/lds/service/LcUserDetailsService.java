@@ -10,26 +10,26 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import br.edu.ifrs.canoas.lds.domain.Usuario;
-import br.edu.ifrs.canoas.lds.repository.UsuarioRepository;
+import br.edu.ifrs.canoas.lds.domain.Pessoa;
+import br.edu.ifrs.canoas.lds.repository.PessoaRepository;
 
 public class LcUserDetailsService implements UserDetailsService{
-	private UsuarioRepository usuarioRepository;
+	private PessoaRepository pessoaRepository;
 	
-	public LcUserDetailsService(UsuarioRepository usuarioRepository) {
-		this.usuarioRepository = usuarioRepository;
+	public LcUserDetailsService(PessoaRepository pessoaRepository) {
+		this.pessoaRepository = pessoaRepository;
 	}
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Usuario user = usuarioRepository.findByEmail(username);
-		if(user == null){
+		Pessoa pessoa = pessoaRepository.findByEmail(username);
+		if(pessoa == null){
 			throw new UsernameNotFoundException("Usuário não encontrado");
 		}
-		return new User(user.getEmail(), user.getSenha(), getAuthorities(user));
+		return new User(pessoa.getEmail(), pessoa.getSenha(), getAuthorities(pessoa));
 	}
 	
-	private Collection<? extends GrantedAuthority> getAuthorities(Usuario usuario) {
+	private Collection<? extends GrantedAuthority> getAuthorities(Pessoa pessoa) {
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
         return grantedAuthorities;
     }
@@ -37,41 +37,3 @@ public class LcUserDetailsService implements UserDetailsService{
 	
 
 }
-/*
-package br.edu.ifrs.canoas.lds.service;
-
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-
-import br.edu.ifrs.canoas.lds.domain.Empresa;
-import br.edu.ifrs.canoas.lds.repository.EmpresaRepository;
-
-public class LcEmpDetailsService implements UserDetailsService{
-	private EmpresaRepository empresaRepository;
-
-	public LcEmpDetailsService(EmpresaRepository empresaRepository) {
-		this.empresaRepository = empresaRepository;
-	}
-
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Empresa emp = empresaRepository.findByEmail(username);
-		if(emp == null){
-			throw new UsernameNotFoundException("Empresa não encontrado");
-		}
-		return new User(emp.getEmail(), emp.getSenha(), getAuthorities(emp));
-	}
-	private Collection<? extends GrantedAuthority> getAuthorities(Empresa empresa) {
-        Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-        return grantedAuthorities;
-    }
-
-}
-*/

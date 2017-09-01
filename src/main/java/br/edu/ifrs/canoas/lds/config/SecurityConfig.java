@@ -13,18 +13,18 @@ import org.springframework.context.annotation.Bean;
  import org.springframework.security.crypto.password.PasswordEncoder;
  import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
  
- import br.edu.ifrs.canoas.lds.repository.UsuarioRepository;
+ import br.edu.ifrs.canoas.lds.repository.PessoaRepository;
  import br.edu.ifrs.canoas.lds.service.LcUserDetailsService;
  
  @EnableWebSecurity
  public class SecurityConfig extends WebSecurityConfigurerAdapter {
  	@Autowired
- 	UsuarioRepository usuarioRepository;
+ 	PessoaRepository usuarioRepository;
  	@Override
   	protected void configure(HttpSecurity http) throws Exception{
   		http
   		.authorizeRequests()
- 			.antMatchers("/save","/login", "/usuario/**").permitAll()
+ 			.antMatchers("/save","/login", "/pessoa/**").permitAll()
   			.anyRequest().authenticated()
   			.and()
   			.formLogin()
