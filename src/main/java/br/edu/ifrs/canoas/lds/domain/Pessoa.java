@@ -21,7 +21,20 @@ public abstract class Pessoa {
  	private String senha;
 
 
-    public Long getId() {
+    public Pessoa( String cep, String nome, String email, List<Telefone> telefones, List<Endereco> enderecos,
+			String senha) {
+		this.cep = cep;
+		this.nome = nome;
+		this.email = email;
+		this.telefones = telefones;
+		this.enderecos = enderecos;
+		this.senha = senha;
+	}
+
+	public Pessoa() {
+	}
+
+	public Long getId() {
         return id;
     }
 

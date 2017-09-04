@@ -2,7 +2,7 @@
  <html xmlns="http://www.w3.org/1999/xhtml"
  	xmlns:th="http://www.thymleaf.org"
  	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
- <head>
+ <head th:fragment="layout">
  
      <meta charset="utf-8"/>
      <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -10,7 +10,7 @@
      <meta name="description" content=""/>
      <meta name="author" content=""/>
  
-     <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">FindService - Encontre o que você procura</title>
+     <title>FindService - Encontre o que você procura</title>
      
      <!-- Adicionando JQuery -->
      <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -45,15 +45,5 @@
      <![endif]-->
  </head>
  <body>
-	<div th:replace="layout/fragments/CadastroEmpresa ::CadastroEmpresa"></div>
-	<div th:replace="layout/fragments/CadastroUsuario ::CadastroUsuario"></div>
-	<div th:replace="layout/fragments/Login ::Login"></div>
-	<div th:replace="layout/fragments/Menu ::menu"></div>
-	<div layout:fragment="content"></div>
- 	<div th:replace="layout/fragments/Pesquisa ::Pesquisa"></div>
- 
-
-     <!-- Bootstrap Core JavaScript -->
-     <script src="js/bootstrap.min.js"></script>
  </body>
  </html>

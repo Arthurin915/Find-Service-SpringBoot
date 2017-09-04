@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+ <html xmlns="http://www.w3.org/1999/xhtml"
+ 	xmlns:th="http://www.thymleaf.org"
+ 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:replace="layout/LayoutPadrao :: layout">
+</head>
+ <body>
+	<div th:replace="layout/fragments/CadastroEmpresa ::CadastroEmpresa"></div>
+	<div th:replace="layout/fragments/CadastroUsuario ::CadastroUsuario"></div>
+	<div th:replace="layout/fragments/Login ::Login"></div>
+	<div th:replace="layout/fragments/Menu ::menu"></div>
+	<div layout:fragment="content"></div>
+ 	<div th:replace="layout/fragments/Pesquisa ::Pesquisa"></div>
+ 
+
+     <!-- Bootstrap Core JavaScript -->
+     <script src="js/bootstrap.min.js"></script>
+ </body>
+ </html>
