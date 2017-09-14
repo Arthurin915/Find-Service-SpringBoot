@@ -21,7 +21,7 @@ public abstract class Pessoa {
  	private String senha;
 
 
-    public Pessoa( String cep, String nome, String email, List<Telefone> telefones, List<Endereco> enderecos,
+    public Pessoa(String cep, String nome, String email, List<Telefone> telefones, List<Endereco> enderecos,
 			String senha) {
 		this.cep = cep;
 		this.nome = nome;

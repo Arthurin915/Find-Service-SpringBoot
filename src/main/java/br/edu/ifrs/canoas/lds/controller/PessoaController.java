@@ -34,6 +34,10 @@ import br.edu.ifrs.canoas.lds.service.PessoaService;
  		this.passwordEncoder = passwordEncoder;
  	}
  
+ 	@GetMapping("/editar")
+ 	public String editar(Model model) {
+ 		return "Editar";
+ 	}
  	@GetMapping("/login")
  	public String index(Model model) {
  		SecurityContext context = SecurityContextHolder.getContext();

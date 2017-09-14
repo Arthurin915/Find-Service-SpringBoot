@@ -17,7 +17,7 @@
                  </h4>
              </div>
              <div class ="modal-body">
-                 <form data-toggle="validator"th:object="${pessoaJ}" th:action="@{/save}" method="post">
+                 <form data-toggle="validator" th:object="${pessoaJ}" th:action="@{/save}" method="post">
                      <div class="row">
                          <div class="form-group col-md-6">
                              <label for="EmpInputNomeEmp">
@@ -44,28 +44,28 @@
  							<a href="http://www.buscacep.correios.com.br/sistemas/buscacep/" target="_blank">Não sei meu cep.</a>
  							<div class="help-block with-errors"></div>
                          </div>
-                          <div class="form-group col-md-6">
+                          <div class="form-group col-md-6" th:each="enderecos : ${pessoaJ.enderecos}">
                              <label for="EmpInputEndereco">
                                   Endereço:
                               </label>
-                              <input class="form-control" th:field="${pessoaJ.enderecos.endereco} id="EmpInputEndereco" type="text" placeholder="Endereço" readonly>
+                              <input class="form-control" th:field="${enderecos.endereco}" id="EmpInputEndereco" type="text" placeholder="Endereço" readonly>
                               <div class="help-block with-errors"></div>
                           </div>
                       </div>
                      <div class="row">
                      
-                      <div class="form-group col-md-6">
+                      <div class="form-group col-md-6" th:each="enderecos : ${pessoaJ.enderecos}">
                              <label for="EmpInputCidade">
                                   Cidade:
                               </label>
-                              <input class="form-control" th:field="${pessoaJ.enderecos.cidade} id="EmpInputCidade" type="text" placeholder="Cidade" readonly>
+                              <input class="form-control" th:field="${enderecos.cidade}" id="EmpInputCidade" type="text" placeholder="Cidade" readonly>
                               <div class="help-block with-errors"></div>
                           </div>
-                      <div class="form-group col-md-3">
+                      <div class="form-group col-md-3" th:each="enderecos : ${pessoaJ.enderecos}">
                               <label for="EmpInputUf">
                                   UF:
                               </label>
-                            <input class="form-control" th:field="${pessoaJ.enderecos.uf} id="EmpInputUf" type="text" placeholder="UF" readonly>
+                            <input class="form-control"  th:field="${enderecos.uf}" id="EmpInputUf" type="text" placeholder="UF" readonly>
                               <div class="help-block with-errors"></div>
                           </div>
                           <div class="form-group col-md-3">
@@ -78,11 +78,11 @@
                          </div>
                      </div>
                      <div class="row">
-                      <div class="form-group col-md-6">
+                      <div class="form-group col-md-6" th:each="telefones : ${pessoaJ.telefones}">
                              <label for="EmpInputTelefone">
                                  Telefone:
                              </label>
-                             <input class="form-control" th:field="${pessoaJ.telefones.numero} id="EmpInputTelefone" type="text" placeholder="Digite o Telefone" required>
+                             <input class="form-control" th:field="${telefones.numero}"id="EmpInputTelefone" type="text" placeholder="Digite o Telefone" required>
                              <div class="help-block with-errors"></div>
                          </div>
                          

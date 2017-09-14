@@ -50,7 +50,7 @@
                               <label for="InputUsuarioEndereco">
                                   Endereço:
                               </label>
-                             <input class="form-control" th:field="${pessoaF.enderecos.endereco}" id="InputUsuarioEndereco" type="text" placeholder="Endereço" readonly>
+                              <input class="form-control"  id="InputUsuarioEndereco" type="text" placeholder="Endereço" readonly>
                           </div>
                       </div>
                       <div class="row">
@@ -58,13 +58,13 @@
                               <label for="InputUsuarioCidade">
                                   Cidade:
                               </label>
-                             <input class="form-control" th:field="${pessoaF.enderecos.cidade}" id="InputUsuarioCidade" type="text" placeholder="Cidade" readonly>
+                             <input class="form-control"  id="InputUsuarioCidade" type="text" placeholder="Cidade" readonly>
                           </div>
                           <div class="form-group col-md-3">
                               <label for="InputUsuarioUf">
                                   UF:
                               </label>
-                             <input class="form-control" th:field="${pessoaF.enderecos.uf}" id="InputUsuarioUf" type="text" placeholder="UF" readonly>
+                             <input class="form-control"  id="InputUsuarioUf" type="text" placeholder="UF" readonly>
                           </div>
   						<div class="form-group col-md-3">
                               <label for="InputUsuarioNumero">
@@ -77,22 +77,29 @@
                      </div>
                      <div class="row">
                          <div class="form-group col-md-6">
-                             <label for="InputUsuarioSenha">
-                                 Senha:
+                             <label for="InputUsuarioCPF">
+                                 CPF:
                              </label>
-                             <input class="form-control" th:field="${pessoaF.senha}" id="InputUsuarioSenha" type="password" placeholder="Digite a Senha" required>
+                             <input class="form-control" th:field="${pessoaF.cpf}" id="InputUsuarioCPF" type="text" placeholder="Digite o CPF" required>
                              <div class="help-block with-errors"></div>
                          </div>
                          <div class="form-group col-md-6">
                              <label for="InputUsuarioTelefone">
                                  Telefone:
                              </label>
-                             <input class="form-control" th:field="${pessoaF.telefones.numero}" id="InputUsuarioTelefone" type="text" placeholder="Digite o Telefone" required>
+                             <input class="form-control"  id="InputUsuarioTelefone" type="text" placeholder="Digite o Telefone" required>
                              <div class="help-block with-errors"></div>
                          </div>
  
                      </div>
                      <div class="row">
+                     <div class="form-group col-md-6">
+                             <label for="InputUsuarioSenha">
+                                 Senha:
+                             </label>
+                             <input class="form-control" th:field="${pessoaF.senha}" id="InputUsuarioSenha" type="password" placeholder="Digite a Senha" required>
+                             <div class="help-block with-errors"></div>
+                         </div>
                         <div class="form-group col-md-6">
                              <label for="InputUsuarioConfirmar">
                                  Confirmar Senha:
