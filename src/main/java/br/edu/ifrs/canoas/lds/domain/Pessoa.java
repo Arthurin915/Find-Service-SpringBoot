@@ -1,6 +1,7 @@
 package br.edu.ifrs.canoas.lds.domain;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -21,17 +22,10 @@ public abstract class Pessoa {
  	private String senha;
 
 
-    public Pessoa(String cep, String nome, String email, List<Telefone> telefones, List<Endereco> enderecos,
-			String senha) {
-		this.cep = cep;
-		this.nome = nome;
-		this.email = email;
-		this.telefones = telefones;
-		this.enderecos = enderecos;
-		this.senha = senha;
-	}
 
 	public Pessoa() {
+        enderecos = new ArrayList<>();
+        enderecos.add(new Endereco());
 	}
 
 	public Long getId() {

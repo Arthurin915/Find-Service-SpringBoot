@@ -1,17 +1,16 @@
  package br.edu.ifrs.canoas.lds.service;
   
- import java.util.List;
-
+ import br.edu.ifrs.canoas.lds.domain.Pessoa;
+import br.edu.ifrs.canoas.lds.domain.PessoaFisica;
+import br.edu.ifrs.canoas.lds.domain.PessoaJuridica;
+import br.edu.ifrs.canoas.lds.repository.PessoaRepository;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import br.edu.ifrs.canoas.lds.domain.Pessoa;
-import br.edu.ifrs.canoas.lds.domain.PessoaFisica;
-import br.edu.ifrs.canoas.lds.domain.PessoaJuridica;
-import br.edu.ifrs.canoas.lds.repository.PessoaRepository;
- 
+import java.util.List;
+
  @Service
  public class PessoaService {
  

@@ -44,28 +44,28 @@
  							<a href="http://www.buscacep.correios.com.br/sistemas/buscacep/" target="_blank">Não sei meu cep.</a>
  							<div class="help-block with-errors"></div>
                          </div>
-                          <div class="form-group col-md-6" th:each="enderecos : ${pessoaJ.enderecos}">
+                          <div class="form-group col-md-6">
                              <label for="EmpInputEndereco">
                                   Endereço:
                               </label>
-                              <input class="form-control" th:field="${enderecos.endereco}" id="EmpInputEndereco" type="text" placeholder="Endereço" readonly>
+                              <input class="form-control" th:field="${pessoaJ.enderecos[0].endereco}" id="EmpInputEndereco" type="text" placeholder="Endereço" readonly="true">
                               <div class="help-block with-errors"></div>
                           </div>
                       </div>
                      <div class="row">
                      
-                      <div class="form-group col-md-6" th:each="enderecos : ${pessoaJ.enderecos}">
+                      <div class="form-group col-md-6" >
                              <label for="EmpInputCidade">
                                   Cidade:
                               </label>
-                              <input class="form-control" th:field="${enderecos.cidade}" id="EmpInputCidade" type="text" placeholder="Cidade" readonly>
+                              <input class="form-control" th:field="${pessoaJ.enderecos[0].cidade}" id="EmpInputCidade" type="text" placeholder="Cidade" readonly>
                               <div class="help-block with-errors"></div>
                           </div>
-                      <div class="form-group col-md-3" th:each="enderecos : ${pessoaJ.enderecos}">
+                      <div class="form-group col-md-3">
                               <label for="EmpInputUf">
                                   UF:
                               </label>
-                            <input class="form-control"  th:field="${enderecos.uf}" id="EmpInputUf" type="text" placeholder="UF" readonly>
+                            <input class="form-control"  th:field="${pessoaJ.enderecos[0].uf}" id="EmpInputUf" type="text" placeholder="UF" readonly>
                               <div class="help-block with-errors"></div>
                           </div>
                           <div class="form-group col-md-3">
