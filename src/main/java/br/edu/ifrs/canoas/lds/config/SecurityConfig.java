@@ -24,7 +24,7 @@ import org.springframework.context.annotation.Bean;
   	protected void configure(HttpSecurity http) throws Exception{
   		http
   		.authorizeRequests()
- 			.antMatchers("/save","/login", "/pessoa/**","/editar").permitAll()
+ 			.antMatchers("/save", "/saveF", "/saveJ", "/save/enderecos", "/save/telefones", "/login", "/pessoa/**","/editar").permitAll()
   			.anyRequest().authenticated()
   			.and()
   			.formLogin()

@@ -16,6 +16,10 @@ public class EnderecoService {
 		this.enderecoRepository = enderecoRepository;
 	}
 	
+	public Endereco save(Endereco endereco){
+		return enderecoRepository.save(endereco);
+	}
+	
 	public Iterable<Endereco> findAll() {
  		return enderecoRepository.findAll();
  	}

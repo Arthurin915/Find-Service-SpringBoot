@@ -9,15 +9,16 @@ import java.util.List;
 @DiscriminatorColumn(name = "TIPO_PESSOA")
 public abstract class Pessoa {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private Long id;
   	private String cep;
     private String nome;
     @Column(unique=true)
     private String email;
-    @OneToMany
+    @OneToMany(cascade=CascadeType.ALL)
     private List<Telefone> telefones;
-    @OneToMany
+    @OneToMany(cascade=CascadeType.ALL)
     private List<Endereco> enderecos;
  	private String senha;
 
@@ -26,6 +27,8 @@ public abstract class Pessoa {
 	public Pessoa() {
         enderecos = new ArrayList<>();
         enderecos.add(new Endereco());
+        telefones = new ArrayList<>();
+        telefones.add(new Telefone());
 	}
 
 	public Long getId() {

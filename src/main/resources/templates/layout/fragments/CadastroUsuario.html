@@ -19,7 +19,7 @@
                  </h4>
              </div>
              <div class="modal-body">
-                 <form id="UsuarioForm" data-toggle="validator" th:object="${pessoaF}"  th:action="@{/save}" method="post">
+                 <form id="UsuarioForm" data-toggle="validator" th:object="${pessoaF}"  th:action="@{/saveF}" method="post">
                      <div class="row">
                          <div class="form-group col-md-6">
                              <label for="InputUsuarioNome">
@@ -50,7 +50,7 @@
                               <label for="InputUsuarioEndereco">
                                   Endereço:
                               </label>
-                              <input class="form-control"  id="InputUsuarioEndereco" type="text" placeholder="Endereço" readonly>
+                              <input class="form-control" th:field="${pessoaF.enderecos[0].endereco}" id="InputUsuarioEndereco" type="text" placeholder="Endereço" readonly>
                           </div>
                       </div>
                       <div class="row">
@@ -58,19 +58,19 @@
                               <label for="InputUsuarioCidade">
                                   Cidade:
                               </label>
-                             <input class="form-control"  id="InputUsuarioCidade" type="text" placeholder="Cidade" readonly>
+                             <input class="form-control" th:field="${pessoaF.enderecos[0].cidade}" id="InputUsuarioCidade" type="text" placeholder="Cidade" readonly>
                           </div>
                           <div class="form-group col-md-3">
                               <label for="InputUsuarioUf">
                                   UF:
                               </label>
-                             <input class="form-control"  id="InputUsuarioUf" type="text" placeholder="UF" readonly>
+                             <input class="form-control" th:field="${pessoaF.enderecos[0].uf}" id="InputUsuarioUf" type="text" placeholder="UF" readonly>
                           </div>
   						<div class="form-group col-md-3">
                               <label for="InputUsuarioNumero">
                                  Numero:
                              </label>
-                             <input class="form-control"  name="numero" id="InputUsuarioNumero" type="text" placeholder="Número da Casa" required
+                             <input class="form-control"  name="numero" id="InputUsuarioNumero" type="text" placeholder="10" required
                               data-error="Preencha o Campo">
                              <div class="help-block with-errors"></div>
                          </div>
@@ -87,7 +87,7 @@
                              <label for="InputUsuarioTelefone">
                                  Telefone:
                              </label>
-                             <input class="form-control"  id="InputUsuarioTelefone" type="text" placeholder="Digite o Telefone" required>
+                             <input class="form-control" th:field="${pessoaF.telefones[0].numero}" id="InputUsuarioTelefone" type="text" placeholder="Digite o Telefone" required>
                              <div class="help-block with-errors"></div>
                          </div>
  

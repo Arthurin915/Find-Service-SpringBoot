@@ -17,7 +17,7 @@
                  </h4>
              </div>
              <div class ="modal-body">
-                 <form data-toggle="validator" th:object="${pessoaJ}" th:action="@{/save}" method="post">
+                 <form data-toggle="validator" th:object="${pessoaJ}" th:action="@{/saveJ}" method="post">
                      <div class="row">
                          <div class="form-group col-md-6">
                              <label for="EmpInputNomeEmp">
@@ -48,41 +48,49 @@
                              <label for="EmpInputEndereco">
                                   Endereço:
                               </label>
-                              <input class="form-control" th:field="${pessoaJ.enderecos[0].endereco}" id="EmpInputEndereco" type="text" placeholder="Endereço" readonly="true">
+                              <input class="form-control" th:field="${pessoaJ.enderecos[0].endereco}" id="EmpInputEndereco" type="text" placeholder="Endereço" readonly>
                               <div class="help-block with-errors"></div>
                           </div>
                       </div>
                      <div class="row">
                      
-                      <div class="form-group col-md-6" >
+                      <div class="form-group col-md-4" >
                              <label for="EmpInputCidade">
                                   Cidade:
                               </label>
                               <input class="form-control" th:field="${pessoaJ.enderecos[0].cidade}" id="EmpInputCidade" type="text" placeholder="Cidade" readonly>
                               <div class="help-block with-errors"></div>
                           </div>
-                      <div class="form-group col-md-3">
+                      <div class="form-group col-md-2">
                               <label for="EmpInputUf">
                                   UF:
                               </label>
                             <input class="form-control"  th:field="${pessoaJ.enderecos[0].uf}" id="EmpInputUf" type="text" placeholder="UF" readonly>
                               <div class="help-block with-errors"></div>
                           </div>
-                          <div class="form-group col-md-3">
+                          <div class="form-group col-md-2">
                              <label for="EmpInputNumero">
                                  Numero:
                              </label>
-                             <input class="form-control" name="numero"  id="EmpInputNumero" type="text" placeholder="Número da Casa" 
+                             <input class="form-control" name="numero"  id="EmpInputNumero" type="text" placeholder="10" 
+                             required data-error="Preencha o Campo">
+                             <div class="help-block with-errors"></div>
+                         </div>
+                         <div class="form-group col-md-4">
+                             <label for="EmpInputCNPJ">
+                                 CNPJ:
+                             </label>
+                             <input class="form-control" th:field="${pessoaJ.cnpj}" id="EmpInputCNPJ" type="text" placeholder="CNPJ" 
                              required data-error="Preencha o Campo">
                              <div class="help-block with-errors"></div>
                          </div>
                      </div>
                      <div class="row">
-                      <div class="form-group col-md-6" th:each="telefones : ${pessoaJ.telefones}">
+                      <div class="form-group col-md-6">
                              <label for="EmpInputTelefone">
                                  Telefone:
                              </label>
-                             <input class="form-control" th:field="${telefones.numero}"id="EmpInputTelefone" type="text" placeholder="Digite o Telefone" required>
+                             <input class="form-control" th:field="${pessoaJ.telefones[0].numero}"id="EmpInputTelefone" type="text" placeholder="Digite o Telefone" required>
                              <div class="help-block with-errors"></div>
                          </div>
                          
@@ -125,7 +133,7 @@
                              <label for="EmpInputSenha">
                                  Senha:
                              </label>
-                             <input class="form-control" th:field="${pessoaJ.senha}" id="EmpInputSenha" type="password" placeholder="Digite a Senha">
+                             <input class="form-control" th:field="${pessoaJ.senha}" id="EmpInputSenha" type="password" placeholder="Digite a Senha" required>
                              <div class="help-block with-errors"></div>
                          </div>
                      <div class="form-group col-md-6">
@@ -133,7 +141,7 @@
                                  Confirmar Senha:
                              </label>
                              <input class="form-control" id="EmpInputConfirmar" type="password" placeholder="Digite a senha" 
-                             data-match="#EmpInputSenha" data-match-error="Atenção! As senhas não estão iguais.">
+                             data-match="#EmpInputSenha" data-match-error="Atenção! As senhas não estão iguais." required>
                              <div class="help-block with-errors"></div>
                      </div>
                      </div>

@@ -21,7 +21,14 @@ import java.util.List;
  		this.pessoaRepository = pessoaRepository;
  		this.passwordEncoder = passwordEncoder;
  	}
- 
+ 	
+ 	public PessoaJuridica save(PessoaJuridica pessoaJuridica) {
+ 		return pessoaRepository.save(pessoaJuridica);
+ 	}
+ 	public PessoaFisica save(PessoaFisica pessoaFisica) {
+ 		return pessoaRepository.save(pessoaFisica);
+ 	}
+ 	
  	public Pessoa save(Pessoa pessoa) {
  		return pessoaRepository.save(pessoa);
  	}

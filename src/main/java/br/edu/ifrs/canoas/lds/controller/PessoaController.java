@@ -21,16 +21,22 @@ import br.edu.ifrs.canoas.lds.domain.Pessoa;
 import br.edu.ifrs.canoas.lds.domain.PessoaFisica;
 import br.edu.ifrs.canoas.lds.domain.PessoaJuridica;
 import br.edu.ifrs.canoas.lds.domain.Telefone;
+import br.edu.ifrs.canoas.lds.service.EnderecoService;
 import br.edu.ifrs.canoas.lds.service.PessoaService;
+import br.edu.ifrs.canoas.lds.service.TelefoneService;
  
  @Controller
  public class PessoaController {
  
  	private final PessoaService pessoaService;
+ 	private final EnderecoService enderecoService;
+ 	private final TelefoneService telefoneService;
  	private final PasswordEncoder passwordEncoder;
  
- 	public PessoaController(PessoaService pessoaService, PasswordEncoder passwordEncoder) {
+ 	public PessoaController(PessoaService pessoaService, EnderecoService enderecoService, TelefoneService telefoneService, PasswordEncoder passwordEncoder) {
  		this.pessoaService = pessoaService;
+ 		this.enderecoService=enderecoService;
+ 		this.telefoneService=telefoneService;
  		this.passwordEncoder = passwordEncoder;
  	}
  
@@ -48,21 +54,38 @@ import br.edu.ifrs.canoas.lds.service.PessoaService;
  		model.addAttribute("pessoaF_logada", pessoaService.getSessionF(context));
  		model.addAttribute("pessoaJ_logada", pessoaService.getSessionJ(context));
  		
- 		System.out.println("entrou");
  		return "index";
  	}
  
- 	@PostMapping("/save")
- 	public String save(Model model, @Valid Pessoa pessoa, BindingResult result, RedirectAttributes attributes) {
- 		
+ 	@PostMapping("/saveF")
+ 	public String saveF(Model model, @Valid PessoaFisica pessoaFisica, @Valid Endereco endereco, @Valid Telefone telefone, BindingResult result, RedirectAttributes attributes) {
+ 		enderecoService.save(endereco);
+ 		telefoneService.save(telefone);
  		// criptografa senha do usuário
- 		pessoa.setSenha(passwordEncoder.encode(pessoa.getSenha()));
+ 		pessoaFisica.setSenha(passwordEncoder.encode(pessoaFisica.getSenha()));
+
  		// salva usuário no BD
- 		pessoaService.save(pessoa);
- 
+ 		pessoaService.save(pessoaFisica);
+
  		// Retorna para página inicial
  		return "redirect:/login";
  	}
+ 	@PostMapping("/saveJ")
+ 	public String saveJ(Model model, @Valid PessoaJuridica pessoaJuridica, @Valid Endereco endereco, @Valid Telefone telefone, BindingResult result, RedirectAttributes attributes) {
+
+ 		enderecoService.save(endereco);
+ 		telefoneService.save(telefone);
+ 		// criptografa senha do usuário
+ 		pessoaJuridica.setSenha(passwordEncoder.encode(pessoaJuridica.getSenha()));
+
+ 		// salva usuário no BD
+ 		pessoaService.save(pessoaJuridica);
+
+ 		// Retorna para página inicial
+ 		return "redirect:/login";
+ 	}
+ 	
+
  	@PostMapping("/saveEnderecos/{id}")
  	public String saveEnderecos(List<Endereco> enderecos, @PathVariable("id") Long id){
  		return "redirect:/login";

@@ -15,6 +15,10 @@ public class TelefoneService {
 	public TelefoneService(TelefoneRepository telefoneRepository) {
 		this.telefoneRepository = telefoneRepository;
 	}
+	
+	public Telefone save(Telefone telefone){
+		return telefoneRepository.save(telefone);
+	}
 	public Iterable<Telefone> findAll() {
  		return telefoneRepository.findAll();
  	}

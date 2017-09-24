@@ -8,7 +8,8 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Endereco {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private Long id;
 
     @ManyToOne
@@ -67,4 +68,6 @@ public class Endereco {
     public void setNumero(int numero) {
         this.numero = numero;
     }
+
+	
 }
