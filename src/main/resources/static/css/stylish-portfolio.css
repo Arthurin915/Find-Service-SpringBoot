@@ -29,6 +29,22 @@ body {
     font-size: 4.5em;
     font-weight: 700;
 }
+@media (max-width: 768px) { 
+	.mostrarCel{
+		display:block;
+	}
+	#mostrarPC{
+		display:none;
+	}	
+}
+@media (min-width: 769px) { 
+	.mostrarCel{
+		display:none;
+	}
+	#mostrarPC{
+		display:block;
+	}	
+}
 
 /* Custom Button Styles */
 
@@ -114,7 +130,7 @@ hr.small {
 .sidebar-nav li a:hover {
     text-decoration: none;
     color: #fff;
-    background: rgba(255,255,255,0.2);
+    background: rgba(255,255,255,.2);
 }
 
 .sidebar-nav li a:active,
@@ -155,7 +171,9 @@ hr.small {
 }
 
 .toggle {
+	font-size: 1em;	
     margin: 5px 5px 0 0;
+	padding: 15px 20px;
 }
 
 /* Header */
@@ -232,8 +250,10 @@ footer {
 }
 
 #to-top {
+  font-size: 1em;	
   display: none;
   position: fixed;
   bottom: 5px;
   right: 5px;
+  padding: 15px 20px;	
 }

@@ -4,17 +4,20 @@
  	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head th:replace="layout/LayoutHeader :: layout">
 </head>
- <body>
-<!--Menu-->
-
- <nav class="navbar navbar-inverse navbar-fixed-top" id="mostrarPC" th:fragment="menu">
-     <div class="container-fluid">
-         <div class="navbar-header">
-             <a class="navbar-brand" href="/login">FindService</a>
-         </div>
-         <!--DropdownCadastro e Pesquisa-->
-          <ul class="nav navbar-nav navbar-right" >
-          <li class="dropdown">
+<body th:fragment="menuLateral">
+<div class="mostrarCel" >
+  <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav id="sidebar-wrapper">
+      <ul class="sidebar-nav">
+        <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle">
+          <i class="fa fa-times"></i>
+        </a>
+        <li class="sidebar-brand">
+          <a class="js-scroll-trigger" href="#top">Start Bootstrap</a>
+        </li>
+        <li class="dropdown">
                  <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-search"></span> Pesquisar
                   <span class="caret" ></span></a>
                 <ul class="dropdown-menu" >
@@ -24,7 +27,7 @@
  					</li>
  				</ul>
  			</li>
-                 <li class="dropdown">
+       <li class="dropdown">
                  <a class="dropdown-toggle" data-toggle="dropdown" href="#" th:if="${pessoaJ_logada} == null OR ${pessoaF_logada} == null"><span class="glyphicon glyphicon-user"></span> Cadastrar
                  <span class="caret" ></span></a>
                  <ul class="dropdown-menu" >
@@ -36,7 +39,6 @@
                      </li>
                  </ul>
             </li>
-            <!--DropdownLogin-->
             <li th:if="${pessoaJ_logada} == null OR ${pessoaF_logada} == null"><a href="#" data-toggle="modal" data-target="#LoginFormModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
             <li class ="dropdown" th:if="${pessoaJ_logada} == null OR ${pessoaF_logada} == null">
             	 <a class="dropdown-toggle" data-toggle="dropdown" href="#" ><span class="glyphicon glyphicon-user "></span>
@@ -49,9 +51,13 @@
                      </li>
          </ul>         
      </li>
-       </ul>     
-     </div>
- </nav>
- 
+        <li>
+          <a class="js-scroll-trigger" href="#contact" onclick=$("#menu-close").click();></a>
+        </li>
+      </ul>
+    </nav>
+    </div>
+            <script src="js/barra.js"></script>
+    
  </body>
- </html>
+</html>
