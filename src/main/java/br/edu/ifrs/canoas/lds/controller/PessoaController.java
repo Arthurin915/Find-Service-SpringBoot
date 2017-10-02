@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Set;
  
  @Controller
  public class PessoaController {
@@ -43,7 +44,7 @@ import java.util.List;
  	}
  	@GetMapping("/")
  	public String index(Model model,  @AuthenticationPrincipal UserImpl activeUser) {
-
+ 		 		
         SecurityContext context = SecurityContextHolder.getContext();
 // 		model.addAttribute("pessoas", pessoaService.findAll());
  		model.addAttribute("pessoaJ", new PessoaJuridica());
