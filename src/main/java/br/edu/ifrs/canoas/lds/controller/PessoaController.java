@@ -53,6 +53,7 @@ import java.util.Set;
  		Collection<? extends GrantedAuthority> auth = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
  		UserImpl user = (UserImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 	      String name = user.getName();
+	    System.out.println(auth);
  		model.addAttribute("role", auth);
  		model.addAttribute("nome", name);
 // 		model.addAttribute("pessoas", pessoaService.findAll());

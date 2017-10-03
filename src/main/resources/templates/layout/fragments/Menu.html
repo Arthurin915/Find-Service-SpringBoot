@@ -1,69 +1,59 @@
 <!DOCTYPE html>
- <html xmlns="http://www.w3.org/1999/xhtml"
- 	xmlns:th="http://www.thymleaf.org"
- 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="layout/LayoutHeader :: layout">
 </head>
- <body>
-<!--Menu-->
+<body>
+	<!--Menu-->
 
- <nav class="navbar navbar-inverse navbar-fixed-top" id="mostrarPC" th:fragment="menu">
-     <div class="container-fluid">
-         <div class="navbar-header">
-             <a class="navbar-brand" href="/login">FindService</a>
-         </div>
-         <!--DropdownCadastro e Pesquisa-->
-          <ul class="nav navbar-nav navbar-right" >
-          <li class="dropdown">
-                 <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-search"></span> Pesquisar
-                  <span class="caret" ></span></a>
-                <ul class="dropdown-menu" >
-                     <li>
- 						<a href="#search">Pesquisar por Nome</a>
- 						<a href="#">Pesquisar Por categoria</a>
- 					</li>
- 				</ul>
- 			</li>
-                 <li class="dropdown" th:if="${role} == '[ROLE_PESSOA_JURIDICA]' OR ${role} == '[ROLE_PESSOA_FISICA]'">
-                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" ><span class="glyphicon glyphicon-user"></span> Cadastrar
-                 <span class="caret" ></span></a>
-                 <ul class="dropdown-menu" >
-                     <li>
-                         <a href="#" data-toggle="modal" data-target="#FormRegistroModal">Cadastrar Usuário</a>
-                     </li>
-                     <li>
-                         <a href="#" data-toggle="modal" data-target="#FormRegistroEmpModal">Cadastrar Empresa/Prestador</a>
-                     </li>
-                 </ul>
-            </li>
-            <!--DropdownLogin-->
-            
-            <li th:if="${role} == '[ROLE_PESSOA_FISICA]'"><a href="#" data-toggle="modal" data-target="#LoginFormModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-            <li class ="dropdown" th:if="${role} != '[ROLE_PESSOA_JURIDICA]'">
-            	 <a class="dropdown-toggle" data-toggle="dropdown" href="#" ><span class="glyphicon glyphicon-user "></span><span th:text="' Bem Vindo, '+${nome}"></span>
+	<nav class="navbar navbar-inverse navbar-fixed-top" id="mostrarPC"
+		th:fragment="menu">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/login">FindService</a>
+			</div>
+			<!--DropdownCadastro e Pesquisa-->
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#"><span
+						class="glyphicon glyphicon-search"></span> Pesquisar <span
+						class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#search">Pesquisar por Nome</a> <a href="#">Pesquisar
+								Por categoria</a></li>
+					</ul></li>
+				<li class="dropdown"
+					th:if="${#authentication} != null">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span
+						class="glyphicon glyphicon-user"></span> Cadastrar <span
+						class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#" data-toggle="modal"
+							data-target="#FormRegistroModal">Cadastrar Usuário</a></li>
+						<li><a href="#" data-toggle="modal"
+							data-target="#FormRegistroEmpModal">Cadastrar
+								Empresa/Prestador</a></li>
+					</ul>
+				</li>
+				
+				<!--DropdownLogin-->
+				<li th:if="${#authentication} != null"><a href="#" data-toggle="modal" data-target="#LoginFormModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            	<li class="dropdown" th:if="${#authentication} == null">
+            	 <a class="dropdown-toggle" data-toggle="dropdown" href="#" ><span class="glyphicon glyphicon-user "></span><span th:text="${'Bem vindo, '+nome}"></span>
                  <span class="caret" ></span></a>
                  <ul class="dropdown-menu">
-                     <li>                         
-                    		<a href="#">Perfil</a> 
+                     <li>
+                         <a href="/editar" th:if="${#strings.equals(role[0], 'ROLE_PESSOA_JURIDICA')}">Editar Perfil de Empresa</a>
+                    		<a href="#" th:if="${#strings.equals(role[0], 'ROLE_PESSOA_FISICA')}">Perfil</a>
                          <a th:href="@{/logout}">Logout</a> 
                      </li>
          </ul>         
      </li>
-     <!--DropdownLogin-->
-            <li th:if="${role} == 'ROLE_PESSOA_JURIDICA'"><a href="#" data-toggle="modal" data-target="#LoginFormModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-            <li class ="dropdown" th:if="${role} != '[ROLE_PESSOA_FISICA]'">
-            	 <a class="dropdown-toggle" data-toggle="dropdown" href="#" ><span class="glyphicon glyphicon-user "></span><span th:text="' Bem Vindo, '+${nome}"></span>
-                 <span class="caret" ></span></a>
-                 <ul class="dropdown-menu">
-                     <li>
-                         <a href="/editar">Editar Perfil de Empresa</a>
-                         <a th:href="@{/logout}">Logout</a> 
-                     </li>
-         </ul>         
-     </li>
-       </ul>     
-     </div>
- </nav>
- 
- </body>
- </html>
+			</ul>
+		</div>
+	</nav>
+
+</body>
+</html>
