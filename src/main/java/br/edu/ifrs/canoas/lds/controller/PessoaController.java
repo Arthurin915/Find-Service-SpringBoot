@@ -5,6 +5,9 @@ import br.edu.ifrs.canoas.lds.domain.*;
 import br.edu.ifrs.canoas.lds.service.EnderecoService;
 import br.edu.ifrs.canoas.lds.service.PessoaService;
 import br.edu.ifrs.canoas.lds.service.TelefoneService;
+
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,6 +21,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
  
@@ -43,9 +48,13 @@ import java.util.Set;
  		return "Editar";
  	}
  	@GetMapping("/")
- 	public String index(Model model,  @AuthenticationPrincipal UserImpl activeUser) {
+ 	public String index(Model model) {
  		 		
-        SecurityContext context = SecurityContextHolder.getContext();
+ 		Collection<? extends GrantedAuthority> auth = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+ 		UserImpl user = (UserImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	      String name = user.getName();
+ 		model.addAttribute("role", auth);
+ 		model.addAttribute("nome", name);
 // 		model.addAttribute("pessoas", pessoaService.findAll());
  		model.addAttribute("pessoaJ", new PessoaJuridica());
  		model.addAttribute("pessoaF", new PessoaFisica());
