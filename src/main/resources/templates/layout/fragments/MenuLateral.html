@@ -15,7 +15,7 @@
           <i class="fa fa-times"></i>
         </a>
         <li class="sidebar-brand">
-          <a class="js-scroll-trigger" href="#top">Start Bootstrap</a>
+          <a class="js-scroll-trigger" href="#top">FindService</a>
         </li>
         <li class="dropdown">
                  <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-search"></span> Pesquisar
@@ -28,7 +28,7 @@
  				</ul>
  			</li>
        <li class="dropdown">
-                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" th:if="${pessoaJ_logada} == null OR ${pessoaF_logada} == null"><span class="glyphicon glyphicon-user"></span> Cadastrar
+                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" th:if="${#authentication} != null"><span class="glyphicon glyphicon-user"></span> Cadastrar
                  <span class="caret" ></span></a>
                  <ul class="dropdown-menu" >
                      <li>
@@ -39,9 +39,9 @@
                      </li>
                  </ul>
             </li>
-            <li th:if="${pessoaJ_logada} == null OR ${pessoaF_logada} == null"><a href="#" data-toggle="modal" data-target="#LoginFormModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-            <li class ="dropdown" th:if="${pessoaJ_logada} == null OR ${pessoaF_logada} == null">
-            	 <a class="dropdown-toggle" data-toggle="dropdown" href="#" ><span class="glyphicon glyphicon-user "></span>
+            <li th:if="${#authentication} != null"><a href="#" data-toggle="modal" data-target="#LoginFormModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            <li class ="dropdown" th:if="${#authentication} == null">
+            	 <a class="dropdown-toggle" data-toggle="dropdown" href="#" ><span class="glyphicon glyphicon-user "></span><span th:text="${'Bem vindo, '+nome}"></span>
                  <span class="caret" ></span></a>
                  <ul class="dropdown-menu">
                      <li>

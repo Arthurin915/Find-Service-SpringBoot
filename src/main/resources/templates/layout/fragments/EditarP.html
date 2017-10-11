@@ -5,14 +5,47 @@
 <head th:replace="layout/LayoutPadrao :: layout">
 </head>
 <body>
-<header class="header" th:fragment="Edit">
-	<div class="text-vertical-center">
-		<div class="row">
-			<div class="form">
-				<input id="testee" type="text" placeholder="TO TESTANDO MIAUU">
-			</div>	
-		</div>
-	</div>
-</header>
+<div class="modal fade" id="ModalEditarPerfil"  tabindex="-1"
+  role="dialog" aria-labelledby="ModalEditarPerfilLabel" th:fragment="EditP">
+     <div class="modal-dialog" role="document">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal">x</button>
+                 <h4 class="modal-title" id="ModalEditarPerfilLabel">
+                     Cadastro de Empresa ou Prestador de Serviço
+                 </h4>
+             </div>
+             <div class ="modal-body">
+             <form data-toggle="validator">
+               <div class="form_description">
+				<h2>myList</h2>
+				<p>This is your form description. Click here to edit.</p>
+			</div>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Name</th>
+						<th>Email</th>
+						<th>Description</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>1</td>
+						<td>Full Name</td>
+						<td>email@email.com</td>
+						<td>Some description here</td>
+						<td><a href="#">Delete</a>|<a href="#">Edit</a> </td>
+					</tr>
+				</tbody>
+			</table>
+			<br /> <a href="#">New</a>
+                     </form>
+             </div>
+         </div>
+     </div>
+</div>
 </body>
 </html>

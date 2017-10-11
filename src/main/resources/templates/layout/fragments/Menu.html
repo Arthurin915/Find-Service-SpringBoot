@@ -45,8 +45,9 @@
                  <span class="caret" ></span></a>
                  <ul class="dropdown-menu">
                      <li>
-                         <a href="/editar" th:if="${#strings.equals(role[0], 'ROLE_PESSOA_JURIDICA')}">Editar Perfil de Empresa</a>
-                    		<a href="#" th:if="${#strings.equals(role[0], 'ROLE_PESSOA_FISICA')}">Perfil</a>
+                         <a href="/editar">Editar Perfil de Empresa</a>
+                    	 <a href="#" data-toggle="modal"
+							data-target="#ModalEditarPerfil">Editar Perfil</a>
                          <a th:href="@{/logout}">Logout</a> 
                      </li>
          </ul>         
@@ -54,6 +55,6 @@
 			</ul>
 		</div>
 	</nav>
-
+<!-- th:if="${#strings.equals(role[0], 'ROLE_PESSOA_JURIDICA')}" -->
 </body>
 </html>

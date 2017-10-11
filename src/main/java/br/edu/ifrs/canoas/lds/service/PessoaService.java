@@ -3,15 +3,16 @@
  import br.edu.ifrs.canoas.lds.domain.Pessoa;
  import br.edu.ifrs.canoas.lds.domain.PessoaFisica;
  import br.edu.ifrs.canoas.lds.domain.PessoaJuridica;
- import br.edu.ifrs.canoas.lds.repository.PessoaRepository;
- import org.springframework.stereotype.Service;
+import br.edu.ifrs.canoas.lds.repository.PessoaRepository;
+
+import org.springframework.stereotype.Service;
 
  import java.util.List;
 
  @Service
  public class PessoaService {
 
-     public PessoaService(PessoaRepository pessoaRepository) {
+     public PessoaService(PessoaRepository pessoaRepository ) {
          this.pessoaRepository = pessoaRepository;
      }
 
@@ -46,6 +47,8 @@
  	public List<Pessoa> pesquisa(String nome) {
 		return pessoaRepository.findAllByNomeContainingIgnoreCase(nome);
   	}
+
+	
   
 // 	public Pessoa getSessionJ(SecurityContext context) {
 // 		if (context instanceof SecurityContext) {
