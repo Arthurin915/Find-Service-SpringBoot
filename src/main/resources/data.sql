@@ -1,7 +1,11 @@
 
 --AUTHENTICATION
 INSERT into user(id, username, password, name, email, active) VALUES
-(100, 'user', '$2a$10$Qji2/icFWIGGQEAv8bbwNuKGrSZyiUUPqE/0SNO2M.BpU.NA6xPhW', 'Master Yoda','yoda@stars.wars', TRUE);
+(100, 'pf', '$2a$10$Qji2/icFWIGGQEAv8bbwNuKGrSZyiUUPqE/0SNO2M.BpU.NA6xPhW', 'Master Yoda','yoda@stars.wars', TRUE);
+
+INSERT into user(id, username, password, name, email, active) VALUES
+(101, 'pj', '$2a$10$Qji2/icFWIGGQEAv8bbwNuKGrSZyiUUPqE/0SNO2M.BpU.NA6xPhW', 'Master Yoda','yoda@stars.wars', TRUE);
+
 
 --ROLES
 insert into role(id, role) values
@@ -11,5 +15,7 @@ insert into role(id, role) values
 -- USER_ROLES
 insert into user_roles (user_id, roles_id) values
 (100, 1),
+insert into user_roles (user_id, roles_id) values
+(101, 2),
 
 

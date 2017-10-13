@@ -28,14 +28,14 @@ class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/", "/css/**", "/js/**", "/webjars/**", "/font-awesome/**", "/fonts/**", "/images/**",
+		web.ignoring().antMatchers( "/css/**", "/js/**", "/webjars/**", "/font-awesome/**", "/fonts/**", "/images/**",
 				"/db/**", "/templates/**");
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.antMatcher("/**").authorizeRequests()
-				.antMatchers("/save", "/saveF", "/saveJ", "/save/enderecos", "/save/telefones", "/templates/**","/",
+				.antMatchers("/save", "/", "/saveF", "/saveJ", "/save/enderecos", "/save/telefones", "/templates/**",
                         "/login", "/pessoa/**", "/editar")
 				.permitAll().anyRequest().authenticated().and().logout().logoutSuccessUrl("/").permitAll().and().csrf()
 				.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).and().formLogin()

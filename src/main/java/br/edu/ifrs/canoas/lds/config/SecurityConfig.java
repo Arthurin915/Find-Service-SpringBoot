@@ -1,10 +1,10 @@
 package br.edu.ifrs.canoas.lds.config;
 
+import br.edu.ifrs.canoas.lds.service.UserDetailsImplService;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.EnableGlobalAuthentication;
 import org.springframework.security.config.annotation.authentication.configurers.GlobalAuthenticationConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
  * Created by rodrigo on 2/22/17.
@@ -13,9 +13,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 @EnableGlobalAuthentication
 public class SecurityConfig extends GlobalAuthenticationConfigurerAdapter {
 
-	private final UserDetailsService userDetailsService;
+	private final UserDetailsImplService userDetailsService;
 
-	public SecurityConfig(UserDetailsService userDetailsService) {
+	public SecurityConfig(UserDetailsImplService userDetailsService) {
 		this.userDetailsService = userDetailsService;
 	}
 

@@ -5,12 +5,7 @@ import br.edu.ifrs.canoas.lds.domain.*;
 import br.edu.ifrs.canoas.lds.service.EnderecoService;
 import br.edu.ifrs.canoas.lds.service.PessoaService;
 import br.edu.ifrs.canoas.lds.service.TelefoneService;
-
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,10 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-
-import java.util.Collection;
 import java.util.List;
-import java.util.Set;
  
  @Controller
  public class PessoaController {
@@ -45,15 +37,11 @@ import java.util.Set;
  
  	
  	@GetMapping("/")
- 	public String index(Model model, Authentication authentication) {
+ 	public String index(Model model, @AuthenticationPrincipal UserImpl activeUser) {
  		
- 		if (authentication != null) {
- 			Collection<? extends GrantedAuthority> auth = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
- 	 		UserImpl user = (UserImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
- 		      String name = user.getName();
- 		    System.out.println(auth);
- 	 		model.addAttribute("role", auth);
- 	 		model.addAttribute("nome", name);
+ 		if (activeUser != null) {
+ 	 		model.addAttribute("role", activeUser.getUser().getRole());
+ 	 		model.addAttribute("nome", activeUser.getUser().getName());
  		}
  		
  		model.addAttribute("pessoas", pessoaService.findAll());

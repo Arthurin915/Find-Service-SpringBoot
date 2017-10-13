@@ -75,4 +75,9 @@ public class User {
     public void setActive(boolean active) {
         this.active = active;
     }
+
+    @Transient
+    public String getRole() {
+        return !roles.isEmpty() ? roles.iterator().next().getRole() : null;
+    }
 }
