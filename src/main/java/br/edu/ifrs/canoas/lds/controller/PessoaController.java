@@ -43,20 +43,20 @@ import java.util.Set;
 // 		this.passwordEncoder = passwordEncoder;
  	}
  
- 	@GetMapping("/editar")
- 	public String editar(Model model) {
- 		return "Editar";
- 	}
+ 	
  	@GetMapping("/")
- 	public String index(Model model) {
- 		 		
- 		Collection<? extends GrantedAuthority> auth = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
- 		UserImpl user = (UserImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-	      String name = user.getName();
-	    System.out.println(auth);
- 		model.addAttribute("role", auth);
- 		model.addAttribute("nome", name);
-// 		model.addAttribute("pessoas", pessoaService.findAll());
+ 	public String index(Model model, Authentication authentication) {
+ 		
+ 		if (authentication != null) {
+ 			Collection<? extends GrantedAuthority> auth = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+ 	 		UserImpl user = (UserImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+ 		      String name = user.getName();
+ 		    System.out.println(auth);
+ 	 		model.addAttribute("role", auth);
+ 	 		model.addAttribute("nome", name);
+ 		}
+ 		
+ 		model.addAttribute("pessoas", pessoaService.findAll());
  		model.addAttribute("pessoaJ", new PessoaJuridica());
  		model.addAttribute("pessoaF", new PessoaFisica());
 

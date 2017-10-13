@@ -28,7 +28,7 @@
  				</ul>
  			</li>
        <li class="dropdown">
-                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" th:if="${#authentication} != null"><span class="glyphicon glyphicon-user"></span> Cadastrar
+                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" th:if="${#authentication} == null"><span class="glyphicon glyphicon-user"></span> Cadastrar
                  <span class="caret" ></span></a>
                  <ul class="dropdown-menu" >
                      <li>
@@ -39,14 +39,16 @@
                      </li>
                  </ul>
             </li>
-            <li th:if="${#authentication} != null"><a href="#" data-toggle="modal" data-target="#LoginFormModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-            <li class ="dropdown" th:if="${#authentication} == null">
+            <li th:if="${#authentication} == null"><a href="#" data-toggle="modal" data-target="#LoginFormModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            <li class ="dropdown" th:if="${#authentication} != null">
             	 <a class="dropdown-toggle" data-toggle="dropdown" href="#" ><span class="glyphicon glyphicon-user "></span><span th:text="${'Bem vindo, '+nome}"></span>
                  <span class="caret" ></span></a>
                  <ul class="dropdown-menu">
                      <li>
-                         <a href="/editar" th:if="${pessoaJ_logada} == null">Editar Perfil de Empresa</a>
-                    		<a href="#" th:if="${pessoaF_logada} == null">Perfil</a> 
+                         <a href="#" th:if="${#strings.equals(role[0], 'ROLE_PESSOA_JURIDICA')}" data-toggle="modal"
+							data-target="#ModalEditarPerfil">Editar Perfil de Empresa</a>
+                    	 <a href="#" th:if="${#strings.equals(role[0], 'ROLE_PESSOA_FISICA')}" data-toggle="modal"
+							data-target="#ModalEditarPerfil">Editar Perfil</a>
                          <a th:href="@{/logout}">Logout</a> 
                      </li>
          </ul>         

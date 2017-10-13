@@ -23,5 +23,7 @@ public class SecurityConfig extends GlobalAuthenticationConfigurerAdapter {
 	public void init(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(this.userDetailsService);
 	}
+	
+	
 
 }

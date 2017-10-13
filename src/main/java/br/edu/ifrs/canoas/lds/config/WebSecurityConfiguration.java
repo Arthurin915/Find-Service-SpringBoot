@@ -19,7 +19,7 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Autowired
-    UserDetailsImplService accountUserDetailsService;
+	UserDetailsImplService accountUserDetailsService;
 
 	@Autowired
 	public void configureAuth(AuthenticationManagerBuilder auth) throws Exception {
@@ -28,12 +28,15 @@ class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/css/**", "/js/**","/webjars/**", "/font-awesome/**", "/fonts/**", "/images/**", "/db/**", "/templates/**");
+		web.ignoring().antMatchers("/", "/css/**", "/js/**", "/webjars/**", "/font-awesome/**", "/fonts/**", "/images/**",
+				"/db/**", "/templates/**");
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.antMatcher("/**").authorizeRequests().antMatchers("/save", "/saveF", "/saveJ", "/save/enderecos", "/save/telefones", "/templates/**", "/login", "/pessoa/**","/editar")
+		http.antMatcher("/**").authorizeRequests()
+				.antMatchers("/save", "/saveF", "/saveJ", "/save/enderecos", "/save/telefones", "/templates/**",
+						"/login", "/pessoa/**", "/editar")
 				.permitAll().anyRequest().authenticated().and().logout().logoutSuccessUrl("/").permitAll().and().csrf()
 				.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).and().formLogin()
 				.loginPage("/login").permitAll().and().logout().deleteCookies("remember-me")
