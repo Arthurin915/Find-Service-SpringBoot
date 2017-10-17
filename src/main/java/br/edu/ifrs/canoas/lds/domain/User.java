@@ -1,12 +1,17 @@
 package br.edu.ifrs.canoas.lds.domain;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
  * Created by rodrigo on 2/21/17.
  */
 @Entity
+@Inheritance
+@DiscriminatorColumn(name = "TIPO_USER")
 public class User {
 
 	@Id
@@ -16,9 +21,23 @@ public class User {
 	private String password;
 	@ManyToMany(fetch = FetchType.EAGER)
 	private Set<Role> roles;
-	private String name;
-	private String email;
     private boolean active;
+    private String cep;
+    private String nome;
+    @Column(unique=true)
+    private String email;
+    @OneToMany(cascade=CascadeType.ALL)
+    private List<Telefone> telefones;
+    @OneToMany(cascade=CascadeType.ALL)
+    private List<Endereco> enderecos;
+
+    public User() {
+        enderecos = new ArrayList<>();
+        enderecos.add(new Endereco());
+        telefones = new ArrayList<>();
+        telefones.add(new Telefone());
+        roles = new HashSet<>();
+    }
 
     public Long getId() {
         return id;
@@ -52,12 +71,36 @@ public class User {
         this.roles = roles;
     }
 
-    public String getName() {
-        return name;
+    public String getCep() {
+        return cep;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public List<Telefone> getTelefones() {
+        return telefones;
+    }
+
+    public void setTelefones(List<Telefone> telefones) {
+        this.telefones = telefones;
+    }
+
+    public List<Endereco> getEnderecos() {
+        return enderecos;
+    }
+
+    public void setEnderecos(List<Endereco> enderecos) {
+        this.enderecos = enderecos;
     }
 
     public String getEmail() {

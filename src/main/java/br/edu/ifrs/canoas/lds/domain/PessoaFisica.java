@@ -3,7 +3,7 @@ package br.edu.ifrs.canoas.lds.domain;
 import javax.persistence.Entity;
 
 @Entity
-public class PessoaFisica extends Pessoa {
+public class PessoaFisica extends User {
 
     private Integer cpf;
 

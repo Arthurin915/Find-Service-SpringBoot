@@ -41,7 +41,7 @@ import java.util.List;
  		
  		if (activeUser != null) {
  	 		model.addAttribute("role", activeUser.getUser().getRole());
- 	 		model.addAttribute("nome", activeUser.getUser().getName());
+ 	 		model.addAttribute("nome", activeUser.getUser().getNome());
  		}
  		
  		model.addAttribute("pessoas", pessoaService.findAll());
@@ -94,7 +94,7 @@ import java.util.List;
   
   	@GetMapping("/pessoa/{nome}")
   	@ResponseBody()
-  	public List<Pessoa> pesquisa(@PathVariable String nome) {
+  	public List<User> pesquisa(@PathVariable String nome) {
   		return pessoaService.pesquisa(nome);
   	}
   	

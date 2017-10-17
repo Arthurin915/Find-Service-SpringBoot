@@ -1,22 +1,24 @@
  package br.edu.ifrs.canoas.lds.service;
 
- import br.edu.ifrs.canoas.lds.domain.Pessoa;
  import br.edu.ifrs.canoas.lds.domain.PessoaFisica;
  import br.edu.ifrs.canoas.lds.domain.PessoaJuridica;
-import br.edu.ifrs.canoas.lds.repository.PessoaRepository;
-
-import org.springframework.stereotype.Service;
+ import br.edu.ifrs.canoas.lds.domain.User;
+ import br.edu.ifrs.canoas.lds.repository.RoleRepository;
+ import br.edu.ifrs.canoas.lds.repository.UserRepository;
+ import org.springframework.stereotype.Service;
 
  import java.util.List;
 
  @Service
  public class PessoaService {
 
-     public PessoaService(PessoaRepository pessoaRepository ) {
-         this.pessoaRepository = pessoaRepository;
+     public PessoaService(UserRepository userRepository, RoleRepository roleRepository) {
+         this.userRepository = userRepository;
+         this.roleRepository = roleRepository;
      }
 
-     private final PessoaRepository pessoaRepository;
+     private final UserRepository userRepository;
+     private final RoleRepository roleRepository;
 // 	private final PasswordEncoder passwordEncoder;
 
 
@@ -26,26 +28,28 @@ import org.springframework.stereotype.Service;
 // 	}
  	
  	public PessoaJuridica save(PessoaJuridica pessoaJuridica) {
- 		return pessoaRepository.save(pessoaJuridica);
+ 		return userRepository.save(pessoaJuridica);
  	}
  	public PessoaFisica save(PessoaFisica pessoaFisica) {
- 		return pessoaRepository.save(pessoaFisica);
+        pessoaFisica.setUsername(pessoaFisica.getEmail());
+ 	    pessoaFisica.getRoles().add(roleRepository.getOne(1L));
+ 		return userRepository.save(pessoaFisica);
  	}
 
- 	public Pessoa save(Pessoa pessoa) {
- 		return pessoaRepository.save(pessoa);
+ 	public User save(User pessoa) {
+ 		return userRepository.save(pessoa);
  	}
 
- 	public Iterable<Pessoa> findAll() {
- 		return pessoaRepository.findAll();
+ 	public Iterable<User> findAll() {
+ 		return userRepository.findAll();
  	}
 
- 	public Pessoa findByEmail(Pessoa pessoa) {
-  		return pessoaRepository.findByEmail(pessoa.getEmail());
+ 	public User findByEmail(User user) {
+  		return userRepository.findByEmail(user.getEmail());
   	}
 
- 	public List<Pessoa> pesquisa(String nome) {
-		return pessoaRepository.findAllByNomeContainingIgnoreCase(nome);
+ 	public List<User> pesquisa(String nome) {
+		return userRepository.findAllByNomeContainingIgnoreCase(nome);
   	}
 
 	

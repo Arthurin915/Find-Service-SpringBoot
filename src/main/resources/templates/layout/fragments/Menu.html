@@ -37,7 +37,7 @@
 								Empresa/Prestador</a></li>
 					</ul>
 				</li>
-				
+
 				<!--DropdownLogin-->
 				<li th:if="${#authentication} == null"><a href="#" data-toggle="modal" data-target="#LoginFormModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
             	<li class="dropdown" th:if="${#authentication} != null">
@@ -45,9 +45,9 @@
                  <span class="caret" ></span></a>
                  <ul class="dropdown-menu">
                      <li>
-                         <a href="#" th:if="${#strings.equals(role[0], 'ROLE_PESSOA_JURIDICA')}" data-toggle="modal"
+                         <a href="#" th:if="${#strings.equals(role, 'ROLE_PESSOA_JURIDICA')}" data-toggle="modal"
 							data-target="#ModalEditarPerfil">Editar Perfil de Empresa</a>
-                    	 <a href="#" th:if="${#strings.equals(role[0], 'ROLE_PESSOA_FISICA')}" data-toggle="modal"
+                    	 <a href="#" th:if="${#strings.equals(role, 'ROLE_PESSOA_FISICA')}" data-toggle="modal"
 							data-target="#ModalEditarPerfil">Editar Perfil</a>
                          <a th:href="@{/logout}">Logout</a>
                      </li>
