@@ -72,7 +72,7 @@
                              <label for="EmpInputNumero">
                                  Numero:
                              </label>
-                             <input class="form-control" name="numero"  id="EmpInputNumero" type="text" placeholder="10" 
+                             <input class="form-control" th:field="${pessoaJ.enderecos[0].numero}"  id="EmpInputNumero" type="text" placeholder="10" 
                              required data-error="Preencha o Campo">
                              <div class="help-block with-errors"></div>
                          </div>

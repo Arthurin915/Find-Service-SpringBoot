@@ -19,7 +19,7 @@ $(function () {
       	$.ajax({
      		method: 'GET',
      		url: '/pessoa/' + $('#pesq').val()
-     	}).done(function (data) {
+     	}).done(function (data) {     		
  			var table = $('#example').DataTable();
  			table.clear();
  			
@@ -27,13 +27,30 @@ $(function () {
      			var botao = $("<button>");
      			botao.addClass('visualiza');
      			botao.text("Visualizar");
-     			botao.attr('data-endereco', constroiEndereco(data[i]));
+     			
+     			var enderecos = '';
+     			
+     			for (var j = 0; j < data[i].enderecos.length; j++) {
+     				enderecos += constroiEndereco(data[i].enderecos[j]) + ', ';
+     			}
+     			
+     			enderecos = enderecos.substr(0, enderecos.length - 2);
+
+     			botao.attr('data-endereco', enderecos);
+     			
+ 				var telefones = '';
+     			
+     			for (var j = 0; j < data[i].telefones.length; j++) {
+     				telefones += data[i].telefones[j].numero + ', ';
+     			}
+     			
+     			telefones = telefones.substr(0, telefones.length - 2);
      			
      			table.row.add([
      				data[i].nome,
      				data[i].email,
-     				constroiEndereco(data[i]),
-     				data[i].telefone,
+     				enderecos,
+     				telefones,
      				botao[0].outerHTML
      			]).draw();
      		}
@@ -43,6 +60,7 @@ $(function () {
    
       $('#example').on('click', '.visualiza', function (e) {
       	var endereco = $(e.target).data('endereco');
+      	console.log(endereco);
       	trocarPosicao(endereco);
      });
  });

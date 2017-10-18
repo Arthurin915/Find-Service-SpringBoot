@@ -1,5 +1,6 @@
 package br.edu.ifrs.canoas.lds.repository;
 
+import br.edu.ifrs.canoas.lds.domain.Role;
 import br.edu.ifrs.canoas.lds.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

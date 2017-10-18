@@ -7,7 +7,8 @@
  import br.edu.ifrs.canoas.lds.repository.UserRepository;
  import org.springframework.stereotype.Service;
 
- import java.util.List;
+import java.util.ArrayList;
+import java.util.List;
 
  @Service
  public class PessoaService {
@@ -46,4 +47,15 @@
  	public List<User> pesquisa(String nome) {
 		return userRepository.findAllByNomeContainingIgnoreCase(nome);
   	}
+ 	
+ 	public List<User> pessoasJuridicas(String nome) {
+ 		List<User> usuarios = userRepository.findAllByNomeContainingIgnoreCase(nome);
+ 		List<User> retorno = new ArrayList<>();
+ 		for (User user : usuarios) {
+			if (user instanceof PessoaJuridica) {
+				retorno.add(user);
+			}
+		}
+ 		return retorno;
+ 	}
  }

@@ -79,21 +79,11 @@ import java.util.List;
  		// Retorna para página inicial
  		return "redirect:/";
  	}
- 	
-
- 	@PostMapping("/saveEnderecos/{id}")
- 	public String saveEnderecos(List<Endereco> enderecos, @PathVariable("id") Long id){
- 		return "redirect:/";
- 	}
- 	@PostMapping("/saveTelefones/{id}")
- 	public String saveTelefones(List<Telefone> telefones, @PathVariable("id") Long id){
- 		return "redirect:/";
- 	}
   
   	@GetMapping("/pessoa/{nome}")
   	@ResponseBody()
   	public List<User> pesquisa(@PathVariable String nome) {
-  		return pessoaService.pesquisa(nome);
+  		return pessoaService.pessoasJuridicas(nome);
   	}
   	
   }
