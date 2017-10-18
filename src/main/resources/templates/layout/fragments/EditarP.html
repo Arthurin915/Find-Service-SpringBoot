@@ -5,16 +5,15 @@
 <head th:replace="layout/LayoutPadrao :: layout">
 </head>
 <body>
-	<th:block th:fragment="EditP" th:if="${#authentication != null}">
+	<th:block th:fragment="EditP" th:if="${#strings.equals(role, 'ROLE_PESSOA_JURIDICA')} OR  ${#strings.equals(role, 'ROLE_PESSOA_FISICA')}">
 		<div class="modal fade" id="ModalEditarPerfil" tabindex="-1"
 			role="dialog" aria-labelledby="ModalEditarPerfilLabel"
-			th:if="${#strings.equals(role[0], 'ROLE_PESSOA_JURIDICA')}">
+			th:if="${#strings.equals(role, 'ROLE_PESSOA_JURIDICA')}">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">x</button>
-						<h4 class="modal-title" id="ModalEditarPerfilLabel">Editar
-							perfil da empresa</h4>
+						<h4 class="modal-title" id="ModalEditarPerfilLabel">Editar perfil da empresa</h4>
 					</div>
 					<div class="modal-body">
 						<form data-toggle="validator">
@@ -25,19 +24,17 @@
 							<table class="table table-striped">
 								<thead>
 									<tr>
-										<th>#</th>
-										<th>Name</th>
+										<th>Nome</th>
 										<th>Email</th>
-										<th>Description</th>
+										<th>Cep</th>
 										<th>Action</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td></td>
-										<td></td>
-										<td>email@email.com</td>
-										<td>Some description here</td>
+									<tr th:each="user :${users}">
+										<td th:text="${user.nome}"></td>
+										<td th:text="${user.email}"></td>
+										<td th:text="${user.email}"></td>
 										<td><a href="#">Delete</a>|<a href="#">Edit</a></td>
 									</tr>
 								</tbody>
@@ -50,7 +47,7 @@
 		</div>
 		<div class="modal fade" id="ModalEditarPerfil" tabindex="-1"
 			role="dialog" aria-labelledby="ModalEditarPerfilLabel"
-			th:if="${#strings.equals(role[0], 'ROLE_PESSOA_FISICA')}">
+			th:if="${#strings.equals(role, 'ROLE_PESSOA_FISICA')}">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -78,7 +75,7 @@
 									<tr>
 										<td>1</td>
 										<td>Full Name</td>
-										<td>email@email.com</td>
+										<td>ema@email.com</td>
 										<td>Some description here</td>
 										<td><a href="#">Delete</a>|<a href="#">Edit</a></td>
 									</tr>

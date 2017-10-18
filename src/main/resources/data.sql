@@ -1,10 +1,10 @@
 
 --AUTHENTICATION
 INSERT into user(id, username, password, nome, email, active, TIPO_USER) VALUES
-(100, 'pf', '$2a$10$Qji2/icFWIGGQEAv8bbwNuKGrSZyiUUPqE/0SNO2M.BpU.NA6xPhW', 'Master Yoda','yoda@stars.wars', TRUE, 'PessoaFisica');
+(100, 'pf@pf.com', '$2a$10$Qji2/icFWIGGQEAv8bbwNuKGrSZyiUUPqE/0SNO2M.BpU.NA6xPhW', 'Master Yoda','yoda@stars.wars', TRUE, 'PessoaFisica');
 
 INSERT into user(id, username, password, nome, email, active, TIPO_USER) VALUES
-(101, 'pj', '$2a$10$Qji2/icFWIGGQEAv8bbwNuKGrSZyiUUPqE/0SNO2M.BpU.NA6xPhW', 'Master Yoda','darth@stars.wars', TRUE, 'PessoaJuridica');
+(101, 'pj@pj.com', '$2a$10$Qji2/icFWIGGQEAv8bbwNuKGrSZyiUUPqE/0SNO2M.BpU.NA6xPhW', 'Darth Vader','darth@stars.wars', TRUE, 'PessoaJuridica');
 
 
 --ROLES

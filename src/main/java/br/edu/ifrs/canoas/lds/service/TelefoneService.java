@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import br.edu.ifrs.canoas.lds.domain.Pessoa;
+import br.edu.ifrs.canoas.lds.domain.User;
 import br.edu.ifrs.canoas.lds.domain.Telefone;
 import br.edu.ifrs.canoas.lds.repository.TelefoneRepository;
 
@@ -23,8 +23,8 @@ public class TelefoneService {
  		return telefoneRepository.findAll();
  	}
 	
-	public List<Telefone> telefonesPessoa(Pessoa pessoa){
-		return this.telefoneRepository.findAllByPessoa(pessoa);
+	public List<Telefone> telefonesPessoa(User user){
+		return this.telefoneRepository.findAllByUser(user);
 	}
 	
 }

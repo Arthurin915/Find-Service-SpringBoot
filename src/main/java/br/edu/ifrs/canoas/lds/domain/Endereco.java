@@ -8,66 +8,64 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Endereco {
 
-    @Id
-    @GeneratedValue
-    private Long id;
+	@Id
+	@GeneratedValue
+	private Long id;
 
-    @ManyToOne
-    private Pessoa pessoa;
+	@ManyToOne
+	private User user;
 
-    private String cidade;
-    private String uf;
-    private String endereco;
-    private int numero;
+	private String cidade;
+	private String uf;
+	private String endereco;
+	private int numero;
 
+	public Long getId() {
+		return id;
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public String getCidade() {
+		return cidade;
+	}
 
-    public Pessoa getPessoa() {
-        return pessoa;
-    }
+	public User getUser() {
+		return user;
+	}
 
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
-    }
+	public void setUser(User user) {
+		this.user = user;
+	}
 
-    public String getCidade() {
-        return cidade;
-    }
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
 
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
-    }
+	public String getUf() {
+		return uf;
+	}
 
-    public String getUf() {
-        return uf;
-    }
+	public void setUf(String uf) {
+		this.uf = uf;
+	}
 
-    public void setUf(String uf) {
-        this.uf = uf;
-    }
+	public String getEndereco() {
+		return endereco;
+	}
 
-    public String getEndereco() {
-        return endereco;
-    }
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
+	public int getNumero() {
+		return numero;
+	}
 
-    public int getNumero() {
-        return numero;
-    }
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
 
-    public void setNumero(int numero) {
-        this.numero = numero;
-    }
-
-	
 }

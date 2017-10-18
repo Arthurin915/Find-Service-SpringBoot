@@ -40,7 +40,7 @@ class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.permitAll().anyRequest().authenticated().and().logout().logoutSuccessUrl("/").permitAll().and().csrf()
 				.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).and().formLogin()
 				.loginPage("/login").permitAll().and().logout().deleteCookies("remember-me")
-				.logoutSuccessUrl("/login?logout").permitAll().and().rememberMe();
+				.logoutSuccessUrl("/").permitAll().and().rememberMe();
 		http.csrf().disable();
 
 	}

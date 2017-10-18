@@ -13,7 +13,7 @@ public class Telefone {
     private Long id;
 
     @ManyToOne
-    private Pessoa pessoa;
+    private User user;
 
     private Integer numero;
     private Integer ddd;
@@ -27,12 +27,12 @@ public class Telefone {
         this.id = id;
     }
 
-    public Pessoa getPessoa() {
-        return pessoa;
+    public User getUser() {
+        return user;
     }
 
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Integer getNumero() {

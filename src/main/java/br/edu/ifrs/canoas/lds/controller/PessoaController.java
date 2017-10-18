@@ -5,6 +5,7 @@ import br.edu.ifrs.canoas.lds.domain.*;
 import br.edu.ifrs.canoas.lds.service.EnderecoService;
 import br.edu.ifrs.canoas.lds.service.PessoaService;
 import br.edu.ifrs.canoas.lds.service.TelefoneService;
+
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,10 +42,10 @@ import java.util.List;
  		
  		if (activeUser != null) {
  	 		model.addAttribute("role", activeUser.getUser().getRole());
- 	 		model.addAttribute("nome", activeUser.getUser().getNome());
+ 	 		model.addAttribute("nome", activeUser.getUser().getNome()); 	 		
  		}
  		
- 		model.addAttribute("pessoas", pessoaService.findAll());
+ 		model.addAttribute("users", pessoaService.findAll());
  		model.addAttribute("pessoaJ", new PessoaJuridica());
  		model.addAttribute("pessoaF", new PessoaFisica());
 
@@ -58,8 +59,7 @@ import java.util.List;
  	public String saveF(Model model, @Valid PessoaFisica pessoaFisica, @Valid Endereco endereco, @Valid Telefone telefone, BindingResult result, RedirectAttributes attributes) {
  		enderecoService.save(endereco);
  		telefoneService.save(telefone);
- 		// criptografa senha do usuário
-// 		pessoaFisica.setSenha(passwordEncoder.encode(pessoaFisica.getSenha()));
+ 	
 
  		// salva usuário no BD
  		pessoaService.save(pessoaFisica);
@@ -72,8 +72,6 @@ import java.util.List;
 
  		enderecoService.save(endereco);
  		telefoneService.save(telefone);
- 		// criptografa senha do usuário
-// 		pessoaJuridica.setSenha(passwordEncoder.encode(pessoaJuridica.getSenha()));
 
  		// salva usuário no BD
  		pessoaService.save(pessoaJuridica);

@@ -19,15 +19,10 @@
 
      private final UserRepository userRepository;
      private final RoleRepository roleRepository;
-// 	private final PasswordEncoder passwordEncoder;
-
-
-// 	public PessoaService(PessoaRepository pessoaRepository, PasswordEncoder passwordEncoder) {
-// 		this.pessoaRepository = pessoaRepository;
-// 		this.passwordEncoder = passwordEncoder;
-// 	}
  	
  	public PessoaJuridica save(PessoaJuridica pessoaJuridica) {
+ 		pessoaJuridica.setUsername(pessoaJuridica.getEmail());
+ 		pessoaJuridica.getRoles().add(roleRepository.getOne(2L));
  		return userRepository.save(pessoaJuridica);
  	}
  	public PessoaFisica save(PessoaFisica pessoaFisica) {
@@ -51,47 +46,4 @@
  	public List<User> pesquisa(String nome) {
 		return userRepository.findAllByNomeContainingIgnoreCase(nome);
   	}
-
-	
-  
-// 	public Pessoa getSessionJ(SecurityContext context) {
-// 		if (context instanceof SecurityContext) {
-// 			Authentication authentication = context.getAuthentication();
-// 			if (authentication instanceof Authentication) {
-// 				Pessoa pessoa = new PessoaJuridica();
-//
-// 				pessoa.setEmail(authentication.getName());
-//
-// 				// Carrega usuário a partir do email obtido
-// 				pessoa = this.findByEmail(pessoa);
-//
-// 				// Carrega todos os outros atributos do usuário, a partir do
-// 				// usuário atual
-// 				return pessoa;
-// 			}
-// 		}
-// 		return null;
-// 	}
-// 	public Pessoa getSessionF(SecurityContext context) {
-// 		if (context instanceof SecurityContext) {
-// 			Authentication authentication = context.getAuthentication();
-// 			if (authentication instanceof Authentication) {
-// 				Pessoa pessoa = new PessoaFisica();
-//
-// 				pessoa.setEmail(authentication.getName());
-//
-// 				// Carrega usuário a partir do email obtido
-// 				pessoa = this.findByEmail(pessoa);
-//
-// 				// Carrega todos os outros atributos do usuário, a partir do
-// 				// usuário atual
-// 				return pessoa;
-// 			}
-// 		}
-// 		return null;
-// 	}
- 
-// 	public PasswordEncoder getEncoder() {
-// 		return this.passwordEncoder;
-// 	}
  }
