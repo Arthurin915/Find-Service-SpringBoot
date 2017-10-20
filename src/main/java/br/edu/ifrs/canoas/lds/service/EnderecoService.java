@@ -6,13 +6,13 @@ import org.springframework.stereotype.Service;
 
 import br.edu.ifrs.canoas.lds.domain.Endereco;
 import br.edu.ifrs.canoas.lds.domain.User;
-import br.edu.ifrs.canoas.lds.repository.EnderecoRepostiroy;
+import br.edu.ifrs.canoas.lds.repository.EnderecoRepository;
 
 @Service
 public class EnderecoService {
-	private final EnderecoRepostiroy enderecoRepository;
+	private final EnderecoRepository enderecoRepository;
 
-	public EnderecoService(EnderecoRepostiroy enderecoRepository) {
+	public EnderecoService(EnderecoRepository enderecoRepository) {
 		this.enderecoRepository = enderecoRepository;
 	}
 	

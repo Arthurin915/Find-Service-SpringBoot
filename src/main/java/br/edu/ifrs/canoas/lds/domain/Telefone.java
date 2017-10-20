@@ -18,8 +18,16 @@ public class Telefone {
     private Integer numero;
     private Integer ddd;
 
+    public Telefone(){}
+    public Telefone(Long id, User user, Integer numero, Integer ddd) {
+		
+		this.id = id;
+		this.user = user;
+		this.numero = numero;
+		this.ddd = ddd;
+	}
 
-    public Long getId() {
+	public Long getId() {
         return id;
     }
 
@@ -50,4 +58,54 @@ public class Telefone {
     public void setDdd(Integer ddd) {
         this.ddd = ddd;
     }
+
+	@Override
+	public String toString() {
+		return "Telefone [id=" + id + ", user=" + user + ", numero=" + numero + ", ddd=" + ddd + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((ddd == null) ? 0 : ddd.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((numero == null) ? 0 : numero.hashCode());
+		result = prime * result + ((user == null) ? 0 : user.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Telefone other = (Telefone) obj;
+		if (ddd == null) {
+			if (other.ddd != null)
+				return false;
+		} else if (!ddd.equals(other.ddd))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (numero == null) {
+			if (other.numero != null)
+				return false;
+		} else if (!numero.equals(other.numero))
+			return false;
+		if (user == null) {
+			if (other.user != null)
+				return false;
+		} else if (!user.equals(other.user))
+			return false;
+		return true;
+	}
+    
+    
 }

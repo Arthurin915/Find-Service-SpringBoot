@@ -20,6 +20,19 @@ public class Endereco {
 	private String endereco;
 	private int numero;
 
+	public Endereco() {
+	}
+
+	public Endereco(Long id, User user, String cidade, String uf, String endereco, int numero) {
+
+		this.id = id;
+		this.user = user;
+		this.cidade = cidade;
+		this.uf = uf;
+		this.endereco = endereco;
+		this.numero = numero;
+	}
+
 	public Long getId() {
 		return id;
 	}

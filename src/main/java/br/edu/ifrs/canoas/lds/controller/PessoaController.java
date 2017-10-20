@@ -38,12 +38,18 @@ import java.util.List;
  
  	
  	@GetMapping("/")
- 	public String index(Model model, @AuthenticationPrincipal UserImpl activeUser, User user) {
+ 	public String index(Model model, @AuthenticationPrincipal UserImpl activeUser) {
  		
  		if (activeUser != null) {
  	 		model.addAttribute("role", activeUser.getUser().getRole());
  	 		model.addAttribute("nome", activeUser.getUser().getNome()); 
- 	 		model.addAttribute("pessoa", activeUser.getUser());
+ 	 		User user = activeUser.getUser();
+ 	 		
+ 	 		user.setTelefones(telefoneService.telefonesPessoa(user));
+ 	 		user.setEnderecos(enderecoService.enderecosPessoa(user));
+ 	 		
+ 	 		model.addAttribute("pessoa", user);
+ 	 		
  		}
  		
  		
@@ -58,12 +64,15 @@ import java.util.List;
  
  	@PostMapping("/saveF")
  	public String saveF(Model model, @Valid PessoaFisica pessoaFisica, @Valid Endereco endereco, @Valid Telefone telefone, BindingResult result, RedirectAttributes attributes) {
- 		enderecoService.save(endereco);
- 		telefoneService.save(telefone);
+ 		endereco.setUser(pessoaFisica);
+ 		telefone.setUser(pessoaFisica);
+ 		
  	
 
  		// salva usuário no BD
  		pessoaService.save(pessoaFisica);
+ 		enderecoService.save(endereco);
+ 		telefoneService.save(telefone);
 
  		// Retorna para página inicial
  		return "redirect:/";
@@ -71,11 +80,12 @@ import java.util.List;
  	@PostMapping("/saveJ")
  	public String saveJ(Model model, @Valid PessoaJuridica pessoaJuridica, @Valid Endereco endereco, @Valid Telefone telefone, BindingResult result, RedirectAttributes attributes) {
 
- 		enderecoService.save(endereco);
- 		telefoneService.save(telefone);
-
+ 		endereco.setUser(pessoaJuridica);
+ 		telefone.setUser(pessoaJuridica);
  		// salva usuário no BD
  		pessoaService.save(pessoaJuridica);
+ 		enderecoService.save(endereco);
+ 		telefoneService.save(telefone);
 
  		// Retorna para página inicial
  		return "redirect:/";

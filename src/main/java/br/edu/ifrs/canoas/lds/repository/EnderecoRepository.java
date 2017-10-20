@@ -9,7 +9,7 @@ import br.edu.ifrs.canoas.lds.domain.Endereco;
 import br.edu.ifrs.canoas.lds.domain.User;
 
 @Repository
-public interface EnderecoRepostiroy extends JpaRepository<Endereco, Long> {
+public interface EnderecoRepository extends JpaRepository<Endereco, Long> {
 
 	List<Endereco> findAllByUser(User user);
 
