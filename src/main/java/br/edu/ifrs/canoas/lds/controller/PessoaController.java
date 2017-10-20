@@ -38,14 +38,15 @@ import java.util.List;
  
  	
  	@GetMapping("/")
- 	public String index(Model model, @AuthenticationPrincipal UserImpl activeUser) {
+ 	public String index(Model model, @AuthenticationPrincipal UserImpl activeUser, User user) {
  		
  		if (activeUser != null) {
  	 		model.addAttribute("role", activeUser.getUser().getRole());
- 	 		model.addAttribute("nome", activeUser.getUser().getNome()); 	 		
+ 	 		model.addAttribute("nome", activeUser.getUser().getNome()); 
+ 	 		model.addAttribute("pessoa", activeUser.getUser());
  		}
  		
- 		model.addAttribute("users", pessoaService.findAll());
+ 		
  		model.addAttribute("pessoaJ", new PessoaJuridica());
  		model.addAttribute("pessoaF", new PessoaFisica());
 

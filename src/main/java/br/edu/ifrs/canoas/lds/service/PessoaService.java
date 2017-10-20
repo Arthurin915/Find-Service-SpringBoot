@@ -9,6 +9,7 @@
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
  @Service
  public class PessoaService {
@@ -47,6 +48,9 @@ import java.util.List;
  	public List<User> pesquisa(String nome) {
 		return userRepository.findAllByNomeContainingIgnoreCase(nome);
   	}
+ 	public Optional<User> findById(Long id) {
+ 		return userRepository.findById(id);
+ 	}
  	
  	public List<User> pessoasJuridicas(String nome) {
  		List<User> usuarios = userRepository.findAllByNomeContainingIgnoreCase(nome);
