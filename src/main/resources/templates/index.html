@@ -4,14 +4,17 @@
  	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
  	layout:decorate="~{layout/LayoutIndex}">
  	
- <head></head>
+ <head>
+
+ </head>
  <body layout:fragment="content">
      <header id="top" class="header">
          <div id="map" class="text-vertical-center">
      	<section id="contact" class="map" >
          <script type="text/javascript">
  			var map;
- 			var marker;                   
+ 			var marker; 
+ 			var infowindow;
  			function initMap() {
  				var posicao = {lat: -29.8991610, lng: -51.1504780};
  		        map = new google.maps.Map(document.getElementById('map'), {
@@ -19,13 +22,36 @@
  		          center: posicao,
  		          scrollwheel: false
  		        });
- 		        marker = new google.maps.Marker({
- 		          position: posicao,
- 		          map: map
- 		        });
+ 		       
+ 		        //array de markers com suas posicoes e contents
+ 		           
+ 		       
+ 		    	   
+ 	 		       addMarker({coords:{posicao},content:'<h1>teste</h1>'});
+ 		    	
+ 		         		
+ 			}
+ 			// function do marker
+ 			function addMarker(props){
+ 				 marker = new google.maps.Marker({
+ 	 		          position: props.coords,
+ 	 		          map: map
+ 	 		        });
+ 				 
+ 				// adicionando conteudo à infowindow
+ 	 		     if(props.content){
+ 	 		    	  infowindow = new google.maps.InfoWindow({
+ 			 		    content: props.content
+ 			 		  });
+ 			 		       marker.addListener('click', function() {
+ 			 		    	    infowindow.open(map, marker);
+ 			 		    	  });
+ 	 		     }
+ 				
+ 				 
  			}
  
- 			function trocarPosicao(endereco) {
+ 			function trocarPosicao(endereco, nome, telefones, cnpj) {
  				$.ajax({
  					method: 'GET', // Requisicao de dados pro google
  					url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + endereco
@@ -35,6 +61,11 @@
  					map.setCenter({lat: lat, lng: lng});
  					marker.setPosition({lat: lat, lng: lng});
  					map.setZoom(16);
+ 					var content = "<h3 class='janela'>" + "Empresa: "+nome + "<br> Endereço: " + endereco + "<br> CNPJ: "+cnpj+"</h3>";
+ 					for (var j = 0; j < telefones.length; j++) {
+ 	     				content += "<br> Contato: "+ telefones[j].numero;
+ 	     			}
+ 					infowindow.setContent(content);
  				});
  			}
  	  </script>
@@ -65,7 +96,6 @@
      
      </div>
      <span th:text="${role}"></span>
-          <span th:text="${autenticado}"></span>
      
  <!-- Datatable -->
      <script>

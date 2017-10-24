@@ -37,7 +37,11 @@ $(function () {
      			enderecos = enderecos.substr(0, enderecos.length - 2);
 
      			botao.attr('data-endereco', enderecos);
-     			
+     			botao.attr('data-nome', data[i].nome);
+     			botao.attr('data-cnpj', data[i].cnpj);
+     			botao.attr('data-cep', data[i].cep);
+     			botao.attr('data-email', data[i].email);
+     			botao.attr('data-telefones', JSON.stringify(data[i].telefones));
  				var telefones = '';
      			
      			for (var j = 0; j < data[i].telefones.length; j++) {
@@ -60,8 +64,14 @@ $(function () {
    
       $('#example').on('click', '.visualiza', function (e) {
       	var endereco = $(e.target).data('endereco');
-      	console.log(endereco);
-      	trocarPosicao(endereco);
+      	var nome = $(e.target).data('nome');
+      	var telefones = $(e.target).data('telefones');
+      	var cnpj = $(e.target).data('cnpj');
+      	var email = $(e.target).data('email');
+      	var cep = $(e.target).data('cep');
+
+      	
+      	trocarPosicao(endereco, nome, telefones, cnpj, cep, email);
      });
  });
  

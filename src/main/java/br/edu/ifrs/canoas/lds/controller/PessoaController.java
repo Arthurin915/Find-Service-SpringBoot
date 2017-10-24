@@ -44,7 +44,6 @@ import java.util.List;
  	 		model.addAttribute("role", activeUser.getUser().getRole());
  	 		model.addAttribute("nome", activeUser.getUser().getNome()); 
  	 		User user = activeUser.getUser();
- 	 		
  	 		user.setTelefones(telefoneService.telefonesPessoa(user));
  	 		user.setEnderecos(enderecoService.enderecosPessoa(user));
  	 		

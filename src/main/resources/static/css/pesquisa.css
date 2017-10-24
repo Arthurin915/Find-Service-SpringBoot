@@ -33,7 +33,9 @@ body {
 	transform: translate(0px, 0px) scale(1, 1); 
     opacity: 1;
 }
-
+.janela{
+	color: red !important;
+}
 #search input[type="search"] {
     position: absolute;
     top: 50%;
