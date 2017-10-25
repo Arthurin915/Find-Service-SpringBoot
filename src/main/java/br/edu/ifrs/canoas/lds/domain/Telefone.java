@@ -15,11 +15,11 @@ public class Telefone {
     @ManyToOne
     private User user;
 
-    private Integer numero;
+    private Long numero;
     private Integer ddd;
 
     public Telefone(){}
-    public Telefone(Long id, User user, Integer numero, Integer ddd) {
+    public Telefone(Long id, User user, Long numero, Integer ddd) {
 		
 		this.id = id;
 		this.user = user;
@@ -43,11 +43,11 @@ public class Telefone {
         this.user = user;
     }
 
-    public Integer getNumero() {
+    public Long getNumero() {
         return numero;
     }
 
-    public void setNumero(Integer numero) {
+    public void setNumero(Long numero) {
         this.numero = numero;
     }
 

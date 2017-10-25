@@ -10,25 +10,25 @@ public class PessoaJuridica extends User{
 
  	private String categoria;
 
-    private Integer cnpj;
+    private Long cnpj;
     
     public PessoaJuridica(){
     	super();
     }
 
 	public PessoaJuridica(Long id, String username, String password, Set<Role> roles, boolean active, String cep,
-			String nome, String email, List<Telefone> telefones, List<Endereco> enderecos, String categoria, Integer cnpj) {
+			String nome, String email, List<Telefone> telefones, List<Endereco> enderecos, String categoria, Long cnpj) {
 		super(id, username, password, roles, active, cep, nome, email, telefones, enderecos);
 		this.cnpj = cnpj;
 		this.categoria = categoria;
 	}
 
 
-	public Integer getCnpj() {
+	public Long getCnpj() {
         return cnpj;
     }
 
-    public void setCnpj(Integer cnpj) {
+    public void setCnpj(Long cnpj) {
         this.cnpj = cnpj;
     }
 

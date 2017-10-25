@@ -65,13 +65,13 @@ $(function () {
       $('#example').on('click', '.visualiza', function (e) {
       	var endereco = $(e.target).data('endereco');
       	var nome = $(e.target).data('nome');
-      	var telefones = $(e.target).data('telefones');
       	var cnpj = $(e.target).data('cnpj');
-      	var email = $(e.target).data('email');
       	var cep = $(e.target).data('cep');
+      	var email = $(e.target).data('email');
+      	var telefones = $(e.target).data('telefones');
 
       	
-      	trocarPosicao(endereco, nome, telefones, cnpj, cep, email);
+      	trocarPosicao(endereco, nome, cnpj, cep, email, telefones);
      });
  });
  

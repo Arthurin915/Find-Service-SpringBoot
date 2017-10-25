@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 @Entity
 public class PessoaFisica extends User {
 
-    private Integer cpf;
+    private Long cpf;
 
 
 	public PessoaFisica() {
@@ -13,11 +13,11 @@ public class PessoaFisica extends User {
 	}
 
 
-	public Integer getCpf() {
+	public Long getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(Integer cpf) {
+	public void setCpf(Long cpf) {
 		this.cpf = cpf;
 	}
 }
