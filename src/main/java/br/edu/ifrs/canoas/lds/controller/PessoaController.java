@@ -43,11 +43,11 @@ import java.util.List;
  		if (activeUser != null) {
  	 		model.addAttribute("role", activeUser.getUser().getRole());
  	 		model.addAttribute("nome", activeUser.getUser().getNome()); 
- 	 		User user = activeUser.getUser();
- 	 		user.setTelefones(telefoneService.telefonesPessoa(user));
- 	 		user.setEnderecos(enderecoService.enderecosPessoa(user));
- 	 		
- 	 		model.addAttribute("pessoa", user);
+ 	 		User user = pessoaService.findById(activeUser.getUser().getId()).get();
+// 	 		user.setTelefones(telefoneService.telefonesPessoa(user));
+// 	 		user.setEnderecos(enderecoService.enderecosPessoa(user));
+// 	 		user.getEnderecos().iterator().next().getEndereco();
+   	 		model.addAttribute("pessoa", user);
  	 		
  		}
  		
@@ -62,29 +62,23 @@ import java.util.List;
  	}
  
  	@PostMapping("/saveF")
- 	public String saveF(Model model, @Valid PessoaFisica pessoaFisica, @Valid Endereco endereco, @Valid Telefone telefone, BindingResult result, RedirectAttributes attributes) {
- 		endereco.setUser(pessoaFisica);
- 		telefone.setUser(pessoaFisica);
+ 	public String saveF(Model model, @Valid PessoaFisica pessoaFisica, BindingResult result, RedirectAttributes attributes) {
  		
- 	
-
  		// salva usuário no BD
+ 		pessoaFisica.getEnderecos().set(0,enderecoService.save(pessoaFisica.getEnderecos().get(0)));
+ 		pessoaFisica.getTelefones().set(0,telefoneService.save(pessoaFisica.getTelefones().get(0)));
  		pessoaService.save(pessoaFisica);
- 		enderecoService.save(endereco);
- 		telefoneService.save(telefone);
 
  		// Retorna para página inicial
  		return "redirect:/";
  	}
  	@PostMapping("/saveJ")
- 	public String saveJ(Model model, @Valid PessoaJuridica pessoaJuridica, @Valid Endereco endereco, @Valid Telefone telefone, BindingResult result, RedirectAttributes attributes) {
+ 	public String saveJ(Model model, @Valid PessoaJuridica pessoaJuridica, BindingResult result, RedirectAttributes attributes) {
 
- 		endereco.setUser(pessoaJuridica);
- 		telefone.setUser(pessoaJuridica);
  		// salva usuário no BD
+ 		pessoaJuridica.getEnderecos().set(0,enderecoService.save(pessoaJuridica.getEnderecos().get(0)));
+ 		pessoaJuridica.getTelefones().set(0,telefoneService.save(pessoaJuridica.getTelefones().get(0)));
  		pessoaService.save(pessoaJuridica);
- 		enderecoService.save(endereco);
- 		telefoneService.save(telefone);
 
  		// Retorna para página inicial
  		return "redirect:/";

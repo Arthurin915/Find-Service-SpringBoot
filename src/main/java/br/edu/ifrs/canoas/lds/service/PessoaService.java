@@ -52,6 +52,10 @@ import java.util.Optional;
  		return userRepository.findById(id);
  	}
  	
+ 	public User getId(Long id) {
+ 		return userRepository.getOne(id);
+ 	}
+ 	
  	public List<User> pessoasJuridicas(String nome) {
  		List<User> usuarios = userRepository.findAllByNomeContainingIgnoreCase(nome);
  		List<User> retorno = new ArrayList<>();

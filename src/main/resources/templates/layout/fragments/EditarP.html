@@ -21,19 +21,19 @@
 						<form data-toggle="validator" th:object="${pessoa}"
 							th:action="@{/saveJ}" method="post">
 
-							<input class="form-control" th:field="*{id}" id="EmpInputId"
+							<input class="form-control" th:field="*{id}" id="EmpEditId"
 								type="hidden">
 							<div class="row">
 								<div class="form-group col-md-6">
-									<label for="EmpInputNomeEmp"> Nome: </label> <input
-										class="form-control" th:field="*{nome}" id="EmpInputNome"
+									<label for="EmpEditNome"> Nome: </label> <input
+										class="form-control" th:field="*{nome}" id="EmpEditNome"
 										type="text" placeholder="Nome da Empresa ou Prestador"
 										required>
 									<div class="help-block with-errors"></div>
 								</div>
 								<div class="form-group col-md-6">
-									<label for="EmpInputEmail"> Email: </label> <input
-										class="form-control" th:field="*{email}" id="EmpInputEmail"
+									<label for="EmpEditEmail"> Email: </label> <input
+										class="form-control" th:field="*{email}" id="EmpEditEmail"
 										type="email" placeholder="Digite o email" required
 										data-error="Email inválido! Exemplo: email@email.com">
 									<div class="help-block with-errors"></div>
@@ -41,8 +41,8 @@
 							</div>
 							<div class="row">
 								<div class="form-group col-md-6">
-									<label for="EmpCep"> Cep: </label> <input class="form-control"
-										th:field="*{cep}" type="text" id="EmpCep" value=""
+									<label for="EmpEditCep"> Cep: </label> <input class="form-control"
+										th:field="*{cep}" type="text" id="EmpEditCep" value=""
 										maxlength="9" placeholder="Digite o seu cep" required>
 									<a
 										href="http://www.buscacep.correios.com.br/sistemas/buscacep/"
@@ -50,9 +50,9 @@
 									<div class="help-block with-errors"></div>
 								</div>
 								<div class="form-group col-md-6">
-									<label for="EmpInputEndereco"> Endereço: </label> <input
+									<label for="EmpEditEndereco"> Endereço: </label> <input
 										class="form-control" th:field="*{enderecos[0].endereco}"
-										id="EmpInputEndereco" type="text" placeholder="Endereço"
+										id="EmpEditEndereco" type="text" placeholder="Endereço"
 										readonly>
 									<div class="help-block with-errors"></div>
 								</div>
@@ -60,27 +60,27 @@
 							<div class="row">
 
 								<div class="form-group col-md-4">
-									<label for="EmpInputCidade"> Cidade: </label> <input
+									<label for="EmpEditCidade"> Cidade: </label> <input
 										class="form-control" th:field="*{enderecos[0].cidade}"
-										id="EmpInputCidade" type="text" placeholder="Cidade" readonly>
+										id="EmpEditCidade" type="text" placeholder="Cidade" readonly>
 									<div class="help-block with-errors"></div>
 								</div>
 								<div class="form-group col-md-2">
-									<label for="EmpInputUf"> UF: </label> <input
+									<label for="EmpEditUf"> UF: </label> <input
 										class="form-control" th:field="*{enderecos[0].uf}"
-										id="EmpInputUf" type="text" placeholder="UF" readonly>
+										id="EmpEditUf" type="text" placeholder="UF" readonly>
 									<div class="help-block with-errors"></div>
 								</div>
 								<div class="form-group col-md-2">
-									<label for="EmpInputNumero"> Numero: </label> <input
+									<label for="EmpEditNumero"> Numero: </label> <input
 										class="form-control" th:field="*{enderecos[0].numero}"
-										id="EmpInputNumero" type="text" placeholder="10" required
+										id="EmpEditNumero" type="text" placeholder="10" required
 										data-error="Preencha o Campo">
 									<div class="help-block with-errors"></div>
 								</div>
 								<div class="form-group col-md-4">
-									<label for="EmpInputCNPJ"> CNPJ: </label> <input
-										class="form-control" th:field="*{cnpj}" id="EmpInputCNPJ"
+									<label for="EmpEditCNPJ"> CNPJ: </label> <input
+										class="form-control" th:field="*{cnpj}" id="EmpEditCNPJ"
 										type="text" placeholder="CNPJ" required
 										data-error="Preencha o Campo">
 									<div class="help-block with-errors"></div>
@@ -88,18 +88,16 @@
 							</div>
 							<div class="row">
 								<div class="form-group col-md-6">
-									<th:block th:each="telefone : ${pessoa.telefones}">
-										<label for="EmpInputTelefone"> Telefone: </label>
-										<span th:text="${telefone}"></span>
-										
-										<div class="help-block with-errors"></div>
-									</th:block>
+									<label for="EmpEditTelefone"> UF: </label> <input
+										class="form-control" th:field="*{telefones[0].numero}"
+										id="EmpEditTelefone" type="text" placeholder="Digite o telefone" readonly>
+									<div class="help-block with-errors"></div>
 								</div>
 
 								<div class="form-group col-md-6">
-									<label for="EmpInputCategoria"> Categoria: </label> <select
+									<label for="EmpEditCategoria"> Categoria: </label> <select
 										class="form-control" th:field="*{categoria}"
-										id="EmpInputCategoria" required>
+										id="EmpEditCategoria" required>
 										<option value="">Selecione a categoria</option>
 										<option value="1">Advocacia</option>
 										<option value="2">Alimentação</option>
@@ -131,15 +129,15 @@
 							</div>
 							<div class="row">
 								<div class="form-group col-md-6">
-									<label for="EmpInputSenha"> Senha: </label> <input
-										class="form-control" th:field="*{password}" id="EmpInputSenha"
+									<label for="EmpEditSenha"> Senha: </label> <input
+										class="form-control" th:field="*{password}" id="EmpEditSenha"
 										type="password" placeholder="Digite a Senha" required>
 									<div class="help-block with-errors"></div>
 								</div>
 								<div class="form-group col-md-6">
-									<label for="EmpInputConfirmar"> Confirmar Senha: </label> <input
-										class="form-control" id="EmpInputConfirmar" type="password"
-										placeholder="Digite a senha" data-match="#EmpInputSenha"
+									<label for="EmpEditConfirmar"> Confirmar Senha: </label> <input
+										class="form-control" id="EmpEditConfirmar" type="password"
+										placeholder="Digite a senha" data-match="#EmpEditSenha"
 										data-match-error="Atenção! As senhas não estão iguais."
 										required>
 									<div class="help-block with-errors"></div>
