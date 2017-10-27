@@ -47,8 +47,8 @@
                      <li>
                          <a href="#" th:if="${#strings.equals(role, 'ROLE_PESSOA_JURIDICA')}" data-toggle="modal"
 							data-target="#ModalEditarPerfil">Editar Perfil de Empresa</a>
-                    	 <a href="#" data-toggle="modal"
-							data-target="#ModalEditarPerfil" th:if="${#strings.equals(role, 'ROLE_PESSOA_FISICA')}" >Editar Perfil</a>
+                    	 <a href="#" th:if="${#strings.equals(role, 'ROLE_PESSOA_FISICA')}" data-toggle="modal"
+							data-target="#ModalEditarPerfil"  >Editar Perfil</a>
                          <a th:href="@{/logout}">Logout</a>
                      </li>
          </ul>         

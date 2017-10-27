@@ -66,4 +66,7 @@ import java.util.Optional;
 		}
  		return retorno;
  	}
+	public Optional<User> findByNome(String nome) {
+		return userRepository.findByNome(nome);
+	}
  }

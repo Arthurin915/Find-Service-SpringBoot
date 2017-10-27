@@ -25,15 +25,11 @@ import java.util.List;
  	private final PessoaService pessoaService;
  	private final EnderecoService enderecoService;
  	private final TelefoneService telefoneService;
-// 	private final PasswordEncoder passwordEncoder;
  
- 	public PessoaController(PessoaService pessoaService, EnderecoService enderecoService, TelefoneService telefoneService
-//            , PasswordEncoder passwordEncoder
-    ) {
+ 	public PessoaController(PessoaService pessoaService, EnderecoService enderecoService, TelefoneService telefoneService) {
  		this.pessoaService = pessoaService;
  		this.enderecoService=enderecoService;
  		this.telefoneService=telefoneService;
-// 		this.passwordEncoder = passwordEncoder;
  	}
  
  	
@@ -41,13 +37,11 @@ import java.util.List;
  	public String index(Model model, @AuthenticationPrincipal UserImpl activeUser) {
  		
  		if (activeUser != null) {
- 	 		model.addAttribute("role", activeUser.getUser().getRole());
- 	 		model.addAttribute("nome", activeUser.getUser().getNome()); 
- 	 		User user = pessoaService.findById(activeUser.getUser().getId()).get();
-// 	 		user.setTelefones(telefoneService.telefonesPessoa(user));
-// 	 		user.setEnderecos(enderecoService.enderecosPessoa(user));
-// 	 		user.getEnderecos().iterator().next().getEndereco();
+ 			User user = pessoaService.findById(activeUser.getUser().getId()).get();
+ 	 		model.addAttribute("role", user.getRole());
+ 	 		model.addAttribute("nome", user.getNome()); 
    	 		model.addAttribute("pessoa", user);
+   	 		model.addAttribute("pessoafisica", user);
  	 		
  		}
  		
@@ -55,9 +49,7 @@ import java.util.List;
  		model.addAttribute("pessoaJ", new PessoaJuridica());
  		model.addAttribute("pessoaF", new PessoaFisica());
 
- 		//model.addAttribute("pessoaF_logada", pessoaService.getSessionF(context));
- 		//model.addAttribute("pessoaJ_logada", pessoaService.getSessionJ(context));
- 		
+ 	 		
  		return "index";
  	}
  

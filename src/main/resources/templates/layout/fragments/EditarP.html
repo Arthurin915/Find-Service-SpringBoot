@@ -88,7 +88,7 @@
 							</div>
 							<div class="row">
 								<div class="form-group col-md-6">
-									<label for="EmpEditTelefone"> UF: </label> <input
+									<label for="EmpEditTelefone"> Telefone: </label> <input
 										class="form-control" th:field="*{telefones[0].numero}"
 										id="EmpEditTelefone" type="text" placeholder="Digite o telefone" readonly>
 									<div class="help-block with-errors"></div>
@@ -167,32 +167,108 @@
 							perfil do usuário</h4>
 					</div>
 					<div class="modal-body">
-						<form data-toggle="validator">
-							<div class="form_description">
-								<h2>myList</h2>
-								<p>This is your form description. Click here to edit.</p>
+						<form data-toggle="validator" th:object="${pessoafisica}"
+							th:action="@{/saveF}" method="post">
+
+							<input class="form-control" th:field="*{id}" id="EditarUsuarioId"
+								type="hidden">
+							<div class="row">
+								<div class="form-group col-md-6">
+									<label for="EditarUsuarioNome"> Nome: </label> <input
+										class="form-control" th:field="*{nome}" id="EditarUsuarioNome"
+										type="text" placeholder="Nome da Empresa ou Prestador"
+										required>
+									<div class="help-block with-errors"></div>
+								</div>
+								<div class="form-group col-md-6">
+									<label for="EditarUsuarioEmail"> Email: </label> <input
+										class="form-control" th:field="*{email}" id="EditarUsuarioEmail"
+										type="email" placeholder="Digite o email" required
+										data-error="Email inválido! Exemplo: email@email.com">
+									<div class="help-block with-errors"></div>
+								</div>
 							</div>
-							<table class="table table-striped">
-								<thead>
-									<tr>
-										<th>#</th>
-										<th>Name</th>
-										<th>Email</th>
-										<th>Description</th>
-										<th>Action</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>1</td>
-										<td>Full Name</td>
-										<td>ema@email.com</td>
-										<td>Some description here</td>
-										<td><a href="#">Delete</a>|<a href="#">Edit</a></td>
-									</tr>
-								</tbody>
-							</table>
-							<br /> <a href="#">New</a>
+							<div class="row">
+								<div class="form-group col-md-6">
+									<label for="EditarUsuarioCep"> Cep: </label> <input class="form-control"
+										th:field="*{cep}" type="text" id="EditarUsuarioCep" value=""
+										maxlength="9" placeholder="Digite o seu cep" required>
+									<a
+										href="http://www.buscacep.correios.com.br/sistemas/buscacep/"
+										target="_blank">Não sei meu cep.</a>
+									<div class="help-block with-errors"></div>
+								</div>
+								<div class="form-group col-md-6">
+									<label for="EditarUsuarioEndereco"> Endereço: </label> <input
+										class="form-control" th:field="*{enderecos[0].endereco}"
+										id="EditarUsuarioEndereco" type="text" placeholder="Endereço"
+										readonly>
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+							<div class="row">
+
+								<div class="form-group col-md-4">
+									<label for="EditarUsuarioCidade"> Cidade: </label> <input
+										class="form-control" th:field="*{enderecos[0].cidade}"
+										id="EditarUsuarioCidade" type="text" placeholder="Cidade" readonly>
+									<div class="help-block with-errors"></div>
+								</div>
+								<div class="form-group col-md-2">
+									<label for="EditarUsuarioUf"> UF: </label> <input
+										class="form-control" th:field="*{enderecos[0].uf}"
+										id="EditarUsuarioUf" type="text" placeholder="UF" readonly>
+									<div class="help-block with-errors"></div>
+								</div>
+								<div class="form-group col-md-2">
+									<label for="EditarUsuarioNumero"> Numero: </label> <input
+										class="form-control" th:field="*{enderecos[0].numero}"
+										id="EditarUsuarioNumero" type="text" placeholder="10" required
+										data-error="Preencha o Campo">
+									<div class="help-block with-errors"></div>
+								</div>
+								<div class="form-group col-md-4">
+									<label for="EditarUsuarioCpf"> CPF: </label> <input
+										class="form-control" th:field="*{cpf}" id="EditarUsuarioCpf"
+										type="text" placeholder="CPF" required
+										data-error="Preencha o Campo">
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group col-md-6">
+									<label for="EditarUsuarioTelefone"> Telefone: </label> <input
+										class="form-control" th:field="*{telefones[0].numero}"
+										id="EditarUsuarioTelefone" type="text" placeholder="Digite o telefone" readonly>
+									<div class="help-block with-errors"></div>
+								</div>
+
+								
+							</div>
+							<div class="row">
+								<div class="form-group col-md-6">
+									<label for="EditarUsuarioSenha"> Senha: </label> <input
+										class="form-control" th:field="*{password}" id="EditarUsuarioSenha"
+										type="password" placeholder="Digite a Senha" required>
+									<div class="help-block with-errors"></div>
+								</div>
+								<div class="form-group col-md-6">
+									<label for="EditarUsuarioConfirmar"> Confirmar Senha: </label> <input
+										class="form-control" id="EditarUsuarioConfirmar" type="password"
+										placeholder="Digite a senha" data-match="#EditarUsuarioSenha"
+										data-match-error="Atenção! As senhas não estão iguais."
+										required>
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+							<hr />
+							<div class="row">
+								<div class="col-md-12">
+									<button class="btn btn-primary" type="submit">Salvar</button>
+									<button class="btn btn-default" type="button"
+										data-dismiss="modal">Cancelar</button>
+								</div>
+							</div>
 						</form>
 					</div>
 				</div>
