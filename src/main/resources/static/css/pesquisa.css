@@ -81,7 +81,7 @@ body {
 	margin: 0 5px 5px 10px;	
 }
 .iw-subTitle {
-	font-size: 18px;
+	font-size: 18px; 
 	font-weight: 700;
 	padding: 5px 0;
 }
@@ -95,6 +95,16 @@ body {
 	background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
 	background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
 	background: -ms-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+}
+.estrelas input[type=radio] {
+  display: none;
+}
+.estrelas label i.fa:before {
+  content:'\f005';
+  color: #FC0;
+}
+.estrelas input[type=radio]:checked ~ label i.fa:before {
+  color: #CCC;
 }
 
 #search input[type="search"] {

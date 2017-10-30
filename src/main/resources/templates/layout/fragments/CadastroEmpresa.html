@@ -80,8 +80,7 @@
                              <label for="EmpInputCNPJ">
                                  CNPJ:
                              </label>
-                             <input class="form-control" th:field="${pessoaJ.cnpj}" id="EmpInputCNPJ" type="text" placeholder="CNPJ" 
-                             required data-error="Preencha o Campo">
+                             <input class="form-control" th:field="${pessoaJ.cnpj}" id="EmpInputCNPJ" type="text" placeholder="CNPJ">
                              <div class="help-block with-errors"></div>
                          </div>
                      </div>
@@ -145,6 +144,17 @@
                              <div class="help-block with-errors"></div>
                      </div>
                      </div>
+                     <div class ="row">
+                     	<div class="form-group col-md-12">
+                             <label for="EmpDescricao">
+                                 Descrição: 
+                             </label>
+							<textarea rows="3" cols="80" maxlength="250" id="EmpDescricao" th:field="${pessoaJ.descricao}" placeholder="Insira seu horário de funcionamento e informações adicionais da empresa">
+							</textarea>
+ 							<div class="help-block with-errors"></div>
+                         </div>
+                         
+                      </div>
                      <hr/>
                      <div class="row">
                        <div class="col-md-12">

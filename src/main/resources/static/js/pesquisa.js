@@ -42,6 +42,9 @@ $(function () {
      			botao.attr('data-cep', data[i].cep);
      			botao.attr('data-email', data[i].email);
      			botao.attr('data-telefones', JSON.stringify(data[i].telefones));
+     			botao.attr('data-nota', data[i].nota);
+     			botao.attr('data-descricao', data[i].descricao);
+
  				var telefones = '';
      			
      			for (var j = 0; j < data[i].telefones.length; j++) {
@@ -69,9 +72,11 @@ $(function () {
       	var cep = $(e.target).data('cep');
       	var email = $(e.target).data('email');
       	var telefones = $(e.target).data('telefones');
+      	var nota = $(e.target).data('nota');
+      	var descricao = $(e.target).data('descricao');
 
       	
-      	trocarPosicao(endereco, nome, cnpj, cep, email, telefones);
+      	trocarPosicao(endereco, nome, cnpj, cep, email, telefones, nota, descricao);
      });
  });
  

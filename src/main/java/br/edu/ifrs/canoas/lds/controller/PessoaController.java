@@ -32,7 +32,7 @@ import java.util.List;
  		this.telefoneService=telefoneService;
  	}
  
- 	
+ 	 
  	@GetMapping("/")
  	public String index(Model model, @AuthenticationPrincipal UserImpl activeUser) {
  		
@@ -42,7 +42,6 @@ import java.util.List;
  	 		model.addAttribute("nome", user.getNome()); 
    	 		model.addAttribute("pessoa", user);
    	 		model.addAttribute("pessoafisica", user);
- 	 		
  		}
  		
  		
@@ -56,23 +55,23 @@ import java.util.List;
  	@PostMapping("/saveF")
  	public String saveF(Model model, @Valid PessoaFisica pessoaFisica, BindingResult result, RedirectAttributes attributes) {
  		
- 		// salva usuário no BD
+ 		// salva usuÃ¡rio no BD
  		pessoaFisica.getEnderecos().set(0,enderecoService.save(pessoaFisica.getEnderecos().get(0)));
  		pessoaFisica.getTelefones().set(0,telefoneService.save(pessoaFisica.getTelefones().get(0)));
  		pessoaService.save(pessoaFisica);
 
- 		// Retorna para página inicial
+ 		// Retorna para pÃ¡gina inicial
  		return "redirect:/";
  	}
  	@PostMapping("/saveJ")
  	public String saveJ(Model model, @Valid PessoaJuridica pessoaJuridica, BindingResult result, RedirectAttributes attributes) {
 
- 		// salva usuário no BD
+ 		// salva usuÃ¡rio no BD
  		pessoaJuridica.getEnderecos().set(0,enderecoService.save(pessoaJuridica.getEnderecos().get(0)));
  		pessoaJuridica.getTelefones().set(0,telefoneService.save(pessoaJuridica.getTelefones().get(0)));
  		pessoaService.save(pessoaJuridica);
 
- 		// Retorna para página inicial
+ 		// Retorna para pÃ¡gina inicial
  		return "redirect:/";
  	}
   
