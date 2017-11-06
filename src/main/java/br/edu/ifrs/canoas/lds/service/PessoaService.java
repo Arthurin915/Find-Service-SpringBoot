@@ -69,4 +69,18 @@ import java.util.Optional;
 	public Optional<User> findByNome(String nome) {
 		return userRepository.findByNome(nome);
 	}
+	
+	public List<User> buscaCidade(User user){
+		
+		List<User> pessoas = this.userRepository.findAllByEnderecos(user.getEnderecos());
+		
+		for(User pessoa : pessoas){
+			if (user instanceof PessoaJuridica) {
+				if(((PessoaJuridica) user).getCategoria().equals()){
+					
+				}
+			}
+		}
+		
+	}
  }

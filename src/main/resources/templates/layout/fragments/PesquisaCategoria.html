@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+ <html xmlns="http://www.w3.org/1999/xhtml"
+ 	xmlns:th="http://www.thymleaf.org"
+ 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:replace="layout/LayoutPadrao :: layout">
+</head>
+<body>
+<div class="modal fade" id="FormPesquisa"  tabindex="-1"
+  role="dialog" aria-labelledby="FormPesquisaLabel" th:fragment="PesquisaCateg">
+     <div class="modal-dialog" role="document">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal">x</button>
+                 <h4 class="modal-title" id="FormPesquisaLabel">
+                    Pesquisa por categoria
+                 </h4>
+             </div>
+             <div class ="modal-body">
+                 <form method="post">
+                     <div class="row">
+                     <div class="form-group col-md-6">
+                     <div>Selecione a categoria para pesquisa:<br></div>
+                     
+                         <label for="Categoria">
+                                <br> Categoria:
+                             </label>
+                         <select class="form-control"  id="Categoria" required> 
+                           <option value ="">Selecione a categoria</option>
+                           <option value ="1">Advocacia</option>
+                           <option value ="2">Alimentação</option>
+                           <option value ="3">Automotiva</option>
+                           <option value ="4">Banco</option>
+                           <option value ="5">Bebida</option>
+                           <option value ="6">Bombeiro</option>
+                           <option value ="7">Comércio</option>
+                           <option value ="8">Distribuidora</option>
+                           <option value ="9">Educação</option>
+                           <option value ="10">Eletricidade</option>
+                           <option value ="11">Eletrodomésticos</option>
+                           <option value ="12">Gráfica</option>
+                           <option value ="13">Imobiliária</option>
+                           <option value ="14">Informática</option>
+                           <option value ="15">Moda</option>
+                           <option value ="16">Música</option>
+                           <option value ="17">Policia</option>
+                           <option value ="18">Promotoria</option>
+                           <option value ="19">Publicidade</option>
+                           <option value ="20">Seguradora</option>
+                           <option value ="21">Segurança</option>
+                           <option value ="22">Telecomunicações</option>
+                           <option value ="23">Turismo</option>
+                         </select>
+                         <div class="help-block with-errors"></div>
+ 
+                         </div>
+                     </div>
+                      <hr/>
+                     <div class="row">
+                       <div class="col-md-12">
+                         <button class="btn btn-primary" type="submit">Pesquisar</button>
+                         <button class="btn btn-default" type="button" data-dismiss="modal">Cancelar</button>
+                       </div>
+                     </div>
+                 </form>
+            </div>
+         </div>
+     </div>
+     </div>   
+</body>
+</html>

@@ -1,11 +1,14 @@
 package br.edu.ifrs.canoas.lds.repository;
 
-import br.edu.ifrs.canoas.lds.domain.User;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.Optional;
+import br.edu.ifrs.canoas.lds.domain.Endereco;
+import br.edu.ifrs.canoas.lds.domain.PessoaJuridica;
+import br.edu.ifrs.canoas.lds.domain.User;
 
 
 /**
@@ -18,4 +21,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
     User findByEmail(String email);
     List<User> findAllByNomeContainingIgnoreCase(String nome);
 	Optional<User> findByNome(String nome);
+	List<User> findAllByEnderecos(List<Endereco> enderecos);
 }

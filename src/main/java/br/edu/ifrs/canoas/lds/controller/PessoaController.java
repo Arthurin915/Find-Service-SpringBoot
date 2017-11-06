@@ -81,4 +81,8 @@ import java.util.List;
   		return pessoaService.pessoasJuridicas(nome);
   	}
   	
+  	@PostMapping("/busca/{categoria}")
+  	@ResponseBody
+  	public List<PessoaJuridica> buscaEmpresas(){
   }
+}
