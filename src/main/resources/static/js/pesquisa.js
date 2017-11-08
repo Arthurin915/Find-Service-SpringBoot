@@ -1,42 +1,34 @@
 $(function () {
-     $('a[href="#search"]').on('click', function(event) {
-         event.preventDefault();
-         $('#search').addClass('open');
+    $('a[href="#search"]').on('click', function (event) {
+        event.preventDefault();
+        $('#search').addClass('open');
 
 
-         $('#search > form > input[type="search"]').focus();
-     });
+        $('#search > form > input[type="search"]').focus();
+    });
 
 
-    $('#search, #search button.close').on('click keyup', function(event) {
-         if (event.target == this || event.target.className == 'close' || event.keyCode == 27) {
-              $(this).removeClass('open');
-          }
-      });
+    $('#search, #search button.close').on('click keyup', function (event) {
+        if (event.target == this || event.target.className == 'close' || event.keyCode == 27) {
+            $(this).removeClass('open');
+        }
+    });
 
-      $('body').on('submit', '#pesquisar', function(){
-      	$('#search').removeClass('open');
-      	$.ajax({
-     		method: 'GET',
-     		url: '/pessoa/' + $('#pesq').val()
+    $('body').on('submit', '#pesquisar', function () {
+        $('#search').removeClass('open');
+        $.ajax({
+            method: 'GET',
+            url: '/pessoa/' + $('#pesq').val()
         }).done(function (data) {
+            resetMap();
             mostraNaTabela(data);
         });
-          return false;
-      });
+        return false;
+    });
 
     $('#example').on('click', '.visualiza', function (e) {
         var endereco = $(e.target).data('endereco');
-        var nome = $(e.target).data('nome');
-        var cnpj = $(e.target).data('cnpj');
-        var cep = $(e.target).data('cep');
-        var email = $(e.target).data('email');
-        var telefones = $(e.target).data('telefones');
-        var nota = $(e.target).data('nota');
-        var descricao = $(e.target).data('descricao');
-
-
-        trocarPosicao(endereco, nome, cnpj, cep, email, telefones, nota, descricao);
+        centralizarEmpresa(endereco);
     });
 
     $('body').on('submit', '#pesquisa-categoria', function () {
@@ -45,6 +37,7 @@ $(function () {
             method: 'GET',
             url: '/busca/' + $('#Categoria').val()
         }).done(function (data) {
+            resetMap();
             mostraNaTabela(data);
         });
         return false;
@@ -96,5 +89,7 @@ function mostraNaTabela(data) {
             telefones,
             botao[0].outerHTML
         ]).draw();
+
+        trocarPosicao(constroiEndereco(data[i].enderecos[0]), data[i].nome, data[i].cnpj, data[i].email, data[i].cep, data[i].telefones, data[i].nota, data[i].descricao);
     }
- }
+}
