@@ -1,5 +1,8 @@
 package br.edu.ifrs.canoas.lds.domain;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -26,10 +29,12 @@ public class User {
     private String nome;
     @Column(unique=true)
     private String email;
-    @OneToMany(cascade=CascadeType.ALL)
-    private List<Telefone> telefones;
-    @OneToMany(cascade=CascadeType.ALL)
-    private List<Endereco> enderecos;
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(cascade=CascadeType.ALL)
+	private List<Telefone> telefones;
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(cascade=CascadeType.ALL)
+	private List<Endereco> enderecos;
 
     public User() {
         enderecos = new ArrayList<>();
